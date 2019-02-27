@@ -14,7 +14,9 @@
     "h:migrate": "heroku run knex migrate:latest",
     "h:rollback": "heroku run knex migrate:rollback",
     "h:seed": "heroku run knex seed:run",
-    "knex": "knex"
+    "knex": "knex",
+    "windev1": "nodemon --watch server server/index",
+    "windev2": "webpack --watch"
   },
   "author": "EDA",
   "license": "ISC",
@@ -27,7 +29,7 @@
     "sass-loader": "^7.1.0",
     "sqlite3": "^4.0.4",
     "supertest": "^3.0.0",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
