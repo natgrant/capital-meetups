@@ -7,17 +7,28 @@ module.exports = {
     path: path.resolve('public'),
     filename: 'bundle.js'
   },
-
   module: {
-    rules: [{
-      test: /\.js|\.jsx$/,
-      use: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
   },
-
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [
+      '.js',
+      '.jsx'
+    ]
   },
 
   devtool: 'source-map',

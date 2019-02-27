@@ -1,43 +1,26 @@
-import React from 'react'
-import {HashRouter as Router, Route, Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React, { Fragment } from "react";
+import { HashRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Login from './Login'
-import Register from './Register'
-import Nav from './Nav'
+import Login from "./Login";
+import Register from "./Register";
 
-
-export function App({auth}) {
+export function App({ auth }) {
   return (
     <Router>
-      <div className="container has-text-centered">
-
-        <div className="hero is-small is-primary">
-          <div className="hero-body has-text-centered">
-            <Link to='/' className="">
-              <h1 className="title is-1">Lost and Found</h1>
-            </Link>
-            <Nav />
-          </div>
-        </div>
-
-        <div className=''>
-          {!auth.isAuthenticated &&
-            <Route exact path="/" component={Login} />
-          }
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
-
-      </div>
+      <Fragment>
+        {!auth.isAuthenticated && <Route exact path="/" component={Login} />}
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Fragment>
     </Router>
-  )
+  );
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({ auth }) => {
   return {
     auth
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
