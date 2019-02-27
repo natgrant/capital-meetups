@@ -12,6 +12,7 @@ export function App({ auth }) {
         {!auth.isAuthenticated && <Route exact path="/" component={Login} />}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <h1>Hai</h1>
       </Fragment>
     </Router>
   );
