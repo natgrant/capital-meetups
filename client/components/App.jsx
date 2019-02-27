@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Login from "./Login";
 import Register from "./Register";
+import EventInfo from "./EventInfo"
 
 export function App({ auth }) {
   return (
@@ -12,6 +13,7 @@ export function App({ auth }) {
         {!auth.isAuthenticated && <Route exact path="/" component={Login} />}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/eventinfo" component={EventInfo}/>
       </Fragment>
     </Router>
   );
