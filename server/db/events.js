@@ -5,19 +5,6 @@ function getAllEvents(testDb) {
   return db("events").select();
 }
 
-function getEventsByUserId(userId, testDb) {
-  const db = testDb || connection;
-  return db("subscriptions")
-    .join("events", "subscriptions.event_id", "events.id")
-    .where("subscriptions.user_id", userId)
-    .select(
-      "events.name as name",
-      "events.description as description",
-      "events.location as location",
-      "events.date as date"
-    );
-}
-
 function getEventByCategory(category, testDb) {
   const db = testDb || connection;
   return db("events")
@@ -80,7 +67,6 @@ function deleteEvent(id, testDb) {
 
 module.exports = {
   getAllEvents,
-  getEventsByUserId,
   getEventByCategory,
   getOneEvent,
   createEvent,
