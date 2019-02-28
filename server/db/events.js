@@ -59,13 +59,9 @@ function deleteEvent(id) {
 function removeEventByUserId(userId, eventId) {
   const db = testDb || connection;
   return db("user-event")
-    .where(function() {
-      this.where("userID", userId).Where("eventID", eventId);
-    })
-    .del()
-    .then(data => {
-      return db("events").select();
-    });
+    .where("userID", userId)
+    .Where("eventID", eventId)
+    .del();
 }
 module.exports = {
   getAllEvents,
