@@ -1,2 +1,32 @@
 @charset "utf-8";
 @import "~bulma/bulma";
+
+.eventimage {
+    width: 25%;
+    height:30%;
+    left: 5%;
+    top: 30%;
+    position: absolute;
+}
+
+.basicdetails {
+    width: 30%;
+    height: 15%;
+    left: 50%;
+    top: 30%;
+    position: absolute;
+}
+
+
+.description {
+    position: absolute;
+    width: 30%;
+    left: 3%;
+    top: 70%;
+    height: 500px;
+}
+
+.joinbutton {
+    width: 200px;
+    float: right;
+}
