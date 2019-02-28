@@ -5,6 +5,7 @@ export class EventInfo extends Component {
         return(
             <div>
                 <h2>Event Info</h2>
+                <h2></h2>
             </div>
         )
     }
