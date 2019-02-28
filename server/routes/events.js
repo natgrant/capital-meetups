@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllEvents,
   getEventsByUserId,
-  getEventsByCategory,
+  getEventByCategory,
   getOneEvent,
   createEvent,
   deleteEvent,
@@ -37,9 +37,9 @@ router.get("/events/:id", (req, res) => {
     });
 });
 
-router.get("/events/:category", (req, res) => {
+router.get("/category/:category", (req, res) => {
   const category = req.params.category;
-  getEventsByCategory(category)
+  getEventByCategory(category)
     .then(events => {
       res.json(events);
     })
@@ -49,7 +49,7 @@ router.get("/events/:category", (req, res) => {
     });
 });
 
-router.get("/events/:id", (req, res) => {
+router.get("/event/:id", (req, res) => {
   const eventId = req.params.id;
   getOneEvent(eventId)
     .then(event => {
@@ -61,7 +61,8 @@ router.get("/events/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
+  const event = req.body;
   const newEvent = {
     name: req.body.name,
     location: req.body.location,
@@ -96,7 +97,7 @@ router.delete("/delete/:id", (req, res) => {
 router.post("/edit/:id", (req, res) => {
   let id = req.params.id;
   let event = req.body;
-  editEvent(id, event)
+  editEvent(event, id)
     .then(data => {
       res.json(data);
     })
