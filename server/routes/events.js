@@ -6,7 +6,9 @@ const {
   getEventsByUserId,
   getEventsByCategory,
   getOneEvent,
-  createEvent
+  createEvent,
+  deleteEvent,
+  editEvent
 } = require("../db/events");
 
 router.use(express.json());
@@ -36,7 +38,7 @@ router.get("/events/:id", (req, res) => {
 });
 
 router.get("/events/:category", (req, res) => {
-  const category = req.body.catagory;
+  const category = req.params.category;
   getEventsByCategory(category)
     .then(events => {
       res.json(events);
@@ -60,13 +62,47 @@ router.get("/events/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  createEvent(req.body)
+  const newEvent = {
+    name: req.body.name,
+    location: req.body.location,
+    description: req.body.description,
+    category: req.body.category,
+    date: req.body.date,
+    is_open: req.body.is_open,
+    type: req.body.type,
+    image: req.body.image
+  };
+  createEvent(newEvent)
     .then(newEvent => {
       res.json(newEvent);
     })
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.delete("/delete/:id", (req, res) => {
+  deleteEvent(req.params.id)
+    .then(event => {
+      res.json(event);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.post("/edit/:id", (req, res) => {
+  let id = req.params.id;
+  let event = req.body;
+  editEvent(id, event)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Oh no another error" });
     });
 });
 
