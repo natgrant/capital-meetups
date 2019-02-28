@@ -7,14 +7,14 @@ function getAllEvents(testDb) {
 
 function getEventsByUserId(userId, testDb) {
   const db = testDb || connection;
-  return db("user_event")
-    .join("event", "user_event.event_id", "event.id")
-    .where("user_event.user_id", userId)
+  return db("users_events")
+    .join("events", "users_events.event_id", "events.id")
+    .where("users_events.user_id", userId)
     .select(
-      "event.name as name",
-      "event.description as description",
-      "event.location as location",
-      "event.date as date"
+      "events.name as name",
+      "events.description as description",
+      "events.location as location",
+      "events.date as date"
     );
 }
 
@@ -32,21 +32,43 @@ function getOneEvent(id, testDb) {
     .first();
 }
 
-function createEvent(newEvent, testDb) {
+function createEvent(newEvent, userId, testDb) {
   const db = testDb || connection;
-  return db("users")
-    .where("user.id", event.user_id)
-    .first()
-    .then(user => {
-      return db("events")
-        .insert(newEvent)
-        .then(data => {
-          return db("events").select();
-        });
+  return db("events")
+    .insert(newEvent)
+    .then(result => {
+      return db("users_events")
+        .join("events", "users_events.event_id", "events.id")
+        .where("users_events.user_id", userId)
+        .select(
+          "events.name as name",
+          "events.description as description",
+          "events.location as location",
+          "events.date as date"
+        );
     });
 }
 
-function deleteEvent(id) {
+function editEvent(event, id, testDB) {
+  const db = testDB || connection;
+  return db("events")
+    .where("id", id)
+    .first()
+    .update({
+      name: event.name,
+      location: event.location,
+      description: event.description,
+      category: event.category,
+      date: event.date,
+      is_open: event.is_open,
+      type: event.type
+    })
+    .then(result => {
+      return db("events").where("id", id);
+    });
+}
+
+function deleteEvent(id, testDb) {
   const db = testDb || connection;
   return db("events")
     .where("id", id)
@@ -56,13 +78,14 @@ function deleteEvent(id) {
     });
 }
 
-function removeEventByUserId(userId, eventId) {
+function removeEventByUserId(userId, eventId, testDb) {
   const db = testDb || connection;
-  return db("user-event")
-    .where("userID", userId)
-    .Where("eventID", eventId)
+  return db("users-events")
+    .where("userId", userId)
+    .Where("eventId", eventId)
     .del();
 }
+
 module.exports = {
   getAllEvents,
   getEventsByUserId,
@@ -70,5 +93,6 @@ module.exports = {
   getOneEvent,
   createEvent,
   deleteEvent,
-  removeEventByUserId
+  removeEventByUserId,
+  editEvent
 };

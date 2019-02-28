@@ -39,10 +39,10 @@ function getUserByUsername(user_name, testDb) {
 
 function getUsersByEvent(eventId, testDb) {
   const db = testDb || connection;
-  return db("user_event")
-    .join("users", "users.id", "user_event.user_id")
-    .where("user_event.event_id", eventId)
-    .select("user.name");
+  return db("users_events")
+    .join("users", "users.id", "users_events.user_id")
+    .where("users_events.event_id", eventId)
+    .select("users.name as name");
 }
 
 module.exports = {
