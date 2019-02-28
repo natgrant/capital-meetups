@@ -16,10 +16,13 @@ export class EventInfo extends Component {
   <div className="hero-body">
     <div className="container">
       <h1 className="title">
-        Event
+                  
+                  {/* event title */}
+                    {this.props.name} 
+
       </h1>
       <div>
-      <a class="button is-danger joinbutton">Join</a>
+      <a className="button is-danger joinbutton">Join</a>
         </div>
     </div>
   </div>
@@ -29,87 +32,103 @@ export class EventInfo extends Component {
     </figure>
      </div>
               <div className="tile is-parent basicdetails">
-    <article className="tile is-child box">
+    <article className="tile is-classNamehild box">
       <div className="content">
-        <p className="title">Event Details</p>
+            <p className="title">Hello
+                      
+                      {/* event date/time & host */}
+                      {this.props.date}
+                      {this.props.type}
+                      {this.props.created_by}
+                      {this.props.category}
+            
+            </p>
+      </div>
+    </article>
+  </div>
+  </div>
+  <div className="tile is-parent description">
+    <article className="tile is-child notification is-success">
+      <div className="content">
+        <p className="title">Description</p>
+        
+        <p className="subtitle">
+
+                        {/* description */}
+                        {this.props.description}
+        
+        </p>
+        
         <div className="content">
-        <p>host: bob</p><br></br><p>Time/Date: now</p>
         </div>
       </div>
     </article>
   </div>
-  </div>
-  <div class="tile is-parent description">
-    <article class="tile is-child notification is-success">
-      <div class="content">
-        <p class="title">Description</p>
-        <p class="subtitle">With even more content</p>
-        <div class="content">
-        </div>
+  <div className="tile is-parent locationtile">
+    <div className="tile is-child box">
+      <p className="title">Location</p>
+                          
+                          {/* <p> */}
+                            
+                            {/* location */}
+                            {/* {this.props.location} */}
+                          
+                          {/* </p> */}
       </div>
-    </article>
-  </div>
-  <div class="tile is-parent locationtile">
-    <div class="tile is-child box">
-      <p class="title">Hopeful Map</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
-      <p>Suspendisse varius ligula in molestie lacinia. Maecenas varius eget ligula a sagittis. Pellentesque interdum, nisl nec interdum maximus, augue diam porttitor lorem, et sollicitudin felis neque sit amet erat. Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet. Aenean vitae gravida diam, finibus dignissim turpis. Sed eget varius ligula, at volutpat tortor.</p>
-      <p>Integer sollicitudin, tortor a mattis commodo, velit urna rhoncus erat, vitae congue lectus dolor consequat libero. Donec leo ligula, maximus et pellentesque sed, gravida a metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet lacus, quis faucibus libero. Quisque non semper leo.</p>
-    </div>
 </div>
 <div>
 <div>
 
     {/* Attendee Panel */}
     
-    <nav class="panel attendeepanel">
-        <p class="panel-heading">
+    <nav className="panel attendeepanel">
+        <p className="panel-heading">
     Members
   </p>
-  <div class="panel-block">
-    <p class="control has-icons-left">
-      <input class="input is-small" type="text" placeholder="search"/>
-      <span class="icon is-small is-left">
-        <i class="fas fa-search" aria-hidden="true"></i>
+  <div className="panel-block">
+    <p className="control has-icons-left">
+      <input className="input is-small" type="text" placeholder="search"/>
+      <span className="icon is-small is-left">
+        <i className="fas fa-search" aria-hidden="true"></i>
       </span>
     </p>
   </div>
-  <p class="panel-tabs">
-    <a class="is-active">Attendees</a>
+  <p className="panel-tabs">
+    <a className="is-active">Attendees</a>
   </p>
-  <a class="panel-block is-active">
-    <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
+  <a className="panel-block is-active">
+    <span className="panel-icon">
+      <i className="fas fa-book" aria-hidden="true"></i>
     </span>
     Tom
   </a>
-  <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
+  <a className="panel-block">
+    <span className="panel-icon">
+      <i className="fas fa-book" aria-hidden="true"></i>
     </span>
     Lisa
   </a>
-  <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
+  <a className="panel-block">
+    <span className="panel-icon">
+      <i className="fas fa-book" aria-hidden="true"></i>
     </span>
     Mark
   </a>
-  <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
+  <a className="panel-block">
+    <span className="panel-icon">
+      <i className="fas fa-book" aria-hidden="true"></i>
     </span>
     Bob
   </a>
-  <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-code-branch" aria-hidden="true"></i>
+  <a className="panel-block">
+    <span className="panel-icon">
+      <i className="fas fa-code-branch" aria-hidden="true"></i>
     </span>
     Alice
   </a>
-  <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-code-branch" aria-hidden="true"></i>
+  <a className="panel-block">
+    <span className="panel-icon">
+      <i className="fas fa-code-branch" aria-hidden="true"></i>
     </span>
     Sarah
   </a>
@@ -123,15 +142,3 @@ export class EventInfo extends Component {
 
 export default EventInfo
 
-
-        {/* <div>
-           <ul> 
-               <li>
-                    <h2>{this.props.name}</h2>
-                </li>
-                <li>{this.props.date}</li>
-                <li>{this.props.location}</li>
-                <li>{this.props.description}</li>
-                                })}
-             </ul>
-       </div> */}
