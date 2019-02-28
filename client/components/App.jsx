@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Login from "./Login";
 import Register from "./Register";
 import Nav from "./Nav";
+import LatestEvents from "./LatestEvents";
 
 export function App({ auth }) {
   return (
@@ -32,70 +33,14 @@ export function App({ auth }) {
             </h2>
           </div>
         </div>
-        <div className="columns ">
-          <div className="column">
-            <article class="message is-dark">
-              <div className="message-header">
-                <p>Event 1</p>
-                <button className="delete" aria-label="delete" />
-              </div>
-              <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-                Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-                efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-                Donec sodales, arcu et sollicitudin porttitor, tortor urna
-                tempor ligula, id porttitor mi magna a neque. Donec dui urna,
-                vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </article>
-          </div>
-          <div className="column">
-            <article className="message is-dark">
-              <div className="message-header">
-                <p>Event 2</p>
-                <button className="delete" aria-label="delete" />
-              </div>
-              <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-                Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-                efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-                Donec sodales, arcu et sollicitudin porttitor, tortor urna
-                tempor ligula, id porttitor mi magna a neque. Donec dui urna,
-                vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </article>
-          </div>
-          <div className="column">
-            <article className="message is-dark">
-              <div className="message-header">
-                <p>Event 3</p>
-                <button className="delete" aria-label="delete" />
-              </div>
-              <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-                Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-                efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-                Donec sodales, arcu et sollicitudin porttitor, tortor urna
-                tempor ligula, id porttitor mi magna a neque. Donec dui urna,
-                vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </article>
-          </div>
-        </div>
-
+        <LatestEvents />
         <div className="">
           {/* {!auth.isAuthenticated && <Route exact path="/" component={Login} />} */}
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </div>
 
-        <div className="columns ">
+        {/* <div className="columns ">
           <div className="column ">
             <div />
             <h2 className=" is-size-3 ">
@@ -170,7 +115,7 @@ export function App({ auth }) {
               />
             </figure>
           </div>
-        </div>
+        </div> */}
       </div>
     </Router>
   );
