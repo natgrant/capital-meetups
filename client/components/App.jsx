@@ -6,6 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Nav from "./Nav";
 import LatestEvents from "./LatestEvents";
+import CategoryList from "./CategoryList";
 
 export function App({ auth }) {
   return (
@@ -40,82 +41,14 @@ export function App({ auth }) {
           <Route path="/register" component={Register} />
         </div>
 
-        {/* <div className="columns ">
+        <div className="columns ">
           <div className="column ">
-            <div />
             <h2 className=" is-size-3 ">
               <strong>Categories</strong>
             </h2>
           </div>
         </div>
-        <div class="columns has-text-centered">
-          <div class="column">
-            <figure class="image is-256x256 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-        </div>
-        <div class="columns has-text-centered">
-          <div class="column">
-            <figure class="image is-256x256 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-          <div class="column">
-            <figure class="image is-128x128 is-inline-block">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/128x128.png"
-              />
-            </figure>
-          </div>
-        </div> */}
+        <CategoryList />
       </div>
     </Router>
   );
