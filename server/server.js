@@ -14,5 +14,6 @@ server.use(express.static(path.join(__dirname, "../public")));
 
 server.use("/api/auth", require("./routes/auth"));
 server.use("/api/v1/meetups", require("./routes/events"));
+server.use("/api/v1/users", require("./routes/users"));
 
 module.exports = server;
