@@ -8,7 +8,8 @@ const {
   getOneEvent,
   createEvent,
   deleteEvent,
-  editEvent
+  editEvent,
+  removeEventByUserId
 } = require("../db/events");
 
 router.use(express.json());
@@ -61,9 +62,9 @@ router.get("/event/:id", (req, res) => {
     });
 });
 
-router.post("/:id", (req, res) => {
-  const event = req.body;
-  const newEvent = {
+router.post("/create/:user_id", (req, res) => {
+  const event = {
+    id: req.body.user_id,
     name: req.body.name,
     location: req.body.location,
     description: req.body.description,
@@ -73,9 +74,9 @@ router.post("/:id", (req, res) => {
     type: req.body.type,
     image: req.body.image
   };
-  createEvent(newEvent)
-    .then(newEvent => {
-      res.json(newEvent);
+  createEvent(event)
+    .then(([id]) => {
+      res.json({ id });
     })
     .catch(err => {
       console.log(err);
@@ -85,6 +86,17 @@ router.post("/:id", (req, res) => {
 
 router.delete("/delete/:id", (req, res) => {
   deleteEvent(req.params.id)
+    .then(event => {
+      res.json(event);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.delete("/removeUser/:id", (req, res) => {
+  removeEventByUserId(req.params.id)
     .then(event => {
       res.json(event);
     })
