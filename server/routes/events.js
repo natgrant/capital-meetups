@@ -63,8 +63,9 @@ router.get("/event/:id", (req, res) => {
 });
 
 router.post("/create/:user_id", (req, res) => {
-  const eventId = req.params.id;
+  const userId = req.params.user_id;
   const newEvent = {
+    user_id: req.params.user_id,
     name: req.body.name,
     location: req.body.location,
     description: req.body.description,
@@ -74,7 +75,7 @@ router.post("/create/:user_id", (req, res) => {
     type: req.body.type,
     image: req.body.image
   };
-  createEvent(newEvent)
+  createEvent(newEvent, userId)
     .then(([id]) => {
       res.json({ id });
     })
