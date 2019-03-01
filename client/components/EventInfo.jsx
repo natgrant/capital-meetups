@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 export class EventInfo extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       event: [],
-      joinToggle: false,
-      auth: true
+      showTick: false
     };
   }
 
@@ -30,15 +30,20 @@ export class EventInfo extends Component {
                   </h1>
                   <div>
                     <div>
-                      <a
-                        href="/#/login"
-                        className="button is-danger joinbutton"
-                      >
-                        Join
-                      </a>
-                      <a className="button">
-                        <img src="https://img.icons8.com/material/24/000000/ok.png" />
-                      </a>
+                      {this.props.auth.isAuthenticated
+                        ? [
+                            <a className="button">
+                              <img src="https://img.icons8.com/material/24/000000/ok.png" />
+                            </a>
+                          ]
+                        : [
+                            <a
+                              href="/#/login"
+                              className="button is-danger joinbutton"
+                            >
+                              Join
+                            </a>
+                          ]}
                     </div>
                   </div>
                 </div>
@@ -154,4 +159,10 @@ export class EventInfo extends Component {
   }
 }
 
-export default EventInfo;
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth
+  };
+};
+
+export default connect(mapStateToProps)(EventInfo);
