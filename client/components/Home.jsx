@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
 class Home extends React.Component {
   constructor(props) {
