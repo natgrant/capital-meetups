@@ -3,7 +3,6 @@ const router = express.Router();
 
 const {
   getAllEvents,
-  getEventsByUserId,
   getEventByCategory,
   getOneEvent,
   createEvent,
@@ -13,29 +12,28 @@ const {
 
 router.use(express.json());
 
-// get /api/v1/meetups
+//GET /api/v1/meetups
 router.get("/", (req, res) => {
   getAllEvents()
     .then(events => {
       res.json(events);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
 
-router.get("/events/:id", (req, res) => {
-  const userId = req.params.id;
-  getEventsByUserId(userId)
-    .then(events => {
-      res.json(events);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: "Oh no an error" });
-    });
-});
+// router.get("/events/:id", (req, res) => {
+//   const userId = req.params.id;
+//   getEventsByUserId(userId)
+//     .then(events => {
+//       res.json(events);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({ error: "Oh no an error" });
+//     });
+// });
 
 router.get("/category/:category", (req, res) => {
   const category = req.params.category;
@@ -44,7 +42,6 @@ router.get("/category/:category", (req, res) => {
       res.json(events);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -56,7 +53,6 @@ router.get("/event/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -79,7 +75,6 @@ router.post("/create/:user_id", (req, res) => {
       res.json({ id });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -90,7 +85,6 @@ router.delete("/delete/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -101,7 +95,6 @@ router.delete("/removeUser/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -114,7 +107,6 @@ router.post("/edit/:id", (req, res) => {
       res.json(data);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no another error" });
     });
 });
