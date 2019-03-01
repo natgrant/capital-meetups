@@ -1,20 +1,20 @@
-import React, { Fragment } from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import React from "react";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Login from "./Login";
 import Register from "./Register";
-import Nav from "./Nav";
+import Home from "./Home";
 
 export function App({ auth }) {
   return (
     <Router>
-      <Fragment>
-        {/* {!auth.isAuthenticated && <Route exact path="/" component={Login} />} */}
-        <Route exact path="/" component={Nav} />
+      <React.Fragment>
+        <Route exact path="/" component={Home} />
+
         <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Fragment>
+        <Route path="/register" component={Register} />
+      </React.Fragment>
     </Router>
   );
 }
