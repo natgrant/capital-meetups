@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/logout";
+import Login from "./Login";
+// import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -17,58 +19,7 @@ class Nav extends React.Component {
   render() {
     const { auth, logout } = this.props;
     const { showBurger } = this.state;
-    // return (
-    //   <nav className="navbar">
-    //     <div className="container">
-    //       <div className="navbar-brand">
-    //         <span
-    //           onClick={this.toggleBurger}
-    //           className={`navbar-burger burger ${
-    //             showBurger ? "is-active" : ""
-    //           }`}
-    //           data-target="navbarMenuHeroA"
-    //         >
-    //           <span />
-    //           <span />
-    //           <span />
-    //         </span>
-    //       </div>
-    //       <div
-    //         id="navbarMenuHeroA"
-    //         className={`navbar-menu ${showBurger ? "is-active" : ""}`}
-    //       >
-    //         <div className="navbar-end">
-    //           {auth.isAuthenticated ? (
-    //             <Link
-    //               to="/"
-    //               className="navbar-item is-large"
-    //               onClick={() => logout()}
-    //             >
-    //               Logout
-    //             </Link>
-    //           ) : (
-    //             [
-    //               <Link
-    //                 onClick={this.toggleBurger}
-    //                 className="navbar-item is-large"
-    //                 to="/login"
-    //               >
-    //                 Login
-    //               </Link>,
-    //               <Link
-    //                 onClick={this.toggleBurger}
-    //                 className="navbar-item"
-    //                 to="/register"
-    //               >
-    //                 Register
-    //               </Link>
-    //             ]
-    //           )}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </nav>
-    // );
+
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -113,10 +64,13 @@ class Nav extends React.Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-primary">
+                <a href="/#/register" className="button is-primary">
                   <strong>Sign up</strong>
                 </a>
-                <a className="button is-light">Log in</a>
+
+                <a href="/#/login" className="button is-light">
+                  Log in
+                </a>
               </div>
             </div>
           </div>
