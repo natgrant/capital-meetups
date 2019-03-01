@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+
+
 export class EventInfo extends Component {
         constructor(){
             super()
@@ -22,7 +24,8 @@ export class EventInfo extends Component {
 
       </h1>
       <div>
-      <a className="button is-danger joinbutton">Join</a>
+     
+      <a className="button is-danger joinbutton" >Join</a>
         </div>
     </div>
   </div>
