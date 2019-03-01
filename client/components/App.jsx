@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Login from "./Login";
 import Register from "./Register";
 import EventInfo from "./EventInfo"
+import ModelDisplay from "./ModelDisplay"
 
 export function App({ auth }) {
   return (
