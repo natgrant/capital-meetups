@@ -65,44 +65,56 @@ class Nav extends React.Component {
           </div>
 
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <a
-                  onClick={() => this.setState({ register: true })}
-                  className="button is-primary"
-                >
-                  <strong>Sign up</strong>
-                </a>
-                <Modal
-                  show={this.state.register}
-                  onClose={() => this.setState({ register: false })}
-                  style={{ backgroundColor: "black" }}
-                >
-                  <Modal.Content>
-                    <Section style={{ backgroundColor: "white" }}>
-                      <Register />
-                    </Section>
-                  </Modal.Content>
-                </Modal>
-                <a
-                  onClick={() => this.setState({ login: true })}
-                  className="button is-light"
-                >
-                  Log in
-                </a>
-                <Modal
-                  show={this.state.login}
-                  onClose={() => this.setState({ login: false })}
-                  style={{ backgroundColor: "black" }}
-                >
-                  <Modal.Content>
-                    <Section style={{ backgroundColor: "white" }}>
-                      <Login />
-                    </Section>
-                  </Modal.Content>
-                </Modal>
-              </div>
-            </div>
+            {auth.isAuthenticated ? (
+              <a
+                to="/"
+                className="navbar-item is-large"
+                onClick={() => logout()}
+              >
+                Logout
+              </a>
+            ) : (
+              [
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <a
+                      onClick={() => this.setState({ register: true })}
+                      className="button is-primary"
+                    >
+                      <strong>Sign up</strong>
+                    </a>
+                    <Modal
+                      show={this.state.register}
+                      onClose={() => this.setState({ register: false })}
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <Modal.Content>
+                        <Section style={{ backgroundColor: "white" }}>
+                          <Register />
+                        </Section>
+                      </Modal.Content>
+                    </Modal>
+                    <a
+                      onClick={() => this.setState({ login: true })}
+                      className="button is-light"
+                    >
+                      Log in
+                    </a>
+                    <Modal
+                      show={this.state.login}
+                      onClose={() => this.setState({ login: false })}
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <Modal.Content>
+                        <Section style={{ backgroundColor: "white" }}>
+                          <Login />
+                        </Section>
+                      </Modal.Content>
+                    </Modal>
+                  </div>
+                </div>
+              ]
+            )}
           </div>
         </div>
       </nav>
