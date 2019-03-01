@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/logout";
+import Login from "./Login";
+// import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -65,7 +67,10 @@ class Nav extends React.Component {
                 <a className="button is-primary">
                   <strong>Sign up</strong>
                 </a>
-                <a className="button is-light">Log in</a>
+
+                <a href="/#/login" className="button is-light">
+                  Log in
+                </a>
               </div>
             </div>
           </div>
