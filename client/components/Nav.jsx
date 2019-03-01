@@ -5,7 +5,7 @@ import { logoutUser } from "../actions/logout";
 import Login from "./Login";
 import Register from "./Register";
 import { Modal } from "react-bulma-components";
-
+import { Section } from "react-bulma-components";
 class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +78,11 @@ class Nav extends React.Component {
                   onClose={() => this.setState({ register: false })}
                   style={{ backgroundColor: "black" }}
                 >
-                  <Register />
+                  <Modal.Content>
+                    <Section style={{ backgroundColor: "white" }}>
+                      <Register />
+                    </Section>
+                  </Modal.Content>
                 </Modal>
                 <a
                   onClick={() => this.setState({ login: true })}
@@ -91,7 +95,11 @@ class Nav extends React.Component {
                   onClose={() => this.setState({ login: false })}
                   style={{ backgroundColor: "black" }}
                 >
-                  <Login />
+                  <Modal.Content>
+                    <Section style={{ backgroundColor: "white" }}>
+                      <Login />
+                    </Section>
+                  </Modal.Content>
                 </Modal>
               </div>
             </div>
