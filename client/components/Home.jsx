@@ -1,6 +1,10 @@
 import React from "react";
+import Nav from "./Nav";
+import LatestEvents from "./LatestEvents";
+import CategoryList from "./CategoryList";
+import { Link } from "react-router-dom";
 
-class CategoryList extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -32,11 +36,6 @@ class CategoryList extends React.Component {
             </div>
           </div>
           <LatestEvents />
-          <div className="">
-            {/* {!auth.isAuthenticated && <Route exact path="/" component={Login} />} */}
-            <Route exact path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-          </div>
 
           <div className="columns ">
             <div className="column ">
