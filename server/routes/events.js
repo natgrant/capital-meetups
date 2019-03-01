@@ -8,8 +8,7 @@ const {
   getOneEvent,
   createEvent,
   deleteEvent,
-  editEvent,
-  removeEventByUserId
+  editEvent
 } = require("../db/events");
 
 router.use(express.json());
