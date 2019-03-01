@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
+import EventInfo from "./EventInfo"
+
 
 export function App({ auth }) {
   return (
@@ -13,6 +15,7 @@ export function App({ auth }) {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/EventInfo" component={EventInfo}/>
       </React.Fragment>
     </Router>
   );
