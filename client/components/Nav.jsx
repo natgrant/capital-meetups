@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/logout";
 import Login from "./Login";
-// import { HashRouter as Router, Route, Link } from "react-router-dom";
+import Register from "./Register";
+import { Modal } from "react-bulma-components";
 
 class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showBurger: false
+      showBurger: false,
+      login: false,
+      register: false
     };
     this.toggleBurger = this.toggleBurger.bind(this);
   }
@@ -64,13 +67,32 @@ class Nav extends React.Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a href="/#/register" className="button is-primary">
+                <a
+                  onClick={() => this.setState({ register: true })}
+                  className="button is-primary"
+                >
                   <strong>Sign up</strong>
                 </a>
-
-                <a href="/#/login" className="button is-light">
+                <Modal
+                  show={this.state.register}
+                  onClose={() => this.setState({ register: false })}
+                  style={{ backgroundColor: "black" }}
+                >
+                  <Register />
+                </Modal>
+                <a
+                  onClick={() => this.setState({ login: true })}
+                  className="button is-light"
+                >
                   Log in
                 </a>
+                <Modal
+                  show={this.state.login}
+                  onClose={() => this.setState({ login: false })}
+                  style={{ backgroundColor: "black" }}
+                >
+                  <Login />
+                </Modal>
               </div>
             </div>
           </div>
