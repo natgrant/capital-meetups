@@ -1,42 +1,50 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAllSubscriptions } from "../actions/getAllSubsriptions";
+import { getAllSubscriptions } from "../actions/getAllSubscriptions";
 import Loading from "./Loading";
 
-export class DashBoard extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isAu
+    };
   }
 
   componentDidMount = () => {
-    this.props.getAll();
+    this.props.getAll(this.props.user.id);
   };
 
   getAll = () => {
-    this.props.getAll();
+    this.props.getAll(this.props.user.id);
   };
   render() {
+    console.log(this.props);
     return (
       <div>
-        {this.props.subscriptions.map(item => (
-          <div>{subscriptions.name}</div>
-        ))}
+        <h2>Welome to Dashboard page!</h2>
+        {/* {this.props.subscriptions.map(item => (
+          <div key={item.id}>
+            <p>{item.name}</p>
+          </div>
+        ))} */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  subscriptions: state.subscriptions
+  subscriptions: state.subscriptions,
+  user: state.auth
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: () => dispatch(getAllSubscriptions())
+    getAll: id => dispatch(getAllSubscriptions(id))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashBoard);
+)(Dashboard);
