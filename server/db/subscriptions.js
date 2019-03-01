@@ -1,8 +1,13 @@
 const connection = require("./connection");
 
-function getSubscriptionsByUserId(userId, testDb) {
+function getSubscriptionsByUsername(username, testDb) {
   const db = testDb || connection;
-  return db("subscriptions")
+  return db("users")
+    .where("username", username)
+    .first()
+    .then(userId => {
+      return db("subscriptions");
+    })
     .join("events", "subscriptions.event_id", "events.id")
     .where("subscriptions.user_id", userId)
     .select(
@@ -13,11 +18,11 @@ function getSubscriptionsByUserId(userId, testDb) {
     );
 }
 
-function createSubscription(userId, eventID, testDb) {
+function createSubscription(userId, eventId, testDb) {
   const db = testDb || connection;
   return db("subscrptions").insert({
     userId,
-    eventIDd
+    eventId
   });
 }
 
@@ -31,5 +36,5 @@ function removeSubscription(userId, eventId, testDb) {
 module.export = {
   createSubscription,
   removeSubscription,
-  getSubscriptionsByUserId
+  getSubscriptionsByUsername
 };
