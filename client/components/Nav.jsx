@@ -66,11 +66,7 @@ class Nav extends React.Component {
 
           <div className="navbar-end">
             {auth.isAuthenticated ? (
-              <a
-                to="/"
-                className="navbar-item is-large"
-                onClick={() => logout()}
-              >
+              <a className="navbar-item is-large" onClick={() => logout()}>
                 Logout
               </a>
             ) : (
