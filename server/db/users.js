@@ -42,7 +42,7 @@ function getUsersByEvent(eventId, testDb) {
   return db("subscriptions")
     .join("users", "users.id", "subscriptions.user_id")
     .where("subscriptions.event_id", eventId)
-    .select("users.name as name");
+    .select("user_name as name");
 }
 
 module.exports = {
