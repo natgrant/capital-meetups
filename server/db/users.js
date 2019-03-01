@@ -39,9 +39,9 @@ function getUserByUsername(user_name, testDb) {
 
 function getUsersByEvent(eventId, testDb) {
   const db = testDb || connection;
-  return db("users_events")
-    .join("users", "users.id", "users_events.user_id")
-    .where("users_events.event_id", eventId)
+  return db("subscriptions")
+    .join("users", "users.id", "subscriptions.user_id")
+    .where("subscriptions.event_id", eventId)
     .select("users.name as name");
 }
 
