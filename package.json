@@ -59,6 +59,7 @@
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.1.1",
     "react-social-login": "^3.4.4",
+    "react-social-login-buttons": "^2.3.0",
     "react-test-renderer": "^16.8.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.2.0",

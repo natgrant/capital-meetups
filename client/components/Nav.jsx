@@ -6,6 +6,8 @@ import Login from "./Login";
 import Register from "./Register";
 import { Modal } from "react-bulma-components";
 import { Section } from "react-bulma-components";
+import SocialLogin from "./SocialLogin";
+
 class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -104,6 +106,7 @@ class Nav extends React.Component {
                       <Modal.Content>
                         <Section style={{ backgroundColor: "white" }}>
                           <Login />
+                          <SocialLogin />
                         </Section>
                       </Modal.Content>
                     </Modal>
