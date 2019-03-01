@@ -1,6 +1,8 @@
 import React from "react";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { getAllEvents } from "../actions/events";
+import { getAllCategories } from "../actions/events";
 
 import Login from "./Login";
 import Register from "./Register";
@@ -26,4 +28,14 @@ const mapStateToProps = ({ auth }) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    events: () => dispatch(getAllEvents()),
+    categories: () => dispatch(getAllCategories())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

@@ -27,7 +27,7 @@ class LatestEvents extends React.Component {
             </div>
           </article>
         </div>
-        <div className="column">
+        {/* <div className="column">
           <article className="message is-dark">
             <div className="message-header">
               <p>Event 2</p>
@@ -62,7 +62,7 @@ class LatestEvents extends React.Component {
               sem eget, facilisis sodales sem.
             </div>
           </article>
-        </div>
+        </div> */}
       </div>
     );
   }
