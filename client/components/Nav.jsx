@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/logout";
 import Login from "./Login";
-// import { HashRouter as Router, Route, Link } from "react-router-dom";
+import Register from "./Register";
+import { Modal } from "react-bulma-components";
+import { Section } from "react-bulma-components";
+import SocialLogin from "./SocialLogin";
 
 class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showBurger: false
+      showBurger: false,
+      login: false,
+      register: false
     };
     this.toggleBurger = this.toggleBurger.bind(this);
   }
@@ -62,17 +67,53 @@ class Nav extends React.Component {
           </div>
 
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <a href="/#/register" className="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-
-                <a href="/#/login" className="button is-light">
-                  Log in
-                </a>
-              </div>
-            </div>
+            {auth.isAuthenticated ? (
+              <a className="navbar-item is-large" onClick={() => logout()}>
+                Logout
+              </a>
+            ) : (
+              [
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <a
+                      onClick={() => this.setState({ register: true })}
+                      className="button is-primary"
+                    >
+                      <strong>Sign up</strong>
+                    </a>
+                    <Modal
+                      show={this.state.register}
+                      onClose={() => this.setState({ register: false })}
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <Modal.Content>
+                        <Section style={{ backgroundColor: "white" }}>
+                          <Register />
+                        </Section>
+                      </Modal.Content>
+                    </Modal>
+                    <a
+                      onClick={() => this.setState({ login: true })}
+                      className="button is-light"
+                    >
+                      Log in
+                    </a>
+                    <Modal
+                      show={this.state.login}
+                      onClose={() => this.setState({ login: false })}
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <Modal.Content>
+                        <Section style={{ backgroundColor: "white" }}>
+                          <Login />
+                          <SocialLogin />
+                        </Section>
+                      </Modal.Content>
+                    </Modal>
+                  </div>
+                </div>
+              ]
+            )}
           </div>
         </div>
       </nav>

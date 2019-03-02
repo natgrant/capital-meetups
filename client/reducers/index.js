@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 
 import auth from "./auth";
-import subscriptions from "./subscriptions";
+import home from "./home";
 
 export default combineReducers({
   auth,
+  home,
   subscriptions
 });
