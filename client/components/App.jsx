@@ -1,30 +1,57 @@
 import React from "react";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { getAllEvents } from "../actions/events";
+import { getAllCategories } from "../actions/events";
 
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
-import EventInfo from "./EventInfo"
+import EventInfo from "./EventInfo";
 
+import Categories from "./CatergoryPage";
+import Dashboard from "./Dashboard";
 
-export function App({ auth }) {
-  return (
-    <Router>
-      <React.Fragment>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/EventInfo" component={EventInfo}/>
-      </React.Fragment>
-    </Router>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {
+    this.props.events();
+    this.props.categories();
+  }
+  render() {
+    return (
+      <Router>
+        <React.Fragment>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/category" component={Categories} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/EventInfo" component={EventInfo} />
+          <Route exact path="/dashboard" component={Dashboard} />
+        </React.Fragment>
+      </Router>
+    );
+  }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = state => {
   return {
-    auth
+    auth: state.auth,
+    events: state.events,
+    categories: state.categories
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    events: () => dispatch(getAllEvents()),
+    categories: () => dispatch(getAllCategories())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
