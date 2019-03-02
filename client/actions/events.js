@@ -16,3 +16,17 @@ export function getAllCategories() {
     });
   };
 }
+
+export function saveEvents(events) {
+  return {
+    type: "SAVE_EVENTS",
+    events: events
+  };
+}
+
+export function saveCategories(categories) {
+  return {
+    type: "SAVE_CATEGORIES",
+    categories: categories
+  };
+}

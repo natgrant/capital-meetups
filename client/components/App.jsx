@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllEvents } from "../actions/events";
 import { getAllCategories } from "../actions/events";
@@ -9,22 +9,33 @@ import Register from "./Register";
 import Home from "./Home";
 import Categories from "./CatergoryPage";
 
-export function App({ auth }) {
-  return (
-    <Router>
-      <React.Fragment>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/category" component={Categories} />
-        <Route exact path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </React.Fragment>
-    </Router>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {
+    this.props.events();
+    this.props.categories();
+  }
+  render() {
+    return (
+      <Router>
+        <React.Fragment>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/category" component={Categories} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </React.Fragment>
+      </Router>
+    );
+  }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = state => {
   return {
-    auth
+    auth: state.auth,
+    events: state.events,
+    categories: state.categories
   };
 };
 
