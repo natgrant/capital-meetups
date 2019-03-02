@@ -3,19 +3,19 @@ const connection = require("./connection");
 function getSubscriptionsByUsername(username, testDb) {
   const db = testDb || connection;
   return db("users")
-    .where("username", username)
+    .where("user_name", username)
     .first()
     .then(userId => {
-      return db("subscriptions");
-    })
-    .join("events", "subscriptions.event_id", "events.id")
-    .where("subscriptions.user_id", userId)
-    .select(
-      "events.name as name",
-      "events.description as description",
-      "events.location as location",
-      "events.date as date"
-    );
+      return db("subscriptions")
+        .join("events", "subscriptions.event_id", "events.id")
+        .where("subscriptions.user_id", userId)
+        .select(
+          "events.name as name",
+          "events.description as description",
+          "events.location as location",
+          "events.date as date"
+        );
+    });
 }
 
 function createSubscription(userId, eventId, testDb) {
@@ -33,7 +33,7 @@ function removeSubscription(userId, eventId, testDb) {
     .Where("eventId", eventId)
     .del();
 }
-module.export = {
+module.exports = {
   createSubscription,
   removeSubscription,
   getSubscriptionsByUsername
