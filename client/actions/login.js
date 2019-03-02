@@ -34,7 +34,7 @@ export function loginUser(creds) {
       .then(response => {
         const userInfo = saveUserToken(response.body.token);
         dispatch(receiveLogin(userInfo));
-        document.location = "/#/";
+        document.location = "/#/dashboard";
       })
       .catch(err => {
         dispatch(loginError(err.response.body.message));

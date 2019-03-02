@@ -33,6 +33,7 @@ class App extends React.Component {
           <Route exact path="/category" component={Categories} />
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
+
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/test" component={Dashboard} />
