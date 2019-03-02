@@ -169,20 +169,3 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps)(EventInfo);
-
-// className="button" onClick={this.toggleTick}
-
-// {this.props.auth.isAuthenticated
-//   ? [
-//       <a className="button">
-//         <img src="https://img.icons8.com/material/24/000000/ok.png" />
-//       </a>
-//     ]
-//   : [
-//       <a
-//         href="/#/login"
-//         className="button is-danger joinbutton"
-//       >
-//         Join
-//       </a>
-//     ]}
