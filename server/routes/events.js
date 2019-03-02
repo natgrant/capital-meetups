@@ -7,7 +7,8 @@ const {
   getOneEvent,
   createEvent,
   deleteEvent,
-  editEvent
+  editEvent,
+  getAllCategories
 } = require("../db/events");
 
 router.use(express.json());
@@ -40,6 +41,16 @@ router.get("/category/:category", (req, res) => {
   getEventByCategory(category)
     .then(events => {
       res.json(events);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.get("/categories", (req, res) => {
+  getAllCategories()
+    .then(results => {
+      res.json(results);
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
