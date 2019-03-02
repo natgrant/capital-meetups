@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export function getAllSubscriptions(id) {
+export function getAllSubscriptions(username) {
   return function(dispatch) {
     dispatch(loading());
-    axios.get(`/api/v1/meetups/events/${id}`).then(response => {
+    axios.get(`/api/v1/subscriptions/${username}`).then(response => {
       if (!response.status == 200) {
         dispatch(errorMessage(response.status));
       } else {
@@ -32,6 +32,6 @@ function saveSubscriptions(subscriptions) {
   return {
     type: "SAVE_SUBSCRIPTIONS",
     isFetching: false,
-    Subscriptions
+    subscriptions
   };
 }

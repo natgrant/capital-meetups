@@ -6,41 +6,37 @@ import Loading from "./Loading";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isAu
-    };
   }
 
   componentDidMount = () => {
-    this.props.getAll(this.props.user.id);
+    this.props.getAll(this.props.user.user_name);
   };
 
-  getAll = () => {
-    this.props.getAll(this.props.user.id);
-  };
   render() {
     console.log(this.props);
     return (
       <div>
         <h2>Welome to Dashboard page!</h2>
-        {/* {this.props.subscriptions.map(item => (
+        {this.props.subscriptions.map(item => (
           <div key={item.id}>
             <p>{item.name}</p>
+            <p>{item.location}</p>
+            <p>{item.date}</p>
           </div>
-        ))} */}
+        ))}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  subscriptions: state.subscriptions,
-  user: state.auth
+  subscriptions: state.subscriptions.subscriptionData,
+  user: state.auth.user
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: id => dispatch(getAllSubscriptions(id))
+    getAll: username => dispatch(getAllSubscriptions(username))
   };
 };
 

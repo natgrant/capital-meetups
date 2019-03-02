@@ -17,7 +17,7 @@ export default function subscriptions(state = initialState, action) {
         loading: action.isFetching,
         err: action.err
       };
-    case "SAVE_SUBCRIPTIONS":
+    case "SAVE_SUBSCRIPTIONS":
       return {
         ...state,
         loading: action.isFetching,
