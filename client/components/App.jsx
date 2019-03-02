@@ -8,6 +8,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
 import Categories from "./CatergoryPage";
+import Dashboard from "./Dashboard";
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route exact path="/category" component={Categories} />
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </React.Fragment>
       </Router>
     );
