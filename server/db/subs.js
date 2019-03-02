@@ -1,9 +1,9 @@
 const connection = require("./connection");
 
-function getSubscriptionsByUsername(username, testDb) {
+function getAll(username, testDb) {
   const db = testDb || connection;
   return db("users")
-    .where("user_name", username)
+    .where("username", username)
     .first()
     .then(userId => {
       return db("subscriptions");
@@ -33,8 +33,8 @@ function removeSubscription(userId, eventId, testDb) {
     .Where("eventId", eventId)
     .del();
 }
-module.exports = {
+module.export = {
   createSubscription,
   removeSubscription,
-  getSubscriptionsByUsername
+  getAll
 };
