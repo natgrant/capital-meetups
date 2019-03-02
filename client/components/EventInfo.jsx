@@ -1,22 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export class EventInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       event: [],
-      showTick: false
+      buttonClicked: false
     };
+
+    this.toggleTick = this.toggleTick.bind(this);
   }
 
-  joinToggle = () => {
-    this.setState(prevState => ({
-      joinToggle: !prevState.joinToggle
-    }));
-  };
+  toggleTick() {
+    this.setState({ buttonClicked: true });
+  }
 
   render() {
+    let { name, auth } = this.props;
+    let { buttonClicked } = this.state;
+    if (!auth.isAuthenticated && buttonClicked) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <div>
@@ -26,24 +32,21 @@ export class EventInfo extends Component {
                 <div className="container">
                   <h1 className="title">
                     {/* event title */}
-                    {this.props.name}
+                    {name}
                   </h1>
                   <div>
                     <div>
-                      {this.props.auth.isAuthenticated
-                        ? [
-                            <a className="button">
-                              <img src="https://img.icons8.com/material/24/000000/ok.png" />
-                            </a>
-                          ]
-                        : [
-                            <a
-                              href="/#/login"
-                              className="button is-danger joinbutton"
-                            >
-                              Join
-                            </a>
-                          ]}
+                      <a
+                        className="button is-danger joinbutton"
+                        onClick={this.toggleTick}
+                      >
+                        Join
+                      </a>
+                      {buttonClicked ? (
+                        <a className="button">
+                          <img src="https://img.icons8.com/material/24/000000/ok.png" />
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -166,3 +169,20 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps)(EventInfo);
+
+// className="button" onClick={this.toggleTick}
+
+// {this.props.auth.isAuthenticated
+//   ? [
+//       <a className="button">
+//         <img src="https://img.icons8.com/material/24/000000/ok.png" />
+//       </a>
+//     ]
+//   : [
+//       <a
+//         href="/#/login"
+//         className="button is-danger joinbutton"
+//       >
+//         Join
+//       </a>
+//     ]}
