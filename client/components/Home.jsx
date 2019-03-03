@@ -18,7 +18,7 @@ class Home extends React.Component {
           <div className="hero is-large is-bold header-image">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
-                <h1 className="title is-1 header-title">Capital Meetups</h1>
+                <h1 className="title header-title">CAPITAL MEETUPS</h1>
               </Link>
             </div>
           </div>
