@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { reducer as formRecuer } from "redux-form";
+import { reducer as formReducer } from "redux-form";
 
 import auth from "./auth";
 import home from "./home";
@@ -9,5 +9,5 @@ export default combineReducers({
   auth,
   home,
   subscriptions,
-  form: formRecuer
+  form: formReducer
 });
