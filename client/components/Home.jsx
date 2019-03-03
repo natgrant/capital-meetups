@@ -17,7 +17,7 @@ class Home extends React.Component {
           <div className="hero is-small is-primary has-background-success	">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
-                <h1 className="title is-1">Meet-Ups</h1>
+                <h1 className="title is-1">Capital Meetups</h1>
               </Link>
               <Nav />
             </div>
