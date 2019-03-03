@@ -1,15 +1,27 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
 
 export class EventInfo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      buttonClicked: false
+    };
   }
 
+  toggleTick = () => {
+    this.setState({ buttonClicked: true });
+  };
+
   render() {
-    const { events } = this.props;
+    const { events, auth } = this.props;
+    const { buttonClicked } = this.state;
+    if (!auth.isAuthenticated && buttonClicked) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div>
         <div>
@@ -19,7 +31,19 @@ export class EventInfo extends Component {
                 <div className="container">
                   <h1 className="title">{events.name}</h1>
                   <div>
-                    <a className="button is-danger joinbutton">Join</a>
+                    <div>
+                      <a
+                        className="button is-danger joinbutton"
+                        onClick={this.toggleTick}
+                      >
+                        Join
+                      </a>
+                      {buttonClicked ? (
+                        <a className="button">
+                          <img src="https://img.icons8.com/material/24/000000/ok.png" />
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -52,7 +76,6 @@ export class EventInfo extends Component {
                 {/* description */}
                 {this.props.description}
               </p>
-
               <div className="content" />
             </div>
           </article>
@@ -94,7 +117,7 @@ export class EventInfo extends Component {
                 <span className="panel-icon">
                   <i className="fas fa-book" aria-hidden="true" />
                 </span>
-                Tom
+                Tim
               </a>
               <a className="panel-block">
                 <span className="panel-icon">
@@ -136,6 +159,7 @@ export class EventInfo extends Component {
 
 function mapStateToProps(state) {
   return {
+    auth: state.auth,
     events: state.home.events
   };
 }
