@@ -13,13 +13,14 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Nav />
+
         <div className="container has-text-centered">
-          <div className="hero is-small is-primary has-background-success	">
+          <div className="hero is-small">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
                 <h1 className="title is-1">Capital Meetups</h1>
               </Link>
-              <Nav />
             </div>
           </div>
           <div className="columns ">
