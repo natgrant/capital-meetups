@@ -19,6 +19,11 @@ function getOneEvent(id, testDb) {
     .first();
 }
 
+function getAllCategories(testDb) {
+  const db = testDb || connection;
+  return db("events").select("category", "image");
+}
+
 function createEvent(newEvent, userId, testDb) {
   const db = testDb || connection;
   return db("events")
@@ -69,6 +74,7 @@ module.exports = {
   getAllEvents,
   getEventByCategory,
   getOneEvent,
+  getAllCategories,
   createEvent,
   deleteEvent,
   editEvent
