@@ -8,14 +8,15 @@ exports.seed = function(knex, Promise) {
         {
           id: 1,
           user_id: 1,
-          name: "Coffee Meetup",
-          location: "Fidels",
-          description: "Meetup for casual conversation and good coffee",
-          category: "coffee",
-          date: 1551314863037,
+          name: "Coffee Catchups",
+          location: "Raglan Roast",
+          description:
+            "Meetup with other Wellingtonians for casual conversation and good coffee",
+          category: "Coffee",
+          date: 1551598786956,
           is_open: "true",
           type: "Quick catchups",
-          image: "/defaultimage.jpg"
+          image: "/images/coffee.jpg"
         },
         {
           id: 2,
