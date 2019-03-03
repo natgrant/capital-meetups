@@ -14,9 +14,8 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Nav />
-
-        <div className="container has-text-centered">
-          <div className="hero is-small">
+        <div className="has-text-centered">
+          <div className="hero is-medium is-primary is-bold">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
                 <h1 className="title is-1">Capital Meetups</h1>
