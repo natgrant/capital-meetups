@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import showResults from "../actions/showResults";
-// import DateTimePicker from "react-datetime-picker";
+import DateTimePicker from "react-datetime-picker";
 const validate = values => {
   const errors = {};
   if (!values.name) {
@@ -44,9 +44,18 @@ const RenderSelect = createRenderer((input, label, { children }) => (
   <select {...input}>{children}</select>
 ));
 
-// const RenderDateTimePicker = ({input:{onChange, value}, label,showTime}) => (
-//   <DateTimePicker onChange ={onChange} format="DD MMM YYYY" time={showTime} value={!calue? null: new Date(value)}/>
-// );
+const RenderDateTimePicker = ({
+  input: { onChange, value },
+  label,
+  showTime
+}) => (
+  <DateTimePicker
+    onChange={onChange}
+    format="DD MMM YYYY"
+    time={showTime}
+    value={!value ? null : new Date(value)}
+  />
+);
 let EventForm = ({ handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit(showResults)}>
     <Field name="name" label="Event Name" component={RenderInput} />
@@ -76,12 +85,12 @@ let EventForm = ({ handleSubmit, submitting }) => (
       rows="6"
       component={RenderInput}
     />
-    {/* <DateTimePicker
+    <DateTimePicker
       name="date"
       label="Event date"
       showTime={true}
       component={RenderDateTimePicker}
-    /> */}
+    />
 
     <button type="submit" disabled={submitting}>
       Submit
