@@ -33,11 +33,19 @@ export function loginUser(creds) {
     return request("post", "auth/login", creds)
       .then(response => {
         const userInfo = saveUserToken(response.body.token);
+
         dispatch(receiveLogin(userInfo));
         document.location = "/#/dashboard";
       })
       .catch(err => {
         dispatch(loginError(err.response.body.message));
       });
+  };
+}
+
+export function facebookLogin(user) {
+  return dispatch => {
+    dispatch(receiveLogin(user));
+    document.location = "/#/dashboard";
   };
 }
