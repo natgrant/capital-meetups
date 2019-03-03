@@ -24,7 +24,7 @@ class LatestEvents extends Component {
             return (
               <div key={i} className="column">
                 <article class="message is-dark">
-                  <div className="message-header ">
+                  <div className="message-header">
                     <p>{event.name}</p>
                   </div>
                   <div className="message-body">
