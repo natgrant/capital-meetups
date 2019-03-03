@@ -14,7 +14,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h2>Welome to Dashboard page!</h2>
