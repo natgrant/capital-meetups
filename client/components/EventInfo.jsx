@@ -109,6 +109,9 @@ export class EventInfo extends Component {
             </nav>
           </div>
         </div>
+        <a class="button" href="/#">
+          Home
+        </a>
       </div>
     );
   }
@@ -126,6 +129,7 @@ const mapDispatchToProps = dispatch => {
     getEvent: id => {
       return dispatch(getEvent(id));
     },
+
     getUsersByEvent: id => {
       return dispatch(getUsersByEvent(id));
     }

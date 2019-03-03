@@ -1,4 +1,8 @@
-import { getAllEvents as apiGetAllEvents, getOneEvent } from "../api/events";
+import {
+  getAllEvents as apiGetAllEvents,
+  getOneEvent,
+  getOneEventMembers
+} from "../api/events";
 import { getAllCategories as apiGetAllCategories } from "../api/events";
 
 export function getAllEvents() {
@@ -11,9 +15,14 @@ export function getAllEvents() {
 
 export function getEvent(id) {
   return dispatch => {
-    return getOneEvent(id).then(events => {
-      dispatch(saveEvents(events));
-    });
+    return getOneEvent(id)
+      .then(event => {
+        dispatch(saveSelectedEvent(event));
+        return getOneEventMembers(id);
+      })
+      .then(members => {
+        dispatch(saveSelectedEventMembers(members));
+      });
   };
 }
 
@@ -29,6 +38,20 @@ export function saveEvents(events) {
   return {
     type: "SAVE_EVENTS",
     events: events
+  };
+}
+
+export function saveSelectedEvent(event) {
+  return {
+    type: "SAVE_SELECTED_EVENT",
+    event: event
+  };
+}
+
+export function saveSelectedEventMembers(members) {
+  return {
+    type: "SAVE_SELECTED_EVENT_MEMBERS",
+    members: members
   };
 }
 
