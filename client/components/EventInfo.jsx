@@ -109,7 +109,7 @@ export class EventInfo extends Component {
             </nav>
           </div>
         </div>
-        <a class="button" href="/#">
+        <a className="button" href="/#">
           Home
         </a>
       </div>
