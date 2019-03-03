@@ -1,5 +1,6 @@
 import { getAllEvents as apiGetAllEvents, getOneEvent } from "../api/events";
 import { getAllCategories as apiGetAllCategories } from "../api/events";
+import { getUsersByEvent as apiGetUsersByEvent } from "../api/users";
 
 export function getAllEvents() {
   return dispatch => {
@@ -13,6 +14,14 @@ export function getEvent(id) {
   return dispatch => {
     return getOneEvent(id).then(events => {
       dispatch(saveEvents(events));
+    });
+  };
+}
+
+export function getUserByEvent(id) {
+  return dispatch => {
+    return apiGetUsersByEvent(id).then(result => {
+      dispatch(saveEvents(result));
     });
   };
 }
