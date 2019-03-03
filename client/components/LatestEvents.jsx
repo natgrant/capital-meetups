@@ -19,9 +19,9 @@ class LatestEvents extends Component {
   render() {
     return (
       <div className="columns ">
-        {this.props.events.map(event => {
+        {this.props.events.map((event, i) => {
           return (
-            <div className="column">
+            <div key={i} className="column">
               <article class="message is-dark">
                 <div className="message-header ">
                   <p>{event.name}</p>
