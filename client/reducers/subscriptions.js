@@ -24,6 +24,13 @@ export default function subscriptions(state = initialState, action) {
         subscriptionData: action.subscriptions,
         err: null
       };
+    case "GET_MEMBERS":
+      return {
+        ...state,
+        loading: action.isFetching,
+        subscription: action.subscriptions,
+        err: null
+      };
     default:
       return state;
   }

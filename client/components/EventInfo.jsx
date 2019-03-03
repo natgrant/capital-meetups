@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
+import { getUsersByEvent } from "../actions/getAllSubscriptions";
 
 export class EventInfo extends Component {
   constructor(props) {
@@ -36,11 +37,11 @@ export class EventInfo extends Component {
                         className="button is-danger joinbutton"
                         onClick={this.toggleTick}
                       >
-                        Join
+                        Join Event
                       </a>
                       {buttonClicked ? (
                         <a className="button">
-                          <img src="https://img.icons8.com/material/24/000000/ok.png" />
+                          You've been added to this event!
                         </a>
                       ) : null}
                     </div>
@@ -49,19 +50,16 @@ export class EventInfo extends Component {
               </div>
             </section>
             <figure className="image is-50x50 eventimage">
-              <img src="/images/coffee.jpg" />
+              <img src={events.image} />
             </figure>
           </div>
           <div className="tile is-parent basicdetails">
             <article className="tile is-classNamehild box">
               <div className="content">
                 <p className="title">
-                  Hello
-                  {/* event date/time & host */}
-                  {this.props.date}
-                  {this.props.type}
-                  {this.props.created_by}
-                  {this.props.category}
+                  When's it happening: {events.date}
+                  <br />
+                  Category: {events.category}
                 </p>
               </div>
             </article>
@@ -72,10 +70,7 @@ export class EventInfo extends Component {
             <div className="content">
               <p className="title">Description</p>
 
-              <p className="subtitle">
-                {/* description */}
-                {this.props.description}
-              </p>
+              <p className="subtitle">{events.description}</p>
               <div className="content" />
             </div>
           </article>
@@ -83,19 +78,11 @@ export class EventInfo extends Component {
         <div className="tile is-parent locationtile">
           <div className="tile is-child box">
             <p className="title">Location</p>
-
-            {/* <p> */}
-
-            {/* location */}
-            {/* {this.props.location} */}
-
-            {/* </p> */}
+            {events.location}
           </div>
         </div>
         <div>
           <div>
-            {/* Attendee Panel */}
-
             <nav className="panel attendeepanel">
               <p className="panel-heading">Members</p>
               <div className="panel-block">
@@ -111,43 +98,13 @@ export class EventInfo extends Component {
                 </p>
               </div>
               <p className="panel-tabs">
-                <a className="is-active">Attendees</a>
+                <a className="is-active">Going</a>
               </p>
-              <a className="panel-block is-active">
+              <a className="panel-block">
                 <span className="panel-icon">
                   <i className="fas fa-book" aria-hidden="true" />
                 </span>
                 Tim
-              </a>
-              <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fas fa-book" aria-hidden="true" />
-                </span>
-                Lisa
-              </a>
-              <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fas fa-book" aria-hidden="true" />
-                </span>
-                Mark
-              </a>
-              <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fas fa-book" aria-hidden="true" />
-                </span>
-                Bob
-              </a>
-              <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fas fa-code-branch" aria-hidden="true" />
-                </span>
-                Alice
-              </a>
-              <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fas fa-code-branch" aria-hidden="true" />
-                </span>
-                Sarah
               </a>
             </nav>
           </div>
@@ -168,6 +125,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getEvent: id => {
       return dispatch(getEvent(id));
+    },
+    getUsersByEvent: id => {
+      return dispatch(getUsersByEvent(id));
     }
   };
 };

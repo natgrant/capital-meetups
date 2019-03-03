@@ -9,18 +9,17 @@ class CategoryList extends React.Component {
   render() {
     return (
       <div className="columns ">
-        {this.props.categories.map(category => {
-          return (
-            <div class="column">
-              <figure class="image is-256x256 is-inline-block">
-                <img
-                  class="is-rounded"
-                  src="https://bulma.io/images/placeholders/128x128.png"
-                />
-                {category.category}
-              </figure>
-            </div>
-          );
+        {this.props.categories.map((category, i) => {
+          if (i % 2 == 0) {
+            return (
+              <div className="column">
+                <figure className="image is-256x256 is-inline-block">
+                  <img className="is-rounded" src={category.image} />
+                  {category.category}
+                </figure>
+              </div>
+            );
+          }
         })}
       </div>
     );

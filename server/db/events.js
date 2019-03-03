@@ -21,7 +21,7 @@ function getOneEvent(id, testDb) {
 
 function getAllCategories(testDb) {
   const db = testDb || connection;
-  return db("events").select("category");
+  return db("events").select("category", "image");
 }
 
 function createEvent(newEvent, userId, testDb) {
