@@ -1,38 +1,62 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 
 const {
   getAllEvents,
-  getEventsByUserId,
   getEventByCategory,
   getOneEvent,
   createEvent,
   deleteEvent,
-  editEvent
+  editEvent,
+  getAllCategories
 } = require("../db/events");
 
 router.use(express.json());
 
-// get /api/v1/meetups
+const config = {
+  storage: multer.diskStorage({
+    destination: function(req, file, next) {
+      next(null, "./public/images");
+    },
+    filename: function(req, file, next) {
+      const ext = file.mimetype.split("/")[1];
+      next(null, file.fieldname + "-" + Date.now() + "." + ext);
+    }
+  }),
+  fileFilter: function(req, file, next) {
+    if (!file) {
+      next();
+    }
+    const image = file.mimetype.startsWith("image/");
+    if (image) {
+      next(null, true);
+    } else {
+      next({ message: "Invalid file type." });
+    }
+  }
+};
+
+router.post("/event/photo", multer(config).single("photo"), function(
+  req,
+  res,
+  next
+) {
+  console.log(req.file);
+  console.log(req.body);
+  if (req.file) {
+    req.body.photo = req.file.filename;
+  }
+  res.send("image saved");
+});
+
+//GET /api/v1/meetups
 router.get("/", (req, res) => {
   getAllEvents()
     .then(events => {
       res.json(events);
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: "Oh no an error" });
-    });
-});
-
-router.get("/events/:id", (req, res) => {
-  const userId = req.params.id;
-  getEventsByUserId(userId)
-    .then(events => {
-      res.json(events);
-    })
-    .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -44,7 +68,16 @@ router.get("/category/:category", (req, res) => {
       res.json(events);
     })
     .catch(err => {
-      console.log(err);
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.get("/categories", (req, res) => {
+  getAllCategories()
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -56,7 +89,6 @@ router.get("/event/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -79,7 +111,6 @@ router.post("/create/:user_id", (req, res) => {
       res.json({ id });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -90,7 +121,6 @@ router.delete("/delete/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -101,7 +131,6 @@ router.delete("/removeUser/:id", (req, res) => {
       res.json(event);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
@@ -114,7 +143,6 @@ router.post("/edit/:id", (req, res) => {
       res.json(data);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: "Oh no another error" });
     });
 });

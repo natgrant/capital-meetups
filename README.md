@@ -91,8 +91,12 @@ Meetup The focus of this app is to create a place wherein people are able to com
 | --- | --- | 
 | POST| api/auth/login |
 | POST | api/auth/register |
-| GET | /events |
-| GET | /categories |
-| GET | /events/:event |
-| GET | /categories/:category |
+| GET | /api/v1/meetups/ - get all events|
+| GET | /api/v1/meetups/category/:category - get event by category |
+| GET | /api/v1/meetups/events/:id - get event by user id |
+| POST | /api/v1/meetups/create/:user_id - create event |
+| DELETE | /api/v1/meetups/delete/:id - delete event |
+| POST | /api/v1/meetups/edit/:id - edit event |
+| GET | /api/v1/users/:user_name - get user by username |
+| GET | /api/v1/users/event/:event_id - get users by event|
 
