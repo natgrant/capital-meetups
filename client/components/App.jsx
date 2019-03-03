@@ -17,7 +17,6 @@ import EventInfo from "./EventInfo";
 import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";
 import PrivateRoute from "./PrivateRoute";
-import EventInfo from "./EventInfo";
 
 class App extends React.Component {
   constructor() {
