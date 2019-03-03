@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllSubscriptions } from "../actions/getAllSubscriptions";
+import EventForm from "./EventForm";
 import Loading from "./Loading";
 
 class Dashboard extends Component {
@@ -24,6 +25,8 @@ class Dashboard extends Component {
             <p>{item.date}</p>
           </div>
         ))}
+        <h1>Create Event</h1>
+        <EventForm />
       </div>
     );
   }
