@@ -41,7 +41,7 @@ class Home extends React.Component {
           <div className="columns ">
             <div className="column ">
               <h2 className=" is-size-3 ">
-                <strong>Categories</strong>
+                <strong>Suggested Categories</strong>
               </h2>
             </div>
           </div>

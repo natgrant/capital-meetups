@@ -20,30 +20,32 @@ class LatestEvents extends Component {
     return (
       <div className="columns ">
         {this.props.events.map((event, i) => {
-          return (
-            <div key={i} className="column">
-              <article class="message is-dark">
-                <div className="message-header ">
-                  <p>{event.name}</p>
-                </div>
-                <div className="message-body">
-                  <p>Location:{event.location}</p>
-                  <p>Date:</p>
-                  <p>{event.description}</p>
-                </div>
-                <a
-                  className="button is-rounded is-primary is-outlined"
-                  value={event.id}
-                  onClick={() => {
-                    this.handleClick(event.id);
-                    window.location.hash = `#/eventinfo/${event.id}`;
-                  }}
-                >
-                  more
-                </a>
-              </article>
-            </div>
-          );
+          if (i % 2 == 0) {
+            return (
+              <div key={i} className="column">
+                <article class="message is-dark">
+                  <div className="message-header ">
+                    <p>{event.name}</p>
+                  </div>
+                  <div className="message-body">
+                    <p>Location:{event.location}</p>
+                    <p>Date:</p>
+                    <p>{event.description}</p>
+                  </div>
+                  <a
+                    className="button is-rounded is-primary is-outlined"
+                    value={event.id}
+                    onClick={() => {
+                      this.handleClick(event.id);
+                      window.location.hash = `#/eventinfo/${event.id}`;
+                    }}
+                  >
+                    more
+                  </a>
+                </article>
+              </div>
+            );
+          }
         })}
       </div>
     );
