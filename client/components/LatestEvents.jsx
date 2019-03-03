@@ -1,14 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class LatestEvents extends React.Component {
-  constructor() {
-    super();
-    this.handleDate = this.handleDate.bind(this);
+import { getEvent } from "../actions/events";
+
+class LatestEvents extends Component {
+  constructor(props) {
+    super(props);
   }
-  handleDate(date) {
+
+  handleDate = date => {
     return new Date(date);
-  }
+  };
+
+  handleClick = id => {
+    this.props.getEvent(id);
+  };
+
   render() {
     return (
       <div className="columns ">
@@ -24,6 +31,16 @@ class LatestEvents extends React.Component {
                   <p>Date:</p>
                   <p>{event.description}</p>
                 </div>
+                <a
+                  className="button is-rounded is-primary is-outlined"
+                  value={event.id}
+                  onClick={() => {
+                    this.handleClick(event.id);
+                    window.location.hash = `#/eventinfo/${event.id}`;
+                  }}
+                >
+                  more
+                </a>
               </article>
             </div>
           );
@@ -39,4 +56,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LatestEvents);
+const mapDispatchToProps = dispatch => {
+  return {
+    getEvent: id => {
+      dispatch(getEvent(id));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LatestEvents);
