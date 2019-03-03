@@ -18,7 +18,7 @@ export function getEvent(id) {
   };
 }
 
-export function getUserByEvent(id) {
+export function getUsersByEvent(id) {
   return dispatch => {
     return apiGetUsersByEvent(id).then(result => {
       dispatch(saveEvents(result));
