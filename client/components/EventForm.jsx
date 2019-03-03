@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import showResults from "../actions/showResults";
+// import createEvent from "../a"
 import DateTimePicker from "react-datetime-picker";
 const validate = values => {
   const errors = {};
@@ -57,10 +58,10 @@ const RenderDateTimePicker = ({
   />
 );
 let EventForm = ({ handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(showResults)}>
-    <Field name="name" label="Event Name" component={RenderInput} />
-    <Field name="location" label="Event location" component={RenderInput} />
-    <Field name="category" label="Event category" component={RenderSelect}>
+  <form onSubmit={handleSubmit(createEvent(values))}>
+    <Field name="name" label="Event Name:" component={RenderInput} />
+    <Field name="location" label="Event location:" component={RenderInput} />
+    <Field name="category" label="Event category:" component={RenderSelect}>
       <option />
       {[
         "coffee",
@@ -81,8 +82,9 @@ let EventForm = ({ handleSubmit, submitting }) => (
 
     <Field
       name="description"
-      label="Event description"
+      label="Event description:"
       rows="6"
+      type="textarea"
       component={RenderInput}
     />
     <Field name="date" component={RenderDateTimePicker} />
