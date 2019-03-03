@@ -12,6 +12,8 @@ import { getAllCategories } from "../actions/events";
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
+import EventInfo from "./EventInfo";
+
 import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";
 import PrivateRoute from "./PrivateRoute";
@@ -33,6 +35,7 @@ class App extends React.Component {
           <Route exact path="/category" component={Categories} />
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/eventinfo" component={EventInfo} />
 
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />
