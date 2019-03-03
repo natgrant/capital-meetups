@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
+import { getUsersByEvent } from "../actions/getAllSubscriptions";
 
 export class EventInfo extends Component {
   constructor(props) {
@@ -124,6 +125,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getEvent: id => {
       return dispatch(getEvent(id));
+    },
+    getUsersByEvent: id => {
+      return dispatch(getUsersByEvent(id));
     }
   };
 };
