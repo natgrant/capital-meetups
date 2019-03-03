@@ -16,11 +16,10 @@ class Nav extends React.Component {
       login: false,
       register: false
     };
-    this.toggleBurger = this.toggleBurger.bind(this);
   }
-  toggleBurger() {
+  toggleBurger = () => {
     this.setState({ showBurger: !this.state.showBurger });
-  }
+  };
   render() {
     const { auth, logout } = this.props;
     const { showBurger } = this.state;
@@ -28,12 +27,8 @@ class Nav extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
-            <img
-              src="https://bulma.io/images/bulma-logo.png"
-              width="112"
-              height="28"
-            />
+          <a className="navbar-item" href="/">
+            <img src="/images/people.png" width="" height="" />
           </a>
 
           <a
@@ -51,7 +46,9 @@ class Nav extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item">Home</a>
+            <a className="navbar-item" href="/">
+              Home
+            </a>
 
             <a className="navbar-item">Categories</a>
 
@@ -77,7 +74,7 @@ class Nav extends React.Component {
                   <div className="buttons">
                     <a
                       onClick={() => this.setState({ register: true })}
-                      className="button is-primary"
+                      className="button is-primary is-inverted is-outlined"
                     >
                       <strong>Sign up</strong>
                     </a>
@@ -94,9 +91,9 @@ class Nav extends React.Component {
                     </Modal>
                     <a
                       onClick={() => this.setState({ login: true })}
-                      className="button is-light"
+                      className="button is-danger is-inverted is-outlined"
                     >
-                      Log in
+                      <p>Log in</p>
                     </a>
                     <Modal
                       show={this.state.login}
