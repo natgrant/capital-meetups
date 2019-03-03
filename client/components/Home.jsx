@@ -15,10 +15,10 @@ class Home extends React.Component {
       <React.Fragment>
         <Nav />
         <div className="has-text-centered">
-          <div className="hero is-medium is-primary is-bold">
+          <div className="hero is-large is-bold header-image">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
-                <h1 className="title is-1">Capital Meetups</h1>
+                <h1 className="title is-1 header-title">Capital Meetups</h1>
               </Link>
             </div>
           </div>
