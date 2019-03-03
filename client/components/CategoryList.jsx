@@ -11,9 +11,9 @@ class CategoryList extends React.Component {
       <div className="columns ">
         {this.props.categories.map(category => {
           return (
-            <div class="column">
-              <figure class="image is-256x256 is-inline-block">
-                <img class="is-rounded" src={category.image} />
+            <div className="column">
+              <figure className="image is-256x256 is-inline-block">
+                <img className="is-rounded" src={category.image} />
                 {category.category}
               </figure>
             </div>
