@@ -93,7 +93,7 @@ class Nav extends React.Component {
                       style={{ backgroundColor: "black" }}
                     >
                       <Modal.Content>
-                        <Section style={{ backgroundColor: "white" }}>
+                        <Section className="form-login">
                           <Register />
                         </Section>
                       </Modal.Content>
@@ -110,7 +110,7 @@ class Nav extends React.Component {
                       style={{ backgroundColor: "black" }}
                     >
                       <Modal.Content>
-                        <Section style={{ backgroundColor: "white" }}>
+                        <Section className="form-login">
                           <Login />
                           <SocialLogin />
                         </Section>
