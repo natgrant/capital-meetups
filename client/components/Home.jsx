@@ -29,10 +29,18 @@ class Home extends React.Component {
             </h2>
             <LatestEvents />
             <h2 className="subtitle-home is-size-3">
-              <strong>Suggested Categories</strong>
+              <strong>Popular Categories</strong>
             </h2>
             <CategoryList />
           </div>
+          <a
+            className="button is-rounded is-large is-warning is-outlined button-more"
+            onClick={() => {
+              window.location.hash = "#/category";
+            }}
+          >
+            More
+          </a>
         </div>
         <Footer />
       </Fragment>
