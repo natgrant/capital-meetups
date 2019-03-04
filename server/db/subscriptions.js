@@ -20,7 +20,7 @@ function getSubscriptionsByUsername(username, testDb) {
 
 function createSubscription(userId, eventId, testDb) {
   const db = testDb || connection;
-  return db("subscrptions").insert({
+  return db("subscriptions").insert({
     userId,
     eventId
   });
