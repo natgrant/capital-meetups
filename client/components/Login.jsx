@@ -57,6 +57,7 @@ class Login extends React.Component {
               onChange={this.updateDetails}
             />
           </label>
+          <br />
           <input
             className="button is-large is-fullwidth is-primary"
             value="Login"
