@@ -12,6 +12,13 @@ function getEventByCategory(category, testDb) {
     .select();
 }
 
+function getEventsByCreator(userId, testDb) {
+  const db = testDb || connection;
+  return db("events")
+    .where("events.user_id", userId)
+    .select();
+}
+
 function getOneEvent(id, testDb) {
   const db = testDb || connection;
   return db("events")
