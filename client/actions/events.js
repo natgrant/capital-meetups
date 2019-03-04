@@ -15,14 +15,9 @@ export function getAllEvents() {
 
 export function getEvent(id) {
   return dispatch => {
-    return getOneEvent(id)
-      .then(event => {
-        dispatch(saveSelectedEvent(event));
-        return getOneEventMembers(id);
-      })
-      .then(members => {
-        dispatch(saveSelectedEventMembers(members));
-      });
+    return getOneEvent(id).then(event => {
+      dispatch(saveSelectedEvent(event));
+    });
   };
 }
 
@@ -45,13 +40,6 @@ export function saveSelectedEvent(event) {
   return {
     type: "SAVE_SELECTED_EVENT",
     event: event
-  };
-}
-
-export function saveSelectedEventMembers(members) {
-  return {
-    type: "SAVE_SELECTED_EVENT_MEMBERS",
-    members: members
   };
 }
 
