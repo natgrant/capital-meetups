@@ -33,4 +33,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(categories);
+export default connect(mapStateToProps)(Categories);
