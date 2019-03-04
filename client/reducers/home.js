@@ -6,6 +6,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, events: action.events };
     case "SAVE_CATEGORIES":
       return { ...state, categories: action.categories };
+    case "DEL_EVENT":
+      return {
+        ...state,
+        events: state.events.filter(event => event.id !== action.id)
+      };
     default:
       return state;
   }
