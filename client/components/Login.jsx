@@ -27,39 +27,42 @@ class Login extends React.Component {
   render() {
     const { auth } = this.props;
     return (
-      <form className="form box" onSubmit={this.submit}>
-        <h1 className="title is-2">Login</h1>
-        <hr />
-        {auth.errorMessage && (
-          <span className="has-text-danger is-large">{auth.errorMessage}</span>
-        )}
-        <label className="label is-large has-text-centered">
-          Username
+      <form className="hero" onSubmit={this.submit}>
+        <div className="hero-body">
+          <h1 className="title is-2 login-text">Please Login</h1>
+          {auth.errorMessage && (
+            <span className="has-text-danger is-large">
+              {auth.errorMessage}
+            </span>
+          )}
+          <label className="label is-large login-text">
+            Username
+            <input
+              required
+              className="input has-text-centered is-large is-fullwidth"
+              placeholder="User Name"
+              type="text"
+              name="user_name"
+              onChange={this.updateDetails}
+            />
+          </label>
+          <label className="label is-large login-text">
+            Password
+            <input
+              required
+              className="input has-text-centered is-large is-fullwidth"
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={this.updateDetails}
+            />
+          </label>
           <input
-            required
-            className="input has-text-centered is-large is-fullwidth"
-            placeholder="User Name"
-            type="text"
-            name="user_name"
-            onChange={this.updateDetails}
+            className="button is-large is-fullwidth is-primary"
+            value="Login"
+            type="submit"
           />
-        </label>
-        <label className="label is-large has-text-centered">
-          Password
-          <input
-            required
-            className="input has-text-centered is-large is-fullwidth"
-            placeholder="Password"
-            type="password"
-            name="password"
-            onChange={this.updateDetails}
-          />
-        </label>
-        <input
-          className="button is-large is-fullwidth is-success"
-          value="Login"
-          type="submit"
-        />
+        </div>
       </form>
     );
   }
