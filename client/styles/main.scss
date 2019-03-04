@@ -6,11 +6,13 @@
 $header-font: "Sriracha", sans-serif;
 $header-color: #f1f8ff;
 $subtitle-color: #252c33;
-$subtitle-font: "Varela Round";
+$subtitle-font: "Roboto";
 
 html,
 body {
   width: 100%;
+  font-family: "Roboto";
+  // background-color: #fff8e6;
 }
 
 .eventimage {
@@ -71,7 +73,37 @@ body {
 }
 
 .subtitle-home {
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   color: $subtitle-color;
-  font-family: $subtitle-font;
+  font-family: $header-font;
+  letter-spacing: 0.7rem;
+}
+
+.category-cont {
+  margin-bottom: 2rem;
+}
+
+.category-image {
+  position: relative;
+  width: 100%;
+}
+
+.img-radius {
+  border-radius: 15%;
+}
+
+.category-text {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  color: white;
+  font-family: "Sriracha";
+  letter-spacing: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background: rgba(4, 3, 2, 0.5);
 }

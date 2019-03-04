@@ -27,7 +27,7 @@ class Home extends React.Component {
               <strong>Latest Events</strong>
             </h2>
             <LatestEvents />
-            <h2 className="subtitle-home is-size-3 ">
+            <h2 className="subtitle-home is-size-3">
               <strong>Suggested Categories</strong>
             </h2>
             <CategoryList />
