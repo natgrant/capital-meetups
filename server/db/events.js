@@ -31,21 +31,20 @@ function getAllCategories(testDb) {
   return db("events").select("category", "image");
 }
 
-function createEvent(newEvent, userId, testDb) {
+function createEvent(newEvent, username, testDb) {
   const db = testDb || connection;
-  return db("events")
-    .insert(newEvent)
-    .then(result => {
-      return db("subscriptions")
-        .join("events", "subscriptions.event_id", "events.id")
-        .where("subscriptions.user_id", userId)
-        .select(
-          "events.name as name",
-          "events.description as description",
-          "events.location as location",
-          "events.date as date"
-        );
-    });
+  return db("events").insert(newEvent);
+  // .then(result => {
+  //   return db("subscriptions")
+  //     .join("events", "subscriptions.event_id", "events.id")
+  //     .where("subscriptions.user_id", userId)
+  //     .select(
+  //       "events.name as name",
+  //       "events.description as description",
+  //       "events.location as location",
+  //       "events.date as date"
+  //     );
+  // });
 }
 
 function editEvent(event, id, testDB) {
@@ -77,6 +76,16 @@ function deleteEvent(id, testDb) {
     });
 }
 
+function getUserId(username, testDb) {
+  const db = testDb || connection;
+
+  return db("users")
+    .select()
+    .where("user_name", username)
+    .first();
+  // .then(user => user.id);
+}
+
 module.exports = {
   getAllEvents,
   getEventByCategory,
@@ -85,5 +94,6 @@ module.exports = {
   getAllCategories,
   createEvent,
   deleteEvent,
-  editEvent
+  editEvent,
+  getUserId
 };

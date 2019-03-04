@@ -10,7 +10,8 @@ const {
   createEvent,
   deleteEvent,
   editEvent,
-  getAllCategories
+  getAllCategories,
+  getUserId
 } = require("../db/events");
 
 router.use(express.json());
@@ -43,12 +44,37 @@ router.post("/event/photo", multer(config).single("photo"), function(
   res,
   next
 ) {
-  console.log(req.file);
-  console.log(req.body);
-  if (req.file) {
-    req.body.photo = req.file.filename;
-  }
-  res.send("image saved");
+  let username = req.body.user;
+
+  getUserId(username).then(userId => {
+    console.log("filename", req.file.filename);
+    console.log(req.body);
+    let dateTime = JSON.stringify(req.body.date);
+    let input = new Date(dateTime);
+    let eventDateTime = input.getTime();
+    const newEvent = {
+      name: req.body.name,
+      location: req.body.location,
+      description: req.body.description,
+      category: req.body.category,
+      date: eventDateTime,
+      image: req.file.filename,
+      user_id: userId.id
+    };
+    console.log("test", newEvent);
+    createEvent(newEvent, username)
+      .then(([id]) => {
+        res.json({ id });
+      })
+      .catch(err => {
+        res.status(500).json({ error: "Oh no an error" });
+      });
+
+    // if (req.file) {
+    //   req.body.photo = req.file.filename;
+    // }
+    // res.send("image saved");
+  });
 });
 
 //GET /api/v1/meetups
