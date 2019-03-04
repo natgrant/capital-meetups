@@ -1,26 +1,37 @@
 import axios from "axios";
 
-export function createEvent(userId, values) {
-  const data = {
-    name: values.name,
-    location: values.location,
-    category: values.category,
-    description: values.description,
-    is_open: "true"
-  };
+export function createEvent(userId, formData, config) {
+  console.log(userId, formData, config);
+
   return function(dispatch) {
     dispatch(loading());
-    return axios
-      .post(`/api/v1/meetups/create/${userId}`, data)
+    axios
+      .post("/api/v1/meetups/event/photo", formData, config)
       .then(response => {
-        console.log("sent", res.data);
-        if (!response.status == 200) {
-          dispatch(errorMessage(response.status));
-        } else {
-          dispatch(saveSubscriptions(response.data));
-        }
-      });
+        alert("The file is successfully uploaded");
+      })
+      .catch(error => {});
   };
+  // const data = {
+  //   name: values.name,
+  //   location: values.location,
+  //   category: values.category,
+  //   description: values.description,
+  //   is_open: "true"
+  // };
+  // return function(dispatch) {
+  //   dispatch(loading());
+  //   return axios
+  //     .post(`/api/v1/meetups/create/${userId}`, data)
+  //     .then(response => {
+  //       console.log("sent", res.data);
+  //       if (!response.status == 200) {
+  //         dispatch(errorMessage(response.status));
+  //       } else {
+  //         dispatch(saveSubscriptions(response.data));
+  //       }
+  //     });
+  // };
 }
 function loading() {
   return {
