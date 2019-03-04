@@ -65,8 +65,5 @@ body {
   color: $header-color;
   font-size: 6rem;
   font-family: $header-font;
-}
-
-.icon-img svg path {
-  fill: #ffffff !important;
+  text-shadow: 1px 1px 2px black;
 }
