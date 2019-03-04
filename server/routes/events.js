@@ -14,6 +14,8 @@ const {
   getUserId
 } = require("../db/events");
 
+const { createSubscription } = require("../db/subscriptions");
+
 router.use(express.json());
 
 const config = {
@@ -47,6 +49,7 @@ router.post("/event/photo", multer(config).single("photo"), function(
   let username = req.body.user;
 
   getUserId(username).then(userId => {
+    let actualUserId = userId.id;
     console.log("filename", req.file.filename);
     console.log(req.body);
     let dateTime = JSON.stringify(req.body.date);
@@ -63,17 +66,19 @@ router.post("/event/photo", multer(config).single("photo"), function(
     };
     console.log("test", newEvent);
     createEvent(newEvent, username)
-      .then(([id]) => {
-        res.json({ id });
+      .then(([id], userId) => {
+        console.log(id);
+        console.log(actualUserId);
+        eventId = id;
+
+        createSubscription(actualUserId, eventId).then(response => {
+          res.json(response);
+        });
+        // res.send("Saved");
       })
       .catch(err => {
         res.status(500).json({ error: "Oh no an error" });
       });
-
-    // if (req.file) {
-    //   req.body.photo = req.file.filename;
-    // }
-    // res.send("image saved");
   });
 });
 
