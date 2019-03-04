@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Nav from "./Nav";
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
@@ -12,7 +12,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <Nav />
         <div className="has-text-centered">
           <div className="hero is-large is-bold header-image">
@@ -31,7 +31,7 @@ class Home extends React.Component {
           </h2>
           <CategoryList />
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
