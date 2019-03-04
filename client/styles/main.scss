@@ -128,7 +128,12 @@ body {
   background-image: url("/images/login-modal.jpg");
   background-size: cover;
   border-radius: 8%;
-  margin-bottom: 0%;
+}
+
+.form-register {
+  background-image: url("/images/register-modal.jpg");
+  background-size: cover;
+  border-radius: 8%;
 }
 
 .login-text {
