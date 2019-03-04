@@ -8,14 +8,16 @@ class CategoryList extends React.Component {
 
   render() {
     return (
-      <div className="columns ">
+      <div className="columns">
         {this.props.categories.map((category, i) => {
           if (i % 2 == 0) {
             return (
-              <div className="column">
-                <figure className="image is-256x256 is-inline-block">
-                  <img className="is-rounded" src={category.image} />
-                  {category.category}
+              <div className="column category-cont">
+                <figure className="image is-256x256 is-inline-block category-image">
+                  <img className="img-radius" src={category.image} />
+                  <h3 className="category-text">
+                    <span>{category.category}</span>
+                  </h3>
                 </figure>
               </div>
             );
