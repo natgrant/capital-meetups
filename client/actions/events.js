@@ -14,9 +14,11 @@ export function getAllEvents() {
 }
 
 export function getEvent(id) {
+  console.log("test1", id);
   return dispatch => {
     return getOneEvent(id)
       .then(event => {
+        console.log("test", event);
         dispatch(saveSelectedEvent(event));
         return getOneEventMembers(id);
       })
