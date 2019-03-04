@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { getAllEvents } from "../actions/events";
 import { getAllCategories } from "../actions/events";
 
+import Nav from "./Nav";
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
@@ -31,6 +32,8 @@ class App extends React.Component {
     return (
       <Router>
         <React.Fragment>
+          <Nav />
+
           <Route exact path="/" component={Home} />
           <Route exact path="/category" component={Categories} />
           <Route exact path="/login" component={Login} />

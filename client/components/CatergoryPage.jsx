@@ -10,7 +10,7 @@ class Categories extends Component {
       <div>
         {this.props.categories.map((category, i) => {
           return (
-            <div className="columns ">
+            <div key={i} className="columns">
               <div className="column">
                 <figure className="image">
                   <a href="">

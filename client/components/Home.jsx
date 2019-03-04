@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Nav from "./Nav";
 import Footer from "./Footer";
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
@@ -14,7 +13,6 @@ class Home extends React.Component {
   render() {
     return (
       <Fragment>
-        <Nav />
         <div className="has-text-centered">
           <div className="hero is-large is-bold header-image">
             <div className="hero-body has-text-centered">
