@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllSubscriptions } from "../actions/getAllSubscriptions";
+import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 import EventForm from "./EventForm";
 import Loading from "./Loading";
+import { ENETDOWN } from "constants";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -10,7 +12,8 @@ class Dashboard extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getAll(this.props.user.user_name);
+    this.props.getAll(this.props.user.user_name),
+      this.props.getEventsByCreator(this.props.user.user_id);
   };
 
   render() {
@@ -26,6 +29,20 @@ class Dashboard extends Component {
         ))}
         <h1>Create Event</h1>
         <EventForm />
+
+        <div>
+          <h1>SHOW ALL CREATED EVENTS</h1>
+          {this.props.events.map(event => (
+            <div>
+              <p>{event.name}</p>
+              <p>{event.describtion}</p>
+              <p>{event.location}</p>
+              <p>{event.date}</p>
+              <button>Edit event</button>
+              <button>Delete event</button>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -33,12 +50,14 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   subscriptions: state.subscriptions.subscriptionData,
-  user: state.auth.user
+  user: state.auth.user,
+  events: state.home.events
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: username => dispatch(getAllSubscriptions(username))
+    getAll: username => dispatch(getAllSubscriptions(username)),
+    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId))
   };
 };
 

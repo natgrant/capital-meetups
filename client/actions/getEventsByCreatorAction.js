@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function getEventsByCreator(userId) {
+export function getEventsByCreatorAction(userId) {
   return function(dispatch) {
     axios.get(`/api/v1/meetups/creator/${userId}`).then(response => {
       if (!response.status == 200) {
