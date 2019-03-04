@@ -22,14 +22,16 @@ class Home extends React.Component {
               </Link>
             </div>
           </div>
-          <h2 className="subtitle-home is-size-3 ">
-            <strong>Latest Events Near You</strong>
-          </h2>
-          <LatestEvents />
-          <h2 className="subtitle-home is-size-3 ">
-            <strong>Suggested Categories</strong>
-          </h2>
-          <CategoryList />
+          <div className="container">
+            <h2 className="subtitle-home is-size-3 ">
+              <strong>Latest Events</strong>
+            </h2>
+            <LatestEvents />
+            <h2 className="subtitle-home is-size-3 ">
+              <strong>Suggested Categories</strong>
+            </h2>
+            <CategoryList />
+          </div>
         </div>
       </Fragment>
     );
