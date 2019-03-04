@@ -3,10 +3,10 @@ import React from "react";
 export default function Footer() {
   return (
     <div>
-      <footer class="footer">
-        <div class="content has-text-centered">
+      <footer className="footer">
+        <div className="content has-text-centered">
           <p>Capital Meetups</p>
-          <i class="far fa-copyright" />
+          <i className="far fa-copyright" />
         </div>
       </footer>
     </div>
