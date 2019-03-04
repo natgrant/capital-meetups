@@ -71,7 +71,10 @@ function deleteEvent(id, testDb) {
   const db = testDb || connection;
   return db("events")
     .where("id", id)
-    .del();
+    .del()
+    .then(result => {
+      return id;
+    });
 }
 
 module.exports = {
