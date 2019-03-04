@@ -107,3 +107,13 @@ body {
   text-transform: uppercase;
   background: rgba(4, 3, 2, 0.5);
 }
+
+.events-column {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.event-icon {
+  margin-bottom: 2rem;
+}
