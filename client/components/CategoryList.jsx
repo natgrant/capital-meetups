@@ -6,18 +6,18 @@ class CategoryList extends React.Component {
     super();
   }
 
-  routeChange = () => {
-    let path = "#/category";
-    this.props.history.push(path);
-  };
-
   render() {
     return (
       <div className="columns">
         {this.props.categories.map((category, i) => {
           if (i % 2 == 0) {
             return (
-              <div className="column category-cont" onClick={this.routeChange}>
+              <div
+                className="column category-cont"
+                onClick={() => {
+                  window.location.hash = "#/category";
+                }}
+              >
                 <figure className="image is-256x256 is-inline-block category-image">
                   <img className="img-radius" src={category.image} />
                   <h3 className="category-text">
