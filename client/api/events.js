@@ -15,6 +15,5 @@ export function getOneEvent(id) {
 
 export function getOneEventMembers(id) {
   console.log(id);
-  console.log("TODO!");
-  // return request.get(`/api/v1/meetups/event/${id}`).then(res => res.body);
+  return request(`/api/v1/meetups/users/${user_name}`).then(res => res.body);
 }
