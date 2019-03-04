@@ -23,7 +23,7 @@ class LatestEvents extends Component {
           if (i % 2 == 0) {
             return (
               <div key={i} className="column">
-                <article class="message is-dark">
+                <article className="message is-dark">
                   <div className="message-header">
                     <p>{event.name}</p>
                   </div>
@@ -52,7 +52,7 @@ class LatestEvents extends Component {
                     }}
                   >
                     <span className="icon">
-                      <i class="fas fa-info" />
+                      <i className="fas fa-info" />
                     </span>
                   </a>
                 </article>
