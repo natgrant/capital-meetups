@@ -59,7 +59,9 @@ class Nav extends React.Component {
               Home
             </a>
 
-            <a className="navbar-item">Categories</a>
+            <a className="navbar-item" href="#/category">
+              Categories
+            </a>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Events</a>
@@ -85,7 +87,7 @@ class Nav extends React.Component {
                       onClick={() => this.setState({ register: true })}
                       className="button is-medium is-primary is-inverted is-outlined"
                     >
-                      <strong>Sign up</strong>
+                      <p>Sign up</p>
                     </a>
                     <Modal
                       show={this.state.register}
