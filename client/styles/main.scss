@@ -5,6 +5,8 @@
 
 $header-font: "Sriracha", sans-serif;
 $header-color: #f1f8ff;
+$subtitle-color: #252c33;
+$subtitle-font: "Varela Round";
 
 html,
 body {
@@ -66,4 +68,10 @@ body {
   font-size: 6rem;
   font-family: $header-font;
   text-shadow: 1px 1px 2px black;
+}
+
+.subtitle-home {
+  margin: 2rem;
+  color: $subtitle-color;
+  font-family: $subtitle-font;
 }
