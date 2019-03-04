@@ -44,6 +44,11 @@ router.post("/event/photo", multer(config).single("photo"), function(
 ) {
   console.log(req.file);
   console.log(req.body.name);
+  let dateTime = JSON.stringify(req.body.date);
+  var input = new Date(dateTime);
+  eventDateTime = input.getTime();
+  console.log(eventDateTime);
+
   // if (req.file) {
   //   req.body.photo = req.file.filename;
   // }
