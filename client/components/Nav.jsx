@@ -32,7 +32,12 @@ class Nav extends React.Component {
       >
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
-            <img src="/images/people.png" width="" height="" />
+            <img
+              className="icon-img"
+              src="/images/comment.svg"
+              width="64"
+              height="64"
+            />
           </a>
 
           <a
@@ -78,7 +83,7 @@ class Nav extends React.Component {
                   <div className="buttons">
                     <a
                       onClick={() => this.setState({ register: true })}
-                      className="button is-primary is-inverted is-outlined"
+                      className="button is-medium is-primary is-inverted is-outlined"
                     >
                       <strong>Sign up</strong>
                     </a>
@@ -95,7 +100,7 @@ class Nav extends React.Component {
                     </Modal>
                     <a
                       onClick={() => this.setState({ login: true })}
-                      className="button is-danger is-inverted is-outlined"
+                      className="button is-medium is-danger is-inverted is-outlined"
                     >
                       <p>Log in</p>
                     </a>
