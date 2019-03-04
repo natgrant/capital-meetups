@@ -1,71 +1,85 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-class LatestEvents extends React.Component {
+import { getEvent } from "../actions/events";
+
+class LatestEvents extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
+
+  handleDate = date => {
+    return new Date(date).toString();
+  };
+
+  handleClick = id => {
+    this.props.getEvent(id);
+  };
 
   render() {
     return (
-      <div className="columns ">
-        <div className="column">
-          <article class="message is-dark">
-            <div className="message-header">
-              <p>Event 1</p>
-              <button className="delete" aria-label="delete" />
-            </div>
-            <div className="message-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-              <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-              porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-              Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-              efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-              Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor
-              ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et
-              sem eget, facilisis sodales sem.
-            </div>
-          </article>
-        </div>
-        <div className="column">
-          <article className="message is-dark">
-            <div className="message-header">
-              <p>Event 2</p>
-              <button className="delete" aria-label="delete" />
-            </div>
-            <div className="message-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-              <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-              porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-              Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-              efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-              Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor
-              ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et
-              sem eget, facilisis sodales sem.
-            </div>
-          </article>
-        </div>
-        <div className="column">
-          <article className="message is-dark">
-            <div className="message-header">
-              <p>Event 3</p>
-              <button className="delete" aria-label="delete" />
-            </div>
-            <div className="message-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-              <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-              porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
-              Nullam gravida purus diam, et dictum <a>felis venenatis</a>{" "}
-              efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
-              Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor
-              ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et
-              sem eget, facilisis sodales sem.
-            </div>
-          </article>
-        </div>
+      <div className="columns events-column">
+        {this.props.events.map((event, i) => {
+          if (i % 2 == 0) {
+            return (
+              <div key={i} className="column">
+                <article class="message is-dark">
+                  <div className="message-header">
+                    <p>{event.name}</p>
+                  </div>
+                  <div className="message-body">
+                    <p>
+                      <strong>Where: </strong>
+                      {event.location}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>When: </strong>
+                      {this.handleDate(event.date)}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>What: </strong>
+                      {event.description}
+                    </p>
+                  </div>
+                  <a
+                    className="button is-rounded is-warning is-outlined event-icon"
+                    value={event.id}
+                    onClick={() => {
+                      this.handleClick(event.id);
+                      window.location.hash = `#/eventinfo/${event.id}`;
+                    }}
+                  >
+                    <span className="icon">
+                      <i class="fas fa-info" />
+                    </span>
+                  </a>
+                </article>
+              </div>
+            );
+          }
+        })}
       </div>
     );
   }
 }
 
-export default LatestEvents;
+function mapStateToProps(state) {
+  return {
+    events: state.home.events
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getEvent: id => {
+      dispatch(getEvent(id));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LatestEvents);

@@ -5,10 +5,10 @@ function getSubscriptionsByUsername(username, testDb) {
   return db("users")
     .where("user_name", username)
     .first()
-    .then(userId => {
+    .then(user => {
       return db("subscriptions")
         .join("events", "subscriptions.event_id", "events.id")
-        .where("subscriptions.user_id", userId)
+        .where("subscriptions.user_id", user.id)
         .select(
           "events.name as name",
           "events.description as description",

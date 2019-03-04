@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Nav from "./Nav";
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
@@ -12,42 +12,28 @@ class Home extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="container has-text-centered">
-          <div className="hero is-small is-primary has-background-success	">
+      <Fragment>
+        <Nav />
+        <div className="has-text-centered">
+          <div className="hero is-large is-bold header-image">
             <div className="hero-body has-text-centered">
               <Link to="/" className="">
-                <h1 className="title is-1">Meet-Ups</h1>
+                <h1 className="title header-title">CAPITAL MEETUPS</h1>
               </Link>
-              <Nav />
             </div>
           </div>
-          <div className="columns ">
-            <div className="column" />
+          <div className="container">
+            <h2 className="subtitle-home is-size-3 ">
+              <strong>Latest Events</strong>
+            </h2>
+            <LatestEvents />
+            <h2 className="subtitle-home is-size-3">
+              <strong>Suggested Categories</strong>
+            </h2>
+            <CategoryList />
           </div>
-          <div className="columns ">
-            <div className="column" />
-          </div>
-          <div className="columns ">
-            <div className="column ">
-              <div />
-              <h2 className=" is-size-3 ">
-                <strong>Latest events near you</strong>
-              </h2>
-            </div>
-          </div>
-          <LatestEvents />
-
-          <div className="columns ">
-            <div className="column ">
-              <h2 className=" is-size-3 ">
-                <strong>Categories</strong>
-              </h2>
-            </div>
-          </div>
-          <CategoryList />
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

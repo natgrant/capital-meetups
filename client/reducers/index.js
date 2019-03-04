@@ -1,7 +1,13 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 
-import auth from './auth'
+import auth from "./auth";
+import home from "./home";
+import subscriptions from "./subscriptions";
 
 export default combineReducers({
-  auth
-})
+  auth,
+  home,
+  subscriptions,
+  form: formReducer
+});

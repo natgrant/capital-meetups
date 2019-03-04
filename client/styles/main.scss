@@ -1,2 +1,119 @@
 @charset "utf-8";
 @import "~bulma/bulma";
+//Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto:400,700|Sriracha|Tauri|Varela+Round");
+
+$header-font: "Sriracha", sans-serif;
+$header-color: #f1f8ff;
+$subtitle-color: #252c33;
+$subtitle-font: "Roboto";
+
+html,
+body {
+  width: 100%;
+  font-family: "Roboto";
+  // background-color: #fff8e6;
+}
+
+.eventimage {
+  width: 25%;
+  height: 30%;
+  left: 5%;
+  top: 35%;
+  position: absolute;
+}
+
+.basicdetails {
+  width: 30%;
+  height: 25%;
+  left: 40%;
+  top: 30%;
+  position: absolute;
+}
+
+.description {
+  position: absolute;
+  width: 30%;
+  left: 3%;
+  top: 60%;
+  height: 500px;
+}
+
+.joinbutton {
+  width: 200px;
+  float: right;
+}
+
+.locationtile {
+  width: 30%;
+  height: 30%;
+  left: 40%;
+  top: 60%;
+  position: absolute;
+}
+
+.attendeepanel {
+  width: 200px;
+  left: 75%;
+  position: absolute;
+  top: 35%;
+  height: 700px;
+}
+
+.header-image {
+  background-image: url("/images/wellington.jpg");
+  background-size: cover;
+}
+
+.header-title {
+  color: $header-color;
+  font-size: 6rem;
+  font-family: $header-font;
+  text-shadow: 1px 1px 2px black;
+}
+
+.subtitle-home {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: $subtitle-color;
+  font-family: $header-font;
+  letter-spacing: 0.7rem;
+}
+
+.category-cont {
+  margin-bottom: 2rem;
+}
+
+.category-image {
+  position: relative;
+  width: 100%;
+}
+
+.img-radius {
+  border-radius: 15%;
+}
+
+.category-text {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  color: white;
+  font-family: "Sriracha";
+  letter-spacing: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background: rgba(4, 3, 2, 0.5);
+}
+
+.events-column {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.event-icon {
+  margin-bottom: 2rem;
+}
