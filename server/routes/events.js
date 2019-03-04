@@ -43,11 +43,11 @@ router.post("/event/photo", multer(config).single("photo"), function(
   next
 ) {
   console.log(req.file);
-  console.log(req.body);
-  if (req.file) {
-    req.body.photo = req.file.filename;
-  }
-  res.send("image saved");
+  console.log(req.body.name);
+  // if (req.file) {
+  //   req.body.photo = req.file.filename;
+  // }
+  // res.send("image saved");
 });
 
 //GET /api/v1/meetups

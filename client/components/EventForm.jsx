@@ -11,6 +11,7 @@ class ReactUploadImage extends React.Component {
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onChangeNew = this.onChangeNew.bind(this);
   }
   onFormSubmit(e) {
     e.preventDefault();
@@ -37,12 +38,17 @@ class ReactUploadImage extends React.Component {
     console.log("event", e.target.files[0]);
     this.setState({ file: e.target.files[0] });
   }
+  onChangeNew(e) {
+    console.log("eventnew", event.target.value);
+    this.setState({ name: e.target.value });
+  }
 
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
         <h1>File Upload</h1>
         <input type="file" name="photo" onChange={this.onChange} />
+        <input type="text" name="name" onChange={this.onChangeNew} />
 
         <button type="submit">Upload</button>
       </form>
