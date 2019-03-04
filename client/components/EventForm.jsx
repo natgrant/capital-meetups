@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
 import showResults from "../actions/showResults";
+import { createEvent } from "../actions/createEvent";
 import DateTimePicker from "react-datetime-picker";
 const validate = values => {
   const errors = {};
@@ -17,9 +19,9 @@ const validate = values => {
   if (!values.description) {
     errors.description = "Required";
   }
-  if (!values.date) {
-    errors.datetime = "Required";
-  }
+  // if (!values.date) {
+  //   errors.date = "Required";
+  // }
   return errors;
 };
 
@@ -56,11 +58,17 @@ const RenderDateTimePicker = ({
     value={!value ? null : new Date(value)}
   />
 );
-let EventForm = ({ handleSubmit, submitting }) => (
-  <form onSubmit={handleSubmit(showResults)}>
-    <Field name="name" label="Event Name" component={RenderInput} />
-    <Field name="location" label="Event location" component={RenderInput} />
-    <Field name="category" label="Event category" component={RenderSelect}>
+
+let EventForm = ({ handleSubmit, submitting, user, createEvent }) => (
+  <form
+    onSubmit={handleSubmit(values => {
+      console.log(values, user.user_id, createEvent);
+      createEvent(user.user_id, values);
+    })}
+  >
+    <Field name="name" label="Event Name:" component={RenderInput} />
+    <Field name="location" label="Event location:" component={RenderInput} />
+    <Field name="category" label="Event category:" component={RenderSelect}>
       <option />
       {[
         "coffee",
@@ -71,7 +79,8 @@ let EventForm = ({ handleSubmit, submitting }) => (
         "food",
         "language",
         "web development",
-        "music"
+        "music",
+        "leisure"
       ].map(item => (
         <option key={item} value={item}>
           {item}
@@ -81,17 +90,32 @@ let EventForm = ({ handleSubmit, submitting }) => (
 
     <Field
       name="description"
-      label="Event description"
+      label="Event description:"
       rows="6"
+      type="textarea"
       component={RenderInput}
     />
     <Field name="date" component={RenderDateTimePicker} />
-
+    <br />
     <button type="submit" disabled={submitting}>
       Submit
     </button>
   </form>
 );
+const mapStateToProps = state => ({
+  user: state.auth.user
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createEvent: (user_id, values) => dispatch(createEvent(user_id, values))
+  };
+};
+
+EventForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventForm);
 
 EventForm = reduxForm({
   form: "event",
