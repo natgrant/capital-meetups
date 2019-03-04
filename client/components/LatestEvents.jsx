@@ -9,7 +9,7 @@ class LatestEvents extends Component {
   }
 
   handleDate = date => {
-    return new Date(date);
+    return new Date(date).toString();
   };
 
   handleClick = id => {
@@ -35,7 +35,7 @@ class LatestEvents extends Component {
                     <br />
                     <p>
                       <strong>When: </strong>
-                      {event.date}
+                      {this.handleDate(event.date)}
                     </p>
                     <br />
                     <p>
