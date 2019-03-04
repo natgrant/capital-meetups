@@ -6,6 +6,7 @@ const {
   getAllEvents,
   getEventsByCategory,
   getOneEvent,
+  getEventsByCreator,
   createEvent,
   deleteEvent,
   editEvent,
@@ -64,6 +65,17 @@ router.get("/", (req, res) => {
 router.get("/category/:category", (req, res) => {
   const category = req.params.category;
   getEventsByCategory(category)
+    .then(events => {
+      res.json(events);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+router.get("/creator/:id", (req, res) => {
+  let id = req.params.id;
+  getEventsByCreator(id)
     .then(events => {
       res.json(events);
     })

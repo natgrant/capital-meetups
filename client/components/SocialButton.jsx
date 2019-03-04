@@ -2,9 +2,9 @@ import React from "react";
 import SocialLogin from "react-social-login";
 
 const Button = ({ children, triggerLogin, ...props }) => (
-  <button onClick={triggerLogin} {...props}>
+  <a onClick={triggerLogin} {...props}>
     {children}
-  </button>
+  </a>
 );
 
 export default SocialLogin(Button);
