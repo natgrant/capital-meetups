@@ -2,7 +2,7 @@ const initialState = {
   events: [],
   categories: [],
   selectedEvent: {},
-  selectedEventMembers: []
+  selectedEventUsers: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,8 +11,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, events: action.events };
     case "SAVE_SELECTED_EVENT":
       return { ...state, selectedEvent: action.event };
-    case "SAVE_SELECTED_EVENT_MEMBERS":
-      return { ...state, selectedEventMembers: action.members };
+    case "SAVE_SELECTED_EVENT_USERS":
+      return { ...state, selectedEventUsers: action.users };
     case "SAVE_CATEGORIES":
       return { ...state, categories: action.categories };
     default:

@@ -1,8 +1,4 @@
-import {
-  getAllEvents as apiGetAllEvents,
-  getOneEvent,
-  getOneEventMembers
-} from "../api/events";
+import { getAllEvents as apiGetAllEvents, getOneEvent } from "../api/events";
 import { getAllCategories as apiGetAllCategories } from "../api/events";
 
 export function getAllEvents() {
