@@ -15,13 +15,20 @@ class CategoryList extends React.Component {
               <div
                 className="column category-cont"
                 onClick={() => {
-                  window.location.hash = "#/category";
+                  window.location.hash = `#/events/${event.id}`;
                 }}
               >
                 <figure className="image is-256x256 is-inline-block category-image">
                   <img className="img-radius" src={category.image} />
                   <h3 className="category-text">
-                    <span>{category.category}</span>
+                    <a
+                      value={event.id}
+                      onClick={() => {
+                        this.handleClick(event.id);
+                      }}
+                    >
+                      <span>{category.category}</span>
+                    </a>
                   </h3>
                 </figure>
               </div>

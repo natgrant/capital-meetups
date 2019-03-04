@@ -2,8 +2,7 @@ const initialState = {
   events: [],
   categories: [],
   selectedEvent: {},
-  selectedEventUsers: [],
-  selectedCategory: {}
+  selectedEventUsers: []
 };
 
 const reducer = (state = initialState, action) => {
