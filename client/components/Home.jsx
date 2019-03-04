@@ -22,29 +22,13 @@ class Home extends React.Component {
               </Link>
             </div>
           </div>
-          <div className="columns ">
-            <div className="column" />
-          </div>
-          <div className="columns ">
-            <div className="column" />
-          </div>
-          <div className="columns ">
-            <div className="column ">
-              <div />
-              <h2 className=" is-size-3 ">
-                <strong>Latest events near you</strong>
-              </h2>
-            </div>
-          </div>
+          <h2 className="subtitle-home is-size-3 ">
+            <strong>Latest Events Near You</strong>
+          </h2>
           <LatestEvents />
-
-          <div className="columns ">
-            <div className="column ">
-              <h2 className=" is-size-3 ">
-                <strong>Suggested Categories</strong>
-              </h2>
-            </div>
-          </div>
+          <h2 className="subtitle-home is-size-3 ">
+            <strong>Suggested Categories</strong>
+          </h2>
           <CategoryList />
         </div>
       </React.Fragment>
