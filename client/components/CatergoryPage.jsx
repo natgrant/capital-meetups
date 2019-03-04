@@ -3,48 +3,25 @@ import { connect } from "react-redux";
 class Categories extends Component {
   constructor() {
     super();
-    this.state = {
-      event: []
-    };
   }
+
   render() {
     return (
       <div>
-        <div>
-          <div>
-            <section className="hero is-primary">
-              <div className="hero-body">
-                <div className="container">
-                  <h1 className="title categorytitle">
-                    Whatever the Catergory is
-                  </h1>
-                  <div />
-                </div>
+        {this.props.categories.map((category, i) => {
+          return (
+            <div className="columns ">
+              <div className="column">
+                <figure className="image">
+                  <a href="">
+                    <img className="" src={category.image} />
+                  </a>
+                  {category.category}
+                </figure>
               </div>
-            </section>
-
-            <div class="columns">
-              <div class="column is-four-fifths">Catergory</div>
-              <div class="column">joinbutton</div>
             </div>
-            <div class="columns">
-              <div class="column is-four-fifths">Catergory</div>
-              <div class="column">joinbutton</div>
-            </div>
-            <div class="columns">
-              <div class="column is-four-fifths">Catergory</div>
-              <div class="column">joinbutton</div>
-            </div>
-            <div class="columns">
-              <div class="column is-four-fifths">Catergory</div>
-              <div class="column">joinbutton</div>
-            </div>
-            <div class="columns">
-              <div class="column is-four-fifths">Catergory</div>
-              <div class="column">joinbutton</div>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     );
   }
@@ -56,6 +33,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Categories);
-
-// export default Categories;
+export default connect(mapStateToProps)(categories);
