@@ -7,11 +7,11 @@ class Categories extends Component {
 
   render() {
     return (
-      <div>
+      <div className="tile is-ancestor">
         {this.props.categories.map((category, i) => {
           return (
-            <div key={i} className="columns">
-              <div className="column">
+            <div key={i} className="tile">
+              <div className="">
                 <figure className="image">
                   <a href="">
                     <img className="" src={category.image} />

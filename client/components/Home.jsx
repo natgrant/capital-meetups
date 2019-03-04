@@ -34,7 +34,7 @@ class Home extends React.Component {
           <a
             className="button is-rounded is-large is-warning is-outlined button-more"
             onClick={() => {
-              window.location.hash = "#/category";
+              window.location.hash = "#/categories";
             }}
           >
             More

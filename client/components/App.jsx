@@ -35,7 +35,7 @@ class App extends React.Component {
           <Nav />
 
           <Route exact path="/" component={Home} />
-          <Route exact path="/category" component={Categories} />
+          <Route exact path="/categories" component={Categories} />
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/eventinfo" component={EventInfo} />
