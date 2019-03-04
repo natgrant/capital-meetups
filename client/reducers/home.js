@@ -7,9 +7,10 @@ const reducer = (state = initialState, action) => {
     case "SAVE_CATEGORIES":
       return { ...state, categories: action.categories };
     case "DEL_EVENT":
+      const leftEvents = state.events.filter(event => event.id !== action.id);
       return {
         ...state,
-        events: state.events.filter(event => event.id !== action.id)
+        events: leftEvents
       };
     default:
       return state;

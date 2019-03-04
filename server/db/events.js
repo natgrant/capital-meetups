@@ -67,13 +67,13 @@ function editEvent(event, id, testDB) {
     });
 }
 
-function deleteEvent(id, testDb) {
+function deleteEvent(eventId, userId, testDb) {
   const db = testDb || connection;
   return db("events")
-    .where("id", id)
+    .where("id", eventId)
     .del()
-    .then(result => {
-      return id;
+    .then(data => {
+      return getEventsByCreator(userId);
     });
 }
 

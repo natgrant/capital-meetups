@@ -127,10 +127,12 @@ router.post("/create/:user_id", (req, res) => {
     });
 });
 
-router.delete("/delete/:id", (req, res) => {
-  deleteEvent(req.params.id)
-    .then(id => {
-      res.json({ id });
+router.delete("/delete/:eventId/:userId", (req, res) => {
+  let eventId = req.params.eventId;
+  let userId = req.params.userId;
+  deleteEvent(eventId, userId)
+    .then(events => {
+      res.json(events);
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
