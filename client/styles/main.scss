@@ -1,12 +1,13 @@
 @charset "utf-8";
 @import "~bulma/bulma";
 //Google Fonts
-@import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto:400,700|Sriracha|Tauri|Varela+Round");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono|Roboto:400,700|Sriracha");
 
-$header-font: "Sriracha", sans-serif;
+$header-font: "Open Sans", sans-serif;
 $header-color: #f1f8ff;
 $subtitle-color: #252c33;
 $subtitle-font: "Roboto";
+$footer-color: #4a4a4a;
 
 html,
 body {
@@ -67,9 +68,10 @@ body {
 
 .header-title {
   color: $header-color;
-  font-size: 6rem;
+  font-size: 5rem;
   font-family: $header-font;
-  text-shadow: 1px 1px 2px black;
+  letter-spacing: 0.7rem;
+  text-shadow: 1px 2px 2px black;
 }
 
 .subtitle-home {
@@ -77,11 +79,11 @@ body {
   margin-bottom: 2rem;
   color: $subtitle-color;
   font-family: $header-font;
-  letter-spacing: 0.7rem;
+  letter-spacing: 0.5rem;
 }
 
 .category-cont {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .category-image {
@@ -103,7 +105,7 @@ body {
   letter-spacing: 1rem;
   font-weight: bold;
   padding: 10px;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   background: rgba(4, 3, 2, 0.5);
 }
@@ -116,4 +118,31 @@ body {
 
 .event-icon {
   margin-bottom: 2rem;
+}
+
+.footer {
+  background-color: $footer-color;
+  color: #ffffff;
+}
+
+.form-login {
+  background-image: url("/images/login-modal.jpg");
+  background-size: cover;
+  border-radius: 8%;
+}
+
+.form-register {
+  background-image: url("/images/register-modal.jpg");
+  background-size: cover;
+  border-radius: 8%;
+}
+
+.login-text {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black;
+  font-family: "Roboto";
+}
+
+.button-more {
+  margin: 3rem;
 }
