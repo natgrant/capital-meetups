@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { getEventsByCategory } from "../actions/events";
+
 class CategoryList extends React.Component {
   constructor() {
     super();
@@ -46,4 +48,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CategoryList);
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventByCategory: id => {
+      dispatch(getEventByCategory(id));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryList);
