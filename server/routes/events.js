@@ -129,8 +129,8 @@ router.post("/create/:user_id", (req, res) => {
 
 router.delete("/delete/:id", (req, res) => {
   deleteEvent(req.params.id)
-    .then(event => {
-      res.json(event);
+    .then(() => {
+      res.send("event deleted");
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
