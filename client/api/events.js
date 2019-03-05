@@ -14,5 +14,7 @@ export function getOneEvent(id) {
 }
 
 export function getEventsByCategory(category) {
-  return request.get(`/api/v1/meetups/event/${category}`).then(res => res.body);
+  return request
+    .get(`/api/v1/meetups/category/${category}`)
+    .then(res => res.body);
 }

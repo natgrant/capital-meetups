@@ -6,6 +6,7 @@ import { getEventsByCategory } from "../actions/getEventsByCategory";
 class CategoryList extends Component {
   constructor() {
     super();
+    this.state = {};
   }
 
   handleClick = category => {
@@ -22,10 +23,10 @@ class CategoryList extends Component {
                 <div
                   key={i}
                   className="category-cont"
-                  value={event.category}
+                  value={category}
                   onClick={() => {
-                    this.handleClick(event.category);
-                    window.location.hash = "#/events";
+                    this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">

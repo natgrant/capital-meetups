@@ -8,9 +8,9 @@ export function getEventsByCategory(category) {
   };
 }
 
-function saveSelectedEventsByCategory() {
+function saveSelectedEventsByCategory(events) {
   return {
     type: "SAVE_EVENTS_BY_CATEGORY",
-    category
+    events
   };
 }
