@@ -59,7 +59,7 @@ class Nav extends React.Component {
               Home
             </a>
 
-            <a className="navbar-item" href="#/category">
+            <a className="navbar-item" href="#/categories">
               Categories
             </a>
 
