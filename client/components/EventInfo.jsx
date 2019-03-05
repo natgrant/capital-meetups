@@ -4,16 +4,21 @@ import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
 import { getUsersByEvent } from "../actions/getUsersByEvent";
+import { th } from "date-fns/esm/locale";
 
 export class EventInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonClicked: false
+      buttonClicked: false,
+      isButtonVisible: true
     };
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isButtonVisible: false });
+    }, 4000);
     this.props.getUsersByEvent(this.props.match.params.id),
       this.props.getEvent(this.props.match.params.id);
   }
@@ -28,7 +33,7 @@ export class EventInfo extends Component {
 
   render() {
     const { selectedEvent, auth } = this.props;
-    const { buttonClicked } = this.state;
+    const { buttonClicked, isButtonVisible } = this.state;
     if (!auth.isAuthenticated && buttonClicked) {
       return <Redirect to="/login" />;
     }
@@ -49,11 +54,11 @@ export class EventInfo extends Component {
                         onClick={this.toggleTick}
                       >
                         Join Event
-                        <i class="fas fa-heart" />
+                        <i className="fas fa-heart" />
                       </a>
-                      {buttonClicked ? (
-                        <a className="button">
-                          You've been added to this event!
+                      {buttonClicked && isButtonVisible ? (
+                        <a className="button is-primary joinedbutton">
+                          <i className="fas fa-plus" />
                         </a>
                       ) : null}
                     </div>
@@ -61,72 +66,79 @@ export class EventInfo extends Component {
                 </div>
               </div>
             </section>
-            <div className="container">
-              <figure className="image is-rounded is-inline-block category-image">
-                <img src={selectedEvent.image} />
-              </figure>
-            </div>
-            <div className="tile is-parent basicdetails">
-              <article className="tile is-classNamehild box">
-                <div className="content">
-                  <p className="title">
-                    When: {this.handleDate(selectedEvent.date)}
-                    <br />
-                    Category:{" "}
-                    <a href={`#/categories`}>{selectedEvent.category}</a>
-                  </p>
+            <div className="eventinfo-container">
+              <div className="tile is-ancestor">
+                <div className="tile is-parent">
+                  <article className="tile is-child notification">
+                    <figure className="image ">
+                      <img src={selectedEvent.image} />
+                    </figure>
+                    <p>
+                      Category <i class="fas fa-arrow-right" />
+                      <a href={`#/categories`}>{selectedEvent.category}</a>
+                    </p>
+                  </article>
                 </div>
-              </article>
-            </div>
-          </div>
-          <div className="tile is-parent description">
-            <article className="tile is-child notification">
-              <div className="content">
-                <p className="title">Description</p>
-
-                <p className="subtitle">{selectedEvent.description}</p>
-                <div className="content" />
+                <div className="tile is-vertical is-4">
+                  <div className="tile">
+                    <div className="tile is-parent is-vertical">
+                      <article className="tile is-child notification">
+                        <p>Description</p>
+                        <hr />
+                        <p>{selectedEvent.description}</p>
+                        <br />
+                      </article>
+                      <article className="tile is-child notification">
+                        <p>Location</p>
+                        <hr />
+                        <p>{selectedEvent.location}</p>
+                      </article>
+                    </div>
+                  </div>
+                  <div className="tile is-parent">
+                    <article className="tile is-child notification">
+                      <p>When</p>
+                      <hr />
+                      <p>{this.handleDate(selectedEvent.date)}</p>
+                    </article>
+                  </div>
+                </div>
+                <div className="tile is-parent">
+                  <article className="tile is-child notification">
+                    <div className="content">
+                      <nav className="panel attendeepanel">
+                        <p className="panel-heading">Members</p>
+                        <div className="panel-block">
+                          <p className="control has-icons-left">
+                            <input
+                              className="input is-small"
+                              type="text"
+                              placeholder="search"
+                            />
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-search" aria-hidden="true" />
+                            </span>
+                          </p>
+                        </div>
+                        <p className="panel-tabs">
+                          <a className="is-active">Going</a>
+                        </p>
+                        <a className="panel-block">
+                          <span className="panel-icon">
+                            <i className="fas fa-book" aria-hidden="true" />
+                          </span>
+                          <ul>
+                            {this.props.selectedEventUsers &&
+                              this.props.selectedEventUsers.map(user => {
+                                return <p key={user.name}>{user.name}</p>;
+                              })}
+                          </ul>
+                        </a>
+                      </nav>
+                    </div>
+                  </article>
+                </div>
               </div>
-            </article>
-          </div>
-          <div className="tile is-parent locationtile">
-            <div className="tile is-child box">
-              <p className="title">Location</p>
-              <hr />
-              {selectedEvent.location}
-            </div>
-          </div>
-          <div>
-            <div>
-              <nav className="panel attendeepanel">
-                <p className="panel-heading">Members</p>
-                <div className="panel-block">
-                  <p className="control has-icons-left">
-                    <input
-                      className="input is-small"
-                      type="text"
-                      placeholder="search"
-                    />
-                    <span className="icon is-small is-left">
-                      <i className="fas fa-search" aria-hidden="true" />
-                    </span>
-                  </p>
-                </div>
-                <p className="panel-tabs">
-                  <a className="is-active">Going</a>
-                </p>
-                <a className="panel-block">
-                  <span className="panel-icon">
-                    <i className="fas fa-book" aria-hidden="true" />
-                  </span>
-                  <ul>
-                    {this.props.selectedEventUsers &&
-                      this.props.selectedEventUsers.map(user => {
-                        return <li key={user.name}>{user.name}</li>;
-                      })}
-                  </ul>
-                </a>
-              </nav>
             </div>
           </div>
         </div>
