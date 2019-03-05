@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
 import { getEventsByCategory } from "../actions/getEventsByCategory";
-import TheModal from "./TheModal";
+import EventsByCategory from "./EventsByCategory";
 
 class CategoryList extends Component {
   constructor() {
@@ -45,7 +45,7 @@ class CategoryList extends Component {
                     this.handleClick(category.category);
                   }}
                 >
-                  <TheModal
+                  <EventsByCategory
                     isShowing={this.state.showModal}
                     onHide={this.handleClose}
                   />

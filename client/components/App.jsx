@@ -15,8 +15,6 @@ import Register from "./Register";
 import Home from "./Home";
 import EventInfo from "./EventInfo";
 import Footer from "./Footer";
-import EventsByCategory from "./EventsByCategory";
-import TheModal from "./TheModal";
 
 import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getEventsByCategory } from "../actions/getEventsByCategory";
+
 export class EventsByCategory extends Component {
   constructor(props) {
     super(props);
@@ -8,21 +9,35 @@ export class EventsByCategory extends Component {
   }
 
   componentDidMount() {
-    this.props.getEventsByCategory(this.props.match.params.category);
+    this.props.getEventsByCategory(this.props.category);
   }
 
   render() {
-    return (
-      <div>
-        {this.props.events.map(event => (
-          <div key={event.id}>
-            <p>{event.name}</p>
-            <p>{event.description}</p>
-            <p>{event.location}</p>
+    if (this.props.isShowing) {
+      return (
+        <div className="modal is-active">
+          <div className="modal-background" />
+          <div className="modal-content">
+            <div>
+              {this.props.events.map(event => (
+                <div key={event.id}>
+                  <p>{event.name}</p>
+                  <p>{event.description}</p>
+                  <p>{event.location}</p>
+                </div>
+              ))}
+            </div>
+            <button
+              className="modal-close is-large"
+              aria-label="close"
+              onClick={this.props.onHide}
+            />
           </div>
-        ))}
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
