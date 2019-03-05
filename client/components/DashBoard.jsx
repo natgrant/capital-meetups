@@ -52,8 +52,9 @@ class Dashboard extends Component {
               <p>{event.describtion}</p>
               <p>{event.location}</p>
               <p>{event.date}</p>
+
               {/* <button>Edit event</button> */}
-              <EditEvent />
+              <EditEvent {...event} />
               <button
                 onClick={e =>
                   window.confirm(
