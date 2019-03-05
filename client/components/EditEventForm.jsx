@@ -49,7 +49,7 @@ class EditEventForm extends React.Component {
         this.props.user.user_id
       )
       .then(response => {
-        alert("The file is successfully uploaded");
+        alert("Event updated");
         this.props.getAll(this.props.user.user_name);
         this.props.getEventsByCreator(this.props.user.user_id);
         this.props.buttonClick();
