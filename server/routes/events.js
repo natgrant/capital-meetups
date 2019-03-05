@@ -24,7 +24,7 @@ router.use(express.json());
 const config = {
   storage: multer.diskStorage({
     destination: function(req, file, next) {
-      next(null, "./public/images");
+      next(null, "./public");
     },
     filename: function(req, file, next) {
       const ext = file.mimetype.split("/")[1];
