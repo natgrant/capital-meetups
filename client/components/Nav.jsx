@@ -63,15 +63,10 @@ class Nav extends React.Component {
               Categories
             </a>
 
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">Events</a>
-
-              <div className="navbar-dropdown">
-                <a className="navbar-item">Join Event</a>
-                <a className="navbar-item">Events Near You</a>
-                <a className="navbar-item">Contact Us</a>
-              </div>
-            </div>
+            <a className="navbar-item" href="#/categories">
+              My Dashboard
+              <i class="far fa-user-circle" />
+            </a>
           </div>
 
           <div className="navbar-end">
