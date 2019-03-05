@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getEventsByCategory } from "../actions/getEventsByCategory";
+
 export class EventsByCategory extends Component {
   constructor(props) {
     super(props);
@@ -12,16 +13,21 @@ export class EventsByCategory extends Component {
   }
 
   render() {
-    console.log(this.props.events);
     return (
       <div>
-        {this.props.events.map(event => (
-          <div key={event.id}>
-            <p>{event.name}</p>
-            <p>{event.description}</p>
-            <p>{event.location}</p>
+        <div className="modal is-active">
+          <div className="modal-background" />
+          <div className="modal-content">
+            {this.props.events.map(event => (
+              <div key={event.id}>
+                <p>{event.name}</p>
+                <p>{event.description}</p>
+                <p>{event.location}</p>
+              </div>
+            ))}
           </div>
-        ))}
+          <button className="modal-close is-large" aria-label="close" />
+        </div>
       </div>
     );
   }

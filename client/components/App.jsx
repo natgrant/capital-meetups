@@ -16,6 +16,7 @@ import Home from "./Home";
 import EventInfo from "./EventInfo";
 import Footer from "./Footer";
 import EventsByCategory from "./EventsByCategory";
+import TheModal from "./TheModal";
 
 import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";
@@ -41,6 +42,7 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/eventinfo/:id" component={EventInfo} />
           <Route path="/events/:category" component={EventsByCategory} />
+          <Route path="/modal/" component={TheModal} />
 
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />
