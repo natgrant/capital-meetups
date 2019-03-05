@@ -7,7 +7,7 @@ $header-font: "Open Sans", sans-serif;
 $header-color: #f1f8ff;
 $subtitle-color: #252c33;
 $subtitle-font: "Roboto";
-$footer-color: #4a4a4a;
+$footer-color: #363636;
 
 html,
 body {
@@ -145,4 +145,32 @@ body {
 
 .button-more {
   margin: 3rem;
+}
+
+.categories-header {
+  background-color: $footer-color;
+  font-family: $header-font;
+  color: #ffffff;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.category-main {
+  margin-bottom: 3rem;
+}
+
+.categories-page-img {
+  position: relative;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.8s ease;
+  backface-visibility: hidden;
+}
+
+.container:hover .cat-img {
+  opacity: 0.6;
 }
