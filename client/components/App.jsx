@@ -9,10 +9,13 @@ import { connect } from "react-redux";
 import { getAllEvents } from "../actions/events";
 import { getAllCategories } from "../actions/events";
 
+import Nav from "./Nav";
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
 import EventInfo from "./EventInfo";
+import Footer from "./Footer";
+import EventsByCategory from "./EventsByCategory";
 
 import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";
@@ -31,16 +34,19 @@ class App extends React.Component {
     return (
       <Router>
         <React.Fragment>
+          <Nav />
           <Route exact path="/" component={Home} />
-          <Route exact path="/category" component={Categories} />
+          <Route exact path="/categories" component={Categories} />
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/eventinfo" component={EventInfo} />
+          <Route path="/eventinfo/:id" component={EventInfo} />
+          <Route path="/events/:category" component={EventsByCategory} />
 
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/test" component={Dashboard} />
           </Switch>
+          <Footer />
         </React.Fragment>
       </Router>
     );

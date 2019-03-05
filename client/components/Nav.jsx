@@ -16,29 +16,33 @@ class Nav extends React.Component {
       login: false,
       register: false
     };
-    this.toggleBurger = this.toggleBurger.bind(this);
   }
-  toggleBurger() {
+  toggleBurger = () => {
     this.setState({ showBurger: !this.state.showBurger });
-  }
+  };
   render() {
     const { auth, logout } = this.props;
     const { showBurger } = this.state;
 
     return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar is-dark"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
+          <a className="navbar-item" href="/">
             <img
-              src="https://bulma.io/images/bulma-logo.png"
-              width="112"
-              height="28"
+              className="icon-img"
+              src="/images/comment.svg"
+              width="64"
+              height="64"
             />
           </a>
 
           <a
             role="button"
-            class="navbar-burger burger"
+            className="navbar-burger burger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -51,9 +55,13 @@ class Nav extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item">Home</a>
+            <a className="navbar-item" href="/">
+              Home
+            </a>
 
-            <a className="navbar-item">Categories</a>
+            <a className="navbar-item" href="#/categories">
+              Categories
+            </a>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">Events</a>
@@ -77,9 +85,9 @@ class Nav extends React.Component {
                   <div className="buttons">
                     <a
                       onClick={() => this.setState({ register: true })}
-                      className="button is-primary"
+                      className="button is-medium is-primary is-inverted is-outlined"
                     >
-                      <strong>Sign up</strong>
+                      <p>Sign up</p>
                     </a>
                     <Modal
                       show={this.state.register}
@@ -87,16 +95,16 @@ class Nav extends React.Component {
                       style={{ backgroundColor: "black" }}
                     >
                       <Modal.Content>
-                        <Section style={{ backgroundColor: "white" }}>
+                        <Section className="form-register">
                           <Register />
                         </Section>
                       </Modal.Content>
                     </Modal>
                     <a
                       onClick={() => this.setState({ login: true })}
-                      className="button is-light"
+                      className="button is-medium is-danger is-inverted is-outlined"
                     >
-                      Log in
+                      <p>Log in</p>
                     </a>
                     <Modal
                       show={this.state.login}
@@ -104,7 +112,7 @@ class Nav extends React.Component {
                       style={{ backgroundColor: "black" }}
                     >
                       <Modal.Content>
-                        <Section style={{ backgroundColor: "white" }}>
+                        <Section className="form-login">
                           <Login />
                           <SocialLogin />
                         </Section>

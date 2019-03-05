@@ -13,25 +13,29 @@ function getSubscriptionsByUsername(username, testDb) {
           "events.name as name",
           "events.description as description",
           "events.location as location",
-          "events.date as date"
+          "events.date as date",
+          "events.id as id"
         );
     });
 }
 
 function createSubscription(userId, eventId, testDb) {
   const db = testDb || connection;
-  return db("subscrptions").insert({
-    userId,
-    eventId
+  return db("subscriptions").insert({
+    user_id: userId,
+    event_id: eventId
   });
 }
 
-function removeSubscription(userId, eventId, testDb) {
+function removeSubscription(userId, eventId, username, testDb) {
   const db = testDb || connection;
   return db("subscriptions")
-    .where("userId", userId)
-    .Where("eventId", eventId)
-    .del();
+    .where("subscriptions.user_id", userId)
+    .where("subscriptions.event_id", eventId)
+    .del()
+    .then(date => {
+      return getSubscriptionsByUsername(username);
+    });
 }
 module.exports = {
   createSubscription,

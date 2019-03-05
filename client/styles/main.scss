@@ -1,48 +1,168 @@
 @charset "utf-8";
 @import "~bulma/bulma";
+//Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono|Roboto:400,700|Sriracha");
 
-.eventimage {
-    width: 25%;
-    height:30%;
-    left: 5%;
-    top: 35%;
-    position: absolute;
-}
+$header-font: "Open Sans", sans-serif;
+$header-color: #f1f8ff;
+$subtitle-color: #252c33;
+$subtitle-font: "Roboto";
+$footer-color: #363636;
 
-.basicdetails {
-    width: 30%;
-    height: 25%;
-    left: 40%;
-    top: 30%;
-    position: absolute;
-}
-
-
-.description {
-    position: absolute;
-    width: 30%;
-    left: 3%;
-    top: 60%;
-    height: 500px;
+html,
+body {
+  width: 100%;
+  font-family: "Roboto";
 }
 
 .joinbutton {
-    width: 200px;
-    float: right;
+  width: 200px;
+  float: right;
 }
 
-.locationtile {
-    width: 30%;
-    height:30%;
-    left:40%;
-    top:60%;
-    position: absolute;
+.joinedbutton {
+  float: right;
 }
 
-.attendeepanel {
-    width: 200px;
-    left: 75%;
-    position: absolute;
-    top: 35%;
-    height: 700px;
+.header-image {
+  background-image: url("/images/wellington.jpg");
+  background-size: cover;
+}
+
+.header-title {
+  color: $header-color;
+  font-size: 5rem;
+  font-family: $header-font;
+  letter-spacing: 0.7rem;
+  text-shadow: 1px 2px 2px black;
+}
+
+.subtitle-home {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: $subtitle-color;
+  font-family: $header-font;
+  letter-spacing: 0.5rem;
+}
+
+.category-cont {
+  margin-bottom: 3rem;
+}
+
+.category-image {
+  position: relative;
+  width: 100%;
+}
+
+.img-radius {
+  border-radius: 15%;
+}
+
+.category-text {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  color: white;
+  font-family: "Sriracha";
+  letter-spacing: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  background: rgba(4, 3, 2, 0.5);
+}
+
+.events-column {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.event-icon {
+  margin-bottom: 2rem;
+}
+
+.footer {
+  background-color: $footer-color;
+  color: #ffffff;
+}
+
+.form-login {
+  background-image: url("/images/login-modal.jpg");
+  background-size: cover;
+  border-radius: 8%;
+}
+
+.form-register {
+  background-image: url("/images/register-modal.jpg");
+  background-size: cover;
+  border-radius: 8%;
+}
+
+.login-text {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black;
+  font-family: "Roboto";
+}
+
+.button-more {
+  margin: 3rem;
+}
+
+.categories-header {
+  background-color: $footer-color;
+  font-family: $header-font;
+  color: #ffffff;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.category-main {
+  margin-bottom: 3rem;
+}
+
+.categories-page-img {
+  height: auto;
+  width: auto;
+  max-width: 800px;
+  max-height: 800px;
+  position: relative;
+  opacity: 1;
+  display: block;
+  transition: 0.8s ease;
+  backface-visibility: hidden;
+}
+
+.container:hover .cat-img {
+  opacity: 0.6;
+}
+
+.eventinfo-title {
+  color: #ffffff;
+  letter-spacing: 1rem;
+}
+
+.eventinfo-container {
+  margin: 2rem;
+}
+
+.eventinfo-hr {
+  background-color: $footer-color;
+  opacity: 0.2;
+}
+
+.cat-link-eventinfo {
+  color: #f04452;
+}
+
+.eventinfo-text {
+  font-family: $subtitle-font;
+  letter-spacing: 0.5rem;
+}
+
+.event-tile {
+  background-color: #ffec8b;
 }

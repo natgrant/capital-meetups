@@ -1,27 +1,68 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
-class CategoryList extends React.Component {
+import { getEventsByCategory } from "../actions/getEventsByCategory";
+
+class CategoryList extends Component {
   constructor() {
     super();
+    this.state = {};
   }
+
+  handleClick = category => {
+    this.props.getEventsByCategory(category);
+  };
 
   render() {
     return (
-      <div className="columns ">
-        {this.props.categories.map((category, i) => {
-          if (i % 2 == 0) {
+      <Fragment>
+        <div className="columns">
+          {this.props.categories.slice(0, 3).map((category, i) => {
             return (
               <div className="column">
-                <figure className="image is-256x256 is-inline-block">
-                  <img className="is-rounded" src={category.image} />
-                  {category.category}
-                </figure>
+                <div
+                  key={i}
+                  className="category-cont"
+                  value={category}
+                  onClick={() => {
+                    this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
+                  }}
+                >
+                  <figure className="image is-256x256 is-inline-block category-image">
+                    <img className="img-radius" src={category.image} />
+                    <h3 className="category-text">
+                      <span>{category.category}</span>
+                    </h3>
+                  </figure>
+                </div>
               </div>
             );
-          }
-        })}
-      </div>
+          })}
+        </div>
+        <div className="columns">
+          {this.props.categories.slice(3, 6).map((category, i) => {
+            return (
+              <div className="column">
+                <div
+                  key={i}
+                  className="category-cont"
+                  onClick={() => {
+                    window.location.hash = "#/categories";
+                  }}
+                >
+                  <figure className="image is-256x256 is-inline-block category-image">
+                    <img className="img-radius" src={category.image} />
+                    <h3 className="category-text">
+                      <span>{category.category}</span>
+                    </h3>
+                  </figure>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Fragment>
     );
   }
 }
@@ -32,4 +73,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CategoryList);
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventsByCategory: category => {
+      dispatch(getEventsByCategory(category));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryList);

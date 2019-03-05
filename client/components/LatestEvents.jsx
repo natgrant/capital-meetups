@@ -9,7 +9,7 @@ class LatestEvents extends Component {
   }
 
   handleDate = date => {
-    return new Date(date);
+    return new Date(date).toString();
   };
 
   handleClick = id => {
@@ -18,29 +18,42 @@ class LatestEvents extends Component {
 
   render() {
     return (
-      <div className="columns ">
+      <div className="columns events-column">
         {this.props.events.map((event, i) => {
           if (i % 2 == 0) {
             return (
               <div key={i} className="column">
-                <article class="message is-dark">
-                  <div className="message-header ">
+                <article className="message is-dark">
+                  <div className="message-header">
                     <p>{event.name}</p>
                   </div>
                   <div className="message-body">
-                    <p>Location:{event.location}</p>
-                    <p>Date:</p>
-                    <p>{event.description}</p>
+                    <p>
+                      <strong>Where: </strong>
+                      {event.location}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>When: </strong>
+                      {this.handleDate(event.date)}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>What: </strong>
+                      {event.description}
+                    </p>
                   </div>
                   <a
-                    className="button is-rounded is-primary is-outlined"
+                    className="button is-rounded is-warning is-outlined event-icon"
                     value={event.id}
                     onClick={() => {
                       this.handleClick(event.id);
                       window.location.hash = `#/eventinfo/${event.id}`;
                     }}
                   >
-                    more
+                    <span className="icon">
+                      <i className="fas fa-info" />
+                    </span>
                   </a>
                 </article>
               </div>
