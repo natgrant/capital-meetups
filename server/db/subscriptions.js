@@ -26,12 +26,15 @@ function createSubscription(userId, eventId, testDb) {
   });
 }
 
-function removeSubscription(userId, eventId, testDb) {
+function removeSubscription(userId, eventId, username, testDb) {
   const db = testDb || connection;
   return db("subscriptions")
     .where("userId", userId)
     .Where("eventId", eventId)
-    .del();
+    .del()
+    .then(date => {
+      getSubscriptionsByUsername(username);
+    });
 }
 module.exports = {
   createSubscription,

@@ -26,6 +26,7 @@ class Dashboard extends Component {
             <p>{subscription.name}</p>
             <p>{subscription.location}</p>
             <p>{subscription.date}</p>
+            <button>Remove</button>
           </div>
         ))}
         <h1>Create Event</h1>

@@ -182,8 +182,11 @@ router.delete("/delete/:eventId/:userId", (req, res) => {
     });
 });
 
-router.delete("/removeUser/:id", (req, res) => {
-  removeEventByUserId(req.params.id)
+router.delete("/removeUser/:userId/:eventId/:username", (req, res) => {
+  let userId = req.params.userId;
+  let eventId = req.params.eventId;
+  let username = req.params.username;
+  removeSubscription(userId, eventId, username)
     .then(event => {
       res.json(event);
     })
