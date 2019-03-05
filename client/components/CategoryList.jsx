@@ -17,7 +17,7 @@ class CategoryList extends Component {
                   key={i}
                   className="category-cont"
                   onClick={() => {
-                    window.location.hash = "#/category";
+                    window.location.hash = "#/categories";
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">
@@ -39,7 +39,7 @@ class CategoryList extends Component {
                   key={i}
                   className="category-cont"
                   onClick={() => {
-                    window.location.hash = "#/category";
+                    window.location.hash = "#/categories";
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">

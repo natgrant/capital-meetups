@@ -81,6 +81,7 @@ module.exports = {
   getAllEvents,
   getEventByCategory,
   getOneEvent,
+  getEventsByCreator,
   getAllCategories,
   createEvent,
   deleteEvent,
