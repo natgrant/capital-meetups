@@ -49,7 +49,7 @@ class ReactUploadImage extends React.Component {
         this.props.user.user_id
       )
       .then(response => {
-        alert("The file is successfully uploaded");
+        alert("New event is created");
       })
       .catch(error => {});
   }
