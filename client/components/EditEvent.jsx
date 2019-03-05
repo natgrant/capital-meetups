@@ -14,10 +14,19 @@ class EditEvent extends React.Component {
     this.setState({ visible: true });
   }
 
+  changeButtonState(event) {
+    this.setState({ visible: false });
+  }
+
   render() {
     return (
       <div>
-        {this.state.visible && <EditEventForm {...this.props} />}
+        {this.state.visible && (
+          <EditEventForm
+            {...this.props}
+            buttonClick={this.changeButtonState.bind(this)}
+          />
+        )}
         <button onClick={this.handleClick}>edit</button>
       </div>
     );

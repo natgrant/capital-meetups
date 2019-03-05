@@ -3,6 +3,8 @@ const axios = require("axios");
 import { connect } from "react-redux";
 
 import DateTimePicker from "react-datetime-picker";
+import { getAllSubscriptions } from "../actions/getAllSubscriptions";
+import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 
 class ReactUploadImage extends React.Component {
   constructor(props) {
@@ -50,6 +52,8 @@ class ReactUploadImage extends React.Component {
       )
       .then(response => {
         alert("New event is created");
+        this.props.getAll(this.props.user.user_name);
+        this.props.getEventsByCreator(this.props.user.user_id);
       })
       .catch(error => {});
   }
@@ -119,8 +123,17 @@ class ReactUploadImage extends React.Component {
 const mapStateToProps = state => ({
   user: state.auth.user
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    getAll: username => dispatch(getAllSubscriptions(username)),
+    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId))
+  };
+};
 
-export default connect(mapStateToProps)(ReactUploadImage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReactUploadImage);
 
 // import React, { Component } from "react";
 // import { reduxForm, Field } from "redux-form";
