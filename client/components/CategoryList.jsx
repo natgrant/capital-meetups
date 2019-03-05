@@ -2,27 +2,15 @@ import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
 import { getEventsByCategory } from "../actions/getEventsByCategory";
-import EventsByCategory from "./EventsByCategory";
 
 class CategoryList extends Component {
   constructor() {
     super();
-    this.state = {
-      showModal: false,
-      closeModal: true
-    };
+    this.state = {};
   }
 
   handleClick = category => {
     this.props.getEventsByCategory(category);
-  };
-
-  handleChange = () => {
-    this.setState({ showModal: true });
-  };
-
-  handleClose = () => {
-    this.setState({ showModal: false });
   };
 
   render() {
@@ -37,18 +25,10 @@ class CategoryList extends Component {
                   className="category-cont"
                   value={category}
                   onClick={() => {
-                    this.handleChange(
-                      this.setState({
-                        showModal: true
-                      })
-                    );
                     this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
                   }}
                 >
-                  <EventsByCategory
-                    isShowing={this.state.showModal}
-                    onHide={this.handleClose}
-                  />
                   <figure className="image is-256x256 is-inline-block category-image">
                     <img className="img-radius" src={category.image} />
                     <h3 className="category-text">
