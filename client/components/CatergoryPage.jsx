@@ -1,16 +1,23 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+
+import { getEventsByCategory } from "../actions/getEventsByCategory";
+
 class Categories extends Component {
   constructor() {
     super();
   }
 
+  handleClick = category => {
+    this.props.getEventsByCategory(category);
+  };
+
   render() {
     return (
       <Fragment>
-        <section class="hero categories-header">
-          <div class="hero-body">
-            <div class="container">
+        <section className="hero categories-header">
+          <div className="hero-body">
+            <div className="container">
               <h1 className="is-1">Categories</h1>
             </div>
           </div>
@@ -19,7 +26,15 @@ class Categories extends Component {
           <div className="column">
             {this.props.categories.map((category, i) => {
               return (
-                <div className="container" key={i}>
+                <div
+                  className="container"
+                  key={i}
+                  value={category}
+                  onClick={() => {
+                    this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
+                  }}
+                >
                   <div className="categories-page-img">
                     <figure className="image">
                       <div href="">
@@ -45,5 +60,15 @@ function mapStateToProps(state) {
     categories: state.home.categories
   };
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventsByCategory: category => {
+      dispatch(getEventsByCategory(category));
+    }
+  };
+};
 
-export default connect(mapStateToProps)(Categories);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Categories);
