@@ -54,6 +54,7 @@ class ReactUploadImage extends React.Component {
         alert("New event is created");
         this.props.getAll(this.props.user.user_name);
         this.props.getEventsByCreator(this.props.user.user_id);
+        this.props.buttonClick();
       })
       .catch(error => {});
   }
