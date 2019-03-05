@@ -68,7 +68,7 @@ export class EventInfo extends Component {
             </section>
             <div className="eventinfo-container">
               <div className="tile is-ancestor">
-                <div className="tile is-parent is-four-fifths">
+                <div className="tile is-parent">
                   <article className="tile is-child">
                     <figure className="image-eventinfo">
                       <img src={selectedEvent.image} />
