@@ -40,7 +40,6 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/eventinfo/:id" component={EventInfo} />
-          <Route path="/events/" component={EventsByCategory} />
 
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />

@@ -22,9 +22,9 @@ class CategoryList extends Component {
                 <div
                   key={i}
                   className="category-cont"
-                  value={event.category}
+                  value={category}
                   onClick={() => {
-                    this.handleClick(event.category);
+                    this.handleClick(category.category);
                     window.location.hash = "#/events";
                   }}
                 >
