@@ -99,9 +99,10 @@ router.post(
       let eventDateTime = input.getTime();
       const updateEvent = {
         name: req.body.name,
+        category: req.body.category,
+
         location: req.body.location,
         description: req.body.description,
-        category: req.body.category,
         date: eventDateTime,
         is_open: "true",
         image: req.file.filename,
@@ -109,13 +110,13 @@ router.post(
       };
       editEvent(updateEvent, actualUserId, eventId)
         .then(actualUserId => {
-          console.log(id);
           console.log(actualUserId);
           getEventsByCreator(actualUserId).then(response => {
             res.json(response);
           });
         })
         .catch(err => {
+          console.log(err);
           res.status(500).json({ error: "Oh no an error" });
         });
     });

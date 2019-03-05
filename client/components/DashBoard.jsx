@@ -14,8 +14,8 @@ class Dashboard extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getAll(this.props.user.user_name),
-      this.props.getEventsByCreator(this.props.user.user_id);
+    this.props.getAll(this.props.user.user_name);
+    this.props.getEventsByCreator(this.props.user.user_id);
   };
 
   render() {
@@ -56,11 +56,13 @@ class Dashboard extends Component {
               {/* <button>Edit event</button> */}
               <EditEvent {...event} />
               <button
-                onClick={e =>
+                onClick={e => {
                   window.confirm(
                     "Are you sure you wish to delete this event?"
-                  ) && this.props.deleteEvent(event.id, this.props.user.user_id)
-                }
+                  ) &&
+                    this.props.deleteEvent(event.id, this.props.user.user_id);
+                  this.props.getAll(this.props.user.user_name);
+                }}
               >
                 Delete event
               </button>
