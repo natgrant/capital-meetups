@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Footer from "./Footer";
+
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
 import { Link } from "react-router-dom";
@@ -40,7 +40,6 @@ class Home extends React.Component {
             More
           </a>
         </div>
-        <Footer />
       </Fragment>
     );
   }
