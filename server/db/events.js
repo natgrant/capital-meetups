@@ -5,7 +5,7 @@ function getAllEvents(testDb) {
   return db("events").select();
 }
 
-function getEventByCategory(category, testDb) {
+function getEventsByCategory(category, testDb) {
   const db = testDb || connection;
   return db("events")
     .where("category", category)
@@ -66,7 +66,7 @@ function getUserId(username, testDb) {
 
 module.exports = {
   getAllEvents,
-  getEventByCategory,
+  getEventsByCategory,
   getOneEvent,
   getEventsByCreator,
   getAllCategories,

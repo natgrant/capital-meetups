@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
 import { Link } from "react-router-dom";
