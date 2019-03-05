@@ -41,8 +41,6 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/eventinfo/:id" component={EventInfo} />
-          <Route path="/events/:category" component={EventsByCategory} />
-          <Route path="/modal/" component={TheModal} />
 
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboard} />

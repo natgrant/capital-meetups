@@ -4,24 +4,28 @@ import { connect } from "react-redux";
 export class TheModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: false,
-      closeModal: true
-    };
   }
 
   render() {
-    return (
-      <div>
-        <div className="modal is-active">
-          <div className="modal-background" />
-          <div className="modal-content">
-            <p>Hey</p>
+    if (this.props.isShowing) {
+      return (
+        <div>
+          <div className="modal is-active">
+            <div className="modal-background" />
+            <div className="modal-content">
+              <p>Hey</p>
+            </div>
+            <button
+              className="modal-close is-large"
+              aria-label="close"
+              onClick={this.props.onHide}
+            />
           </div>
-          <button className="modal-close is-large" aria-label="close" />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 
