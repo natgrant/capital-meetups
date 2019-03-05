@@ -39,7 +39,7 @@ function createEvent(newEvent, testDb) {
 function editEvent(event, actualUserId, eventId, testDb) {
   const db = testDb || connection;
   return db("events")
-    .where("id", id)
+    .where("id", eventId)
 
     .update(event);
 }

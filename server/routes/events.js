@@ -84,6 +84,9 @@ router.post(
   "/event/photo/edit/:eventId",
   multer(config).single("photo"),
   function(req, res, next) {
+    console.log(req.params.eventId);
+    console.log(req.body);
+    console.log(req.file);
     let username = "test";
     let eventId = req.params.eventId;
     getUserId(username).then(userId => {

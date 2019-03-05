@@ -1,5 +1,5 @@
 import React from "react";
-import EventForm from "./EventForm";
+import EditEventForm from "./EditEventForm";
 import { connect } from "react-redux";
 
 class EditEvent extends React.Component {
@@ -17,7 +17,7 @@ class EditEvent extends React.Component {
   render() {
     return (
       <div>
-        {this.state.visible && <EventForm />}
+        {this.state.visible && <EditEventForm {...this.props} />}
         <button onClick={this.handleClick}>edit</button>
       </div>
     );
