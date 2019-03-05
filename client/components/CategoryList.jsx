@@ -48,7 +48,8 @@ class CategoryList extends Component {
                   key={i}
                   className="category-cont"
                   onClick={() => {
-                    window.location.hash = "#/categories";
+                    this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">
