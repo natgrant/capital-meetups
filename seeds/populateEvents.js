@@ -69,6 +69,19 @@ exports.seed = function(knex, Promise) {
           is_open: "true",
           type: "Morning",
           image: "/images/plant.jpg"
+        },
+        {
+          id: 6,
+          user_id: 2,
+          name: "Table Tennis",
+          location: "Victoria University",
+          description:
+            "Table Tennis club is on every Tuesday, open to all levels just bring your bat",
+          category: "Sport",
+          date: 1551314863037,
+          is_open: "true",
+          type: "Afternoon",
+          image: "/images/tabletennis.jpg"
         }
       ]);
     });
