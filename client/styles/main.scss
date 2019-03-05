@@ -148,3 +148,17 @@ body {
 .eventinfo-container {
   margin: 2rem;
 }
+
+.eventinfo-hr {
+  background-color: $footer-color;
+  opacity: 0.2;
+}
+
+.cat-link-eventinfo {
+  color: #f04452;
+}
+
+.eventinfo-text {
+  font-family: $subtitle-font;
+  letter-spacing: 0.5rem;
+}

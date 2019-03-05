@@ -68,42 +68,53 @@ export class EventInfo extends Component {
             </section>
             <div className="eventinfo-container">
               <div className="tile is-ancestor">
-                <div className="tile is-parent">
-                  <article className="tile is-child notification">
-                    <figure className="image ">
+                <div className="tile is-parent is-four-fifths">
+                  <article className="tile is-child">
+                    <figure className="image-eventinfo">
                       <img src={selectedEvent.image} />
                     </figure>
-                    <p>
-                      Category <i class="fas fa-arrow-right" />
-                      <a href={`#/categories`}>{selectedEvent.category}</a>
+                    <br />
+                    <p className="title eventinfo-text">
+                      <strong>Category </strong>
+                      <i className="fas fa-arrow-right" />
+                      <a className="cat-link-eventinfo" href={`#/categories`}>
+                        {" "}
+                        {selectedEvent.category}
+                      </a>
                     </p>
                   </article>
                 </div>
-                <div className="tile is-vertical is-4">
+                <div className="tile is-vertical">
                   <div className="tile">
                     <div className="tile is-parent is-vertical">
-                      <article className="tile is-child notification">
-                        <p>Description</p>
-                        <hr />
+                      <article className="tile is-child notification is-warning">
+                        <p className="title eventinfo-text">
+                          <strong>Description </strong>
+                        </p>
+                        <hr className="eventinfo-hr" />
                         <p>{selectedEvent.description}</p>
                         <br />
                       </article>
-                      <article className="tile is-child notification">
-                        <p>Location</p>
-                        <hr />
+                      <article className="tile is-child notification is-warning">
+                        <p className="title eventinfo-text">
+                          <strong>Location</strong>
+                        </p>
+                        <hr className="eventinfo-hr" />
                         <p>{selectedEvent.location}</p>
                       </article>
                     </div>
                   </div>
                   <div className="tile is-parent">
-                    <article className="tile is-child notification">
-                      <p>When</p>
-                      <hr />
+                    <article className="tile is-child notification is-warning">
+                      <p className="title eventinfo-text">
+                        <strong>Time</strong>
+                      </p>
+                      <hr className="eventinfo-hr" />
                       <p>{this.handleDate(selectedEvent.date)}</p>
                     </article>
                   </div>
                 </div>
-                <div className="tile is-parent">
+                <div className="tile is-parent is-one-fifth ">
                   <article className="tile is-child notification">
                     <div className="content">
                       <nav className="panel attendeepanel">
