@@ -87,7 +87,7 @@ export class EventInfo extends Component {
                 <div className="tile is-vertical">
                   <div className="tile">
                     <div className="tile is-parent is-vertical">
-                      <article className="tile is-child notification is-warning">
+                      <article className="tile is-child notification event-tile">
                         <p className="title eventinfo-text">
                           <strong>Description </strong>
                         </p>
@@ -95,7 +95,7 @@ export class EventInfo extends Component {
                         <p>{selectedEvent.description}</p>
                         <br />
                       </article>
-                      <article className="tile is-child notification is-warning">
+                      <article className="tile is-child notification event-tile">
                         <p className="title eventinfo-text">
                           <strong>Location</strong>
                         </p>
@@ -105,7 +105,7 @@ export class EventInfo extends Component {
                     </div>
                   </div>
                   <div className="tile is-parent">
-                    <article className="tile is-child notification is-warning">
+                    <article className="tile is-child notification event-tile">
                       <p className="title eventinfo-text">
                         <strong>Time</strong>
                       </p>
