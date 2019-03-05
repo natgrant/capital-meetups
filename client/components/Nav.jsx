@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/logout";
@@ -62,18 +62,18 @@ class Nav extends React.Component {
             <a className="navbar-item" href="#/categories">
               Categories
             </a>
-
-            <a className="navbar-item" href="#/categories">
-              My Dashboard
-              <i class="far fa-user-circle" />
-            </a>
           </div>
 
           <div className="navbar-end">
             {auth.isAuthenticated ? (
-              <a className="navbar-item is-large" onClick={() => logout()}>
-                Logout
-              </a>
+              <Fragment>
+                <a className="navbar-item" href="#/dashboard">
+                  My Dashboard &nbsp; <i class="far fa-user-circle" />
+                </a>
+                <a className="navbar-item is-large" onClick={() => logout()}>
+                  Logout
+                </a>
+              </Fragment>
             ) : (
               [
                 <div className="navbar-item">
