@@ -68,7 +68,7 @@ class Nav extends React.Component {
             {auth.isAuthenticated ? (
               <Fragment>
                 <a className="navbar-item" href="#/dashboard">
-                  My Dashboard &nbsp; <i class="far fa-user-circle" />
+                  My Dashboard &nbsp; <i className="far fa-user-circle" />
                 </a>
                 <a className="navbar-item is-large" onClick={() => logout()}>
                   Logout
