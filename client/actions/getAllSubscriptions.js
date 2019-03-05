@@ -15,13 +15,13 @@ export function getAllSubscriptions(username) {
   };
 }
 
-export function getUsersByEvent(id) {
-  return dispatch => {
-    return apiGetUsersByEvent(id).then(result => {
-      dispatch(saveEvents(result));
-    });
-  };
-}
+// export function getUsersByEvent(id) {
+//   return dispatch => {
+//     return apiGetUsersByEvent(id).then(result => {
+//       dispatch(saveEvents(result));
+//     });
+//   };
+// }
 
 function loading() {
   return {

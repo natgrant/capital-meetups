@@ -1,43 +1,67 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
 import { getEventsByCategory } from "../actions/events";
 
-class CategoryList extends React.Component {
+class CategoryList extends Component {
   constructor() {
     super();
   }
 
+  handleClick = category => {
+    this.props.getEventsByCategory(category);
+  };
+
   render() {
     return (
-      <div className="columns">
-        {this.props.categories.map((category, i) => {
-          if (i % 2 == 0) {
+      <Fragment>
+        <div className="columns">
+          {this.props.categories.slice(0, 3).map((category, i) => {
             return (
-              <div
-                className="column category-cont"
-                onClick={() => {
-                  window.location.hash = `#/events/${event.id}`;
-                }}
-              >
-                <figure className="image is-256x256 is-inline-block category-image">
-                  <img className="img-radius" src={category.image} />
-                  <h3 className="category-text">
-                    <a
-                      value={event.id}
-                      onClick={() => {
-                        this.handleClick(event.id);
-                      }}
-                    >
+              <div className="column">
+                <div
+                  key={i}
+                  className="category-cont"
+                  value={event.category}
+                  onClick={() => {
+                    this.handleClick(event.category);
+                    window.location.hash = "#/events";
+                  }}
+                >
+                  <figure className="image is-256x256 is-inline-block category-image">
+                    <img className="img-radius" src={category.image} />
+                    <h3 className="category-text">
                       <span>{category.category}</span>
-                    </a>
-                  </h3>
-                </figure>
+                    </h3>
+                  </figure>
+                </div>
               </div>
             );
-          }
-        })}
-      </div>
+          })}
+        </div>
+        <div className="columns">
+          {this.props.categories.slice(3, 6).map((category, i) => {
+            return (
+              <div className="column">
+                <div
+                  key={i}
+                  className="category-cont"
+                  onClick={() => {
+                    window.location.hash = "#/category";
+                  }}
+                >
+                  <figure className="image is-256x256 is-inline-block category-image">
+                    <img className="img-radius" src={category.image} />
+                    <h3 className="category-text">
+                      <span>{category.category}</span>
+                    </h3>
+                  </figure>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Fragment>
     );
   }
 }
@@ -50,8 +74,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getEventByCategory: id => {
-      dispatch(getEventByCategory(id));
+    getCategory: id => {
+      dispatch(getCategory(category));
     }
   };
 };

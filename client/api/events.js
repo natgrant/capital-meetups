@@ -13,6 +13,6 @@ export function getOneEvent(id) {
   return request.get(`/api/v1/meetups/event/${id}`).then(res => res.body);
 }
 
-export function getEventsByCategory() {
-  return request.get(`/api/v1/meetups/events/${id}`).then(res => res.body);
+export function getEventsByCategoryApi() {
+  return request.get(`/api/v1/meetups/event/${category}`).then(res => res.body);
 }

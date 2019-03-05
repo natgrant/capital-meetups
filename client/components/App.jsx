@@ -13,9 +13,9 @@ import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
 import EventInfo from "./EventInfo";
+import EventsByCategory from "./EventsByCategory";
 
 import Categories from "./CatergoryPage";
-import EventsByCategory from "./EventsByCategory";
 import Dashboard from "./DashBoard";
 import PrivateRoute from "./PrivateRoute";
 
