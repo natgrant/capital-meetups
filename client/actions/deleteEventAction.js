@@ -5,7 +5,6 @@ export function deleteEventAction(eventId, userId) {
     axios
       .delete(`/api/v1/meetups/delete/${eventId}/${userId}`)
       .then(respond => {
-        console.log("respond.data", respond.data);
         dispatch(saveEvents(respond.data));
       });
   };

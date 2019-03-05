@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getAllSubscriptions } from "../actions/getAllSubscriptions";
 import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 import { deleteEventAction } from "../actions/deleteEventAction";
+import { removeSubAction } from "../actions/removeSubAction";
 import EventForm from "./EventForm";
 import Loading from "./Loading";
 import EditEvent from "./EditEvent";
@@ -26,7 +27,18 @@ class Dashboard extends Component {
             <p>{subscription.name}</p>
             <p>{subscription.location}</p>
             <p>{subscription.date}</p>
-            <button>Remove</button>
+            <button
+              onClick={e =>
+                window.confirm("Are you sure you wish to remove this event?") &&
+                this.props.removeSub(
+                  this.props.user.user_id,
+                  subscription.id,
+                  this.props.user.user_name
+                )
+              }
+            >
+              Remove
+            </button>
           </div>
         ))}
         <h1>Create Event</h1>
@@ -70,7 +82,9 @@ const mapDispatchToProps = dispatch => {
     getAll: username => dispatch(getAllSubscriptions(username)),
     getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId)),
     deleteEvent: (eventId, userId) =>
-      dispatch(deleteEventAction(eventId, userId))
+      dispatch(deleteEventAction(eventId, userId)),
+    removeSub: (userId, eventId, username) =>
+      dispatch(removeSubAction(userId, eventId, username))
   };
 };
 

@@ -14,7 +14,10 @@ const {
   getUserId
 } = require("../db/events");
 
-const { createSubscription } = require("../db/subscriptions");
+const {
+  createSubscription,
+  removeSubscription
+} = require("../db/subscriptions");
 
 router.use(express.json());
 

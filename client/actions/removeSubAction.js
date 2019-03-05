@@ -1,11 +1,10 @@
 import axios from "axios";
 
-export function removeSubAction(eventId, userId) {
+export function removeSubAction(userId, eventId, username) {
   return function(dispatch) {
     axios
-      .delete(`/api/v1/meetups/delete/${eventId}/${userId}/${username}`)
+      .delete(`/api/v1/meetups/removeUser/${userId}/${eventId}/${username}`)
       .then(respond => {
-        console.log("respond.data", respond.data);
         dispatch(saveSubscriptions(respond.data));
       });
   };
