@@ -13,7 +13,6 @@ export function createEvent(userId, values) {
     return axios
       .post(`/api/v1/meetups/create/${userId}`, data)
       .then(response => {
-        console.log("sent", res.data);
         if (!response.status == 200) {
           dispatch(errorMessage(response.status));
         } else {

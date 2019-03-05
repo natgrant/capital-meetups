@@ -31,7 +31,7 @@ function getAllCategories(testDb) {
   return db("events").select("category", "image");
 }
 
-function createEvent(newEvent, username, testDb) {
+function createEvent(newEvent, testDb) {
   const db = testDb || connection;
   return db("events").insert(newEvent);
   // .then(result => {
@@ -47,23 +47,26 @@ function createEvent(newEvent, username, testDb) {
   // });
 }
 
-function editEvent(event, id, testDB) {
-  const db = testDB || connection;
+function editEvent(event, actualUserId, id, testDb) {
+  const db = testDb || connection;
   return db("events")
     .where("id", id)
-    .first()
-    .update({
-      name: event.name,
-      location: event.location,
-      description: event.description,
-      category: event.category,
-      date: event.date,
-      is_open: event.is_open,
-      type: event.type
-    })
-    .then(result => {
-      return db("events").where("id", id);
-    });
+
+    .update(event);
+
+  // .first()
+  // .update({
+  //   name: event.name,
+  //   location: event.location,
+  //   description: event.description,
+  //   category: event.category,
+  //   date: event.date,
+  //   is_open: event.is_open,
+  //   type: event.type
+  // })
+  // .then(result => {
+  //   return getEventsByCreator(id);
+  // });
 }
 
 function deleteEvent(eventId, userId, testDb) {

@@ -40,7 +40,7 @@ const config = {
     }
   }
 };
-
+//EventForm CreateEvent api route
 router.post("/event/photo", multer(config).single("photo"), function(
   req,
   res,
@@ -48,33 +48,70 @@ router.post("/event/photo", multer(config).single("photo"), function(
 ) {
   let username = req.body.user;
 
+  getUserId(username)
+    .then(userId => {
+      let actualUserId = userId.id;
+      let dateTime = JSON.stringify(req.body.date);
+      let input = new Date(dateTime);
+      let eventDateTime = input.getTime();
+      const newEvent = {
+        name: req.body.name,
+        location: req.body.location,
+        description: req.body.description,
+        category: req.body.category,
+        date: eventDateTime,
+        is_open: "true",
+        image: req.file.filename,
+        user_id: userId.id
+      };
+      createEvent(newEvent).then(([id]) => {
+        let eventId = id;
+        createSubscription(actualUserId, eventId).then(actualUserId => {
+          getEventsByCreator(actualUserId).then(response => {
+            res.json(response);
+          });
+        });
+      });
+    })
+
+    .catch(err => {
+      res.status(500).json({ error: "Oh no an error" });
+    });
+});
+
+//Post EditEvent api route
+router.post("/event/photo/edit", multer(config).single("photo"), function(
+  req,
+  res,
+  next
+) {
+  let username = "test";
+
   getUserId(username).then(userId => {
-    let actualUserId = userId.id;
-    console.log("filename", req.file.filename);
-    console.log(req.body);
+    let actualUserId = 1;
+    let id = 16;
     let dateTime = JSON.stringify(req.body.date);
     let input = new Date(dateTime);
     let eventDateTime = input.getTime();
-    const newEvent = {
+    const updateEvent = {
       name: req.body.name,
       location: req.body.location,
       description: req.body.description,
       category: req.body.category,
       date: eventDateTime,
+      is_open: "true",
       image: req.file.filename,
-      user_id: userId.id
+      user_id: 1
     };
-    console.log("test", newEvent);
-    createEvent(newEvent, username)
-      .then(([id], userId) => {
+    editEvent(updateEvent, actualUserId, id)
+      .then(([id]) => {
         console.log(id);
         console.log(actualUserId);
         eventId = id;
 
-        createSubscription(actualUserId, eventId).then(response => {
+        getEventsByCreator(actualUserId).then(response => {
           res.json(response);
         });
-        // res.send("Saved");
       })
       .catch(err => {
         res.status(500).json({ error: "Oh no an error" });
@@ -136,28 +173,6 @@ router.get("/event/:id", (req, res) => {
     });
 });
 
-router.post("/create/:user_id", (req, res) => {
-  const userId = req.params.user_id;
-  const newEvent = {
-    user_id: req.params.user_id,
-    name: req.body.name,
-    location: req.body.location,
-    description: req.body.description,
-    category: req.body.category,
-    date: req.body.date,
-    is_open: req.body.is_open,
-    type: req.body.type,
-    image: req.body.image
-  };
-  createEvent(newEvent, userId)
-    .then(([id]) => {
-      res.json({ id });
-    })
-    .catch(err => {
-      res.status(500).json({ error: "Oh no an error" });
-    });
-});
-
 router.delete("/delete/:eventId/:userId", (req, res) => {
   let eventId = req.params.eventId;
   let userId = req.params.userId;
@@ -177,18 +192,6 @@ router.delete("/removeUser/:id", (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
-    });
-});
-
-router.post("/edit/:id", (req, res) => {
-  let id = req.params.id;
-  let event = req.body;
-  editEvent(event, id)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.status(500).json({ error: "Oh no another error" });
     });
 });
 
