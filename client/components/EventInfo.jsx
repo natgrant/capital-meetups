@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
-import { getUsersByEvent } from "../actions/getAllSubscriptions";
+import { getUsersByEvent } from "../actions/getUsersByEvent";
 
 export class EventInfo extends Component {
   constructor(props) {
@@ -16,9 +16,12 @@ export class EventInfo extends Component {
   toggleTick = () => {
     this.setState({ buttonClicked: true });
   };
+  componentDidMount() {
+    this.props.getUsersByEvent(this.props.match.params.id);
+  }
 
   render() {
-    const { events, auth } = this.props;
+    const { selectedEvent, auth } = this.props;
     const { buttonClicked } = this.state;
     if (!auth.isAuthenticated && buttonClicked) {
       return <Redirect to="/login" />;
@@ -30,7 +33,7 @@ export class EventInfo extends Component {
             <section className="hero is-primary">
               <div className="hero-body">
                 <div className="container">
-                  <h1 className="title">{events.name}</h1>
+                  <h1 className="title">{selectedEvent.name}</h1>
                   <div>
                     <div>
                       <a
@@ -50,16 +53,16 @@ export class EventInfo extends Component {
               </div>
             </section>
             <figure className="image is-50x50 eventimage">
-              <img src={events.image} />
+              <img src={selectedEvent.image} />
             </figure>
           </div>
           <div className="tile is-parent basicdetails">
             <article className="tile is-classNamehild box">
               <div className="content">
                 <p className="title">
-                  When's it happening: {events.date}
+                  When's it happening: {selectedEvent.date}
                   <br />
-                  Category: {events.category}
+                  Category: {selectedEvent.category}
                 </p>
               </div>
             </article>
@@ -70,7 +73,7 @@ export class EventInfo extends Component {
             <div className="content">
               <p className="title">Description</p>
 
-              <p className="subtitle">{events.description}</p>
+              <p className="subtitle">{selectedEvent.description}</p>
               <div className="content" />
             </div>
           </article>
@@ -78,7 +81,7 @@ export class EventInfo extends Component {
         <div className="tile is-parent locationtile">
           <div className="tile is-child box">
             <p className="title">Location</p>
-            {events.location}
+            {/* {events.location} */}
           </div>
         </div>
         <div>
@@ -104,11 +107,19 @@ export class EventInfo extends Component {
                 <span className="panel-icon">
                   <i className="fas fa-book" aria-hidden="true" />
                 </span>
-                Tim
+                <ul>
+                  {this.props.selectedEventUsers &&
+                    this.props.selectedEventUsers.map(user => {
+                      return <li key={user.name}>{user.name}</li>;
+                    })}
+                </ul>
               </a>
             </nav>
           </div>
         </div>
+        <a className="button" href="/#">
+          Home
+        </a>
       </div>
     );
   }
@@ -117,7 +128,9 @@ export class EventInfo extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
-    events: state.home.events
+    // events: state.home.events,
+    selectedEvent: state.home.selectedEvent,
+    selectedEventUsers: state.home.selectedEventUsers
   };
 }
 
@@ -126,6 +139,7 @@ const mapDispatchToProps = dispatch => {
     getEvent: id => {
       return dispatch(getEvent(id));
     },
+
     getUsersByEvent: id => {
       return dispatch(getUsersByEvent(id));
     }
