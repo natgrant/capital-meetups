@@ -1,12 +1,47 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { getEventsByCategory } from "../actions/getEventsByCategory";
 export class EventsByCategory extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
+
+  componentDidMount() {
+    this.props.getEventsByCategory(this.props.match.params.category);
+  }
+
   render() {
-    return <h1>hello</h1>;
+    console.log(this.props.events);
+    return (
+      <div>
+        {this.props.events.map(event => (
+          <div key={event.id}>
+            <p>{event.name}</p>
+            <p>{event.description}</p>
+            <p>{event.location}</p>
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
-export default EventsByCategory;
+function mapStateToProps(state) {
+  return {
+    events: state.home.selectedEventsByCategory
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventsByCategory: category => {
+      dispatch(getEventsByCategory(category));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventsByCategory);
