@@ -1,10 +1,17 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
+import { getEventsByCategory } from "../actions/getEventsByCategory";
+
 class CategoryList extends Component {
   constructor() {
     super();
+    this.state = {};
   }
+
+  handleClick = category => {
+    this.props.getEventsByCategory(category);
+  };
 
   render() {
     return (
@@ -16,8 +23,10 @@ class CategoryList extends Component {
                 <div
                   key={i}
                   className="category-cont"
+                  value={category}
                   onClick={() => {
-                    window.location.hash = "#/category";
+                    this.handleClick(category.category);
+                    window.location.hash = `#/events/${category.category}`;
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">
@@ -39,7 +48,7 @@ class CategoryList extends Component {
                   key={i}
                   className="category-cont"
                   onClick={() => {
-                    window.location.hash = "#/category";
+                    window.location.hash = "#/categories";
                   }}
                 >
                   <figure className="image is-256x256 is-inline-block category-image">
@@ -64,4 +73,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CategoryList);
+const mapDispatchToProps = dispatch => {
+  return {
+    getEventsByCategory: category => {
+      dispatch(getEventsByCategory(category));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryList);
