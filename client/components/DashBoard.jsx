@@ -4,7 +4,7 @@ import { getAllSubscriptions } from "../actions/getAllSubscriptions";
 import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 import { deleteEventAction } from "../actions/deleteEventAction";
 import { removeSubAction } from "../actions/removeSubAction";
-import EventForm from "./EventForm";
+import CreateEvent from "./CreateEvent";
 import Loading from "./Loading";
 import EditEvent from "./EditEvent";
 
@@ -41,8 +41,7 @@ class Dashboard extends Component {
             </button>
           </div>
         ))}
-        <h1>Create Event</h1>
-        <EventForm />
+        <CreateEvent />
 
         <div>
           <h1>SHOW ALL CREATED EVENTS</h1>
