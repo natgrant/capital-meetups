@@ -34,39 +34,14 @@ function getAllCategories(testDb) {
 function createEvent(newEvent, testDb) {
   const db = testDb || connection;
   return db("events").insert(newEvent);
-  // .then(result => {
-  //   return db("subscriptions")
-  //     .join("events", "subscriptions.event_id", "events.id")
-  //     .where("subscriptions.user_id", userId)
-  //     .select(
-  //       "events.name as name",
-  //       "events.description as description",
-  //       "events.location as location",
-  //       "events.date as date"
-  //     );
-  // });
 }
 
-function editEvent(event, actualUserId, id, testDb) {
+function editEvent(event, actualUserId, eventId, testDb) {
   const db = testDb || connection;
   return db("events")
     .where("id", id)
 
     .update(event);
-
-  // .first()
-  // .update({
-  //   name: event.name,
-  //   location: event.location,
-  //   description: event.description,
-  //   category: event.category,
-  //   date: event.date,
-  //   is_open: event.is_open,
-  //   type: event.type
-  // })
-  // .then(result => {
-  //   return getEventsByCreator(id);
-  // });
 }
 
 function deleteEvent(eventId, userId, testDb) {

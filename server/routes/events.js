@@ -80,44 +80,41 @@ router.post("/event/photo", multer(config).single("photo"), function(
 });
 
 //Post EditEvent api route
-router.post("/event/photo/edit", multer(config).single("photo"), function(
-  req,
-  res,
-  next
-) {
-  let username = "test";
-
-  getUserId(username).then(userId => {
-    let actualUserId = 1;
-    let id = 16;
-    let dateTime = JSON.stringify(req.body.date);
-    let input = new Date(dateTime);
-    let eventDateTime = input.getTime();
-    const updateEvent = {
-      name: req.body.name,
-      location: req.body.location,
-      description: req.body.description,
-      category: req.body.category,
-      date: eventDateTime,
-      is_open: "true",
-      image: req.file.filename,
-      user_id: 1
-    };
-    editEvent(updateEvent, actualUserId, id)
-      .then(([id]) => {
-        console.log(id);
-        console.log(actualUserId);
-        eventId = id;
-
-        getEventsByCreator(actualUserId).then(response => {
-          res.json(response);
+router.post(
+  "/event/photo/edit/:eventId",
+  multer(config).single("photo"),
+  function(req, res, next) {
+    let username = "test";
+    let eventId = req.params.eventId;
+    getUserId(username).then(userId => {
+      let actualUserId = userId.id;
+      let dateTime = JSON.stringify(req.body.date);
+      let input = new Date(dateTime);
+      let eventDateTime = input.getTime();
+      const updateEvent = {
+        name: req.body.name,
+        location: req.body.location,
+        description: req.body.description,
+        category: req.body.category,
+        date: eventDateTime,
+        is_open: "true",
+        image: req.file.filename,
+        user_id: userId.id
+      };
+      editEvent(updateEvent, actualUserId, eventId)
+        .then(actualUserId => {
+          console.log(id);
+          console.log(actualUserId);
+          getEventsByCreator(actualUserId).then(response => {
+            res.json(response);
+          });
+        })
+        .catch(err => {
+          res.status(500).json({ error: "Oh no an error" });
         });
-      })
-      .catch(err => {
-        res.status(500).json({ error: "Oh no an error" });
-      });
-  });
-});
+    });
+  }
+);
 
 //GET /api/v1/meetups
 router.get("/", (req, res) => {

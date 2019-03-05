@@ -5,6 +5,7 @@ import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 import { deleteEventAction } from "../actions/deleteEventAction";
 import EventForm from "./EventForm";
 import Loading from "./Loading";
+import EditEvent from "./EditEvent";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -38,11 +39,13 @@ class Dashboard extends Component {
               <p>{event.describtion}</p>
               <p>{event.location}</p>
               <p>{event.date}</p>
-              <button>Edit event</button>
+              {/* <button>Edit event</button> */}
+              <EditEvent />
               <button
                 onClick={e =>
-                  window.confirm("Are you sure you wish to clear the page?") &&
-                  this.props.deleteEvent(event.id, this.props.user.user_id)
+                  window.confirm(
+                    "Are you sure you wish to delete this event?"
+                  ) && this.props.deleteEvent(event.id, this.props.user.user_id)
                 }
               >
                 Delete event
