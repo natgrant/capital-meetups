@@ -1,4 +1,6 @@
 import React from "react";
+import { getAllSubscriptions } from "../actions/getAllSubscriptions";
+import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 const axios = require("axios");
 import { connect } from "react-redux";
 
@@ -21,8 +23,6 @@ class EditEventForm extends React.Component {
     this.onChangeNew = this.onChangeNew.bind(this);
   }
   onFormSubmit(e) {
-    console.log();
-
     e.preventDefault();
     const formData = new FormData();
     formData.append("photo", this.state.file);
@@ -50,6 +50,9 @@ class EditEventForm extends React.Component {
       )
       .then(response => {
         alert("The file is successfully uploaded");
+        this.props.getAll(this.props.user.user_name);
+        this.props.getEventsByCreator(this.props.user.user_id);
+        this.props.buttonClick();
       })
       .catch(error => {});
   }
@@ -127,6 +130,9 @@ class EditEventForm extends React.Component {
         <input type="file" name="photo" onChange={this.onChange} />
         <br />
         <button type="submit">Submit</button>
+        <button type="submit" onClick={this.props.buttonClick}>
+          Cancel
+        </button>
       </form>
     );
   }
@@ -136,5 +142,14 @@ const mapStateToProps = state => ({
   user: state.auth.user,
   events: state.home.events
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    getAll: username => dispatch(getAllSubscriptions(username)),
+    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId))
+  };
+};
 
-export default connect(mapStateToProps)(EditEventForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditEventForm);
