@@ -20,6 +20,9 @@ export class EventsByCategory extends Component {
             <p>{event.name}</p>
             <p>{event.description}</p>
             <p>{event.location}</p>
+            <div>
+              <img src={event.image} />
+            </div>
           </div>
         ))}
       </div>
