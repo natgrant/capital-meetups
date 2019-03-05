@@ -162,11 +162,13 @@ body {
 }
 
 .categories-page-img {
+  height: auto;
+  width: auto;
+  max-width: 800px;
+  max-height: 800px;
   position: relative;
   opacity: 1;
   display: block;
-  width: 100%;
-  height: auto;
   transition: 0.8s ease;
   backface-visibility: hidden;
 }
