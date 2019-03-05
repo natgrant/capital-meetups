@@ -1,22 +1,45 @@
-import React, { Component } from "react";
-import { Field, reduxForm, initialize } from "redux-form";
+import React from "react";
+import EditEventForm from "./EditEventForm";
 import { connect } from "react-redux";
 
-class EditForm extends Component {
-  //our other functions will go here
+class EditEvent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({ visible: true });
+  }
 
   render() {
-    return <div>//our form will go here</div>;
+    return (
+      <div>
+        {this.state.visible && <EditEventForm {...this.props} />}
+        <button onClick={this.handleClick}>edit</button>
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    auth: state.auth,
+    events: state.home.events
   };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(form(ReduxFormTutorial));
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getEvent: id => {
+//       return dispatch(getEvent(id));
+//     },
+//     getUsersByEvent: id => {
+//       return dispatch(getUsersByEvent(id));
+//     }
+//   };
+// };
+
+export default connect(mapStateToProps)(EditEvent);
