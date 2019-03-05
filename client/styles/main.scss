@@ -13,31 +13,6 @@ html,
 body {
   width: 100%;
   font-family: "Roboto";
-  // background-color: #fff8e6;
-}
-
-.eventimage {
-  width: 25%;
-  height: 30%;
-  left: 5%;
-  top: 35%;
-  position: absolute;
-}
-
-.basicdetails {
-  width: 30%;
-  height: 25%;
-  left: 40%;
-  top: 30%;
-  position: absolute;
-}
-
-.description {
-  position: absolute;
-  width: 30%;
-  left: 3%;
-  top: 60%;
-  height: 500px;
 }
 
 .joinbutton {
@@ -45,20 +20,8 @@ body {
   float: right;
 }
 
-.locationtile {
-  width: 30%;
-  height: 30%;
-  left: 40%;
-  top: 60%;
-  position: absolute;
-}
-
-.attendeepanel {
-  width: 200px;
-  left: 75%;
-  position: absolute;
-  top: 35%;
-  height: 700px;
+.joinedbutton {
+  float: right;
 }
 
 .header-image {
@@ -175,4 +138,13 @@ body {
 
 .container:hover .cat-img {
   opacity: 0.6;
+}
+
+.eventinfo-title {
+  color: #ffffff;
+  letter-spacing: 1rem;
+}
+
+.eventinfo-container {
+  margin: 2rem;
 }

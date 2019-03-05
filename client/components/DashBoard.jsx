@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllSubscriptions } from "../actions/getAllSubscriptions";
 import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
+import { deleteEventAction } from "../actions/deleteEventAction";
+import { removeSubAction } from "../actions/removeSubAction";
 import EventForm from "./EventForm";
 import Loading from "./Loading";
-import { ENETDOWN } from "constants";
+import EditEvent from "./EditEvent";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,11 +22,23 @@ class Dashboard extends Component {
     return (
       <div>
         <h2>Welome to Dashboard page!</h2>
-        {this.props.subscriptions.map(item => (
-          <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.location}</p>
-            <p>{item.date}</p>
+        {this.props.subscriptions.map(subscription => (
+          <div key={subscription.id}>
+            <p>{subscription.name}</p>
+            <p>{subscription.location}</p>
+            <p>{subscription.date}</p>
+            <button
+              onClick={e =>
+                window.confirm("Are you sure you wish to remove this event?") &&
+                this.props.removeSub(
+                  this.props.user.user_id,
+                  subscription.id,
+                  this.props.user.user_name
+                )
+              }
+            >
+              Remove
+            </button>
           </div>
         ))}
         <h1>Create Event</h1>
@@ -38,8 +52,18 @@ class Dashboard extends Component {
               <p>{event.describtion}</p>
               <p>{event.location}</p>
               <p>{event.date}</p>
-              <button>Edit event</button>
-              <button>Delete event</button>
+
+              {/* <button>Edit event</button> */}
+              <EditEvent {...event} />
+              <button
+                onClick={e =>
+                  window.confirm(
+                    "Are you sure you wish to delete this event?"
+                  ) && this.props.deleteEvent(event.id, this.props.user.user_id)
+                }
+              >
+                Delete event
+              </button>
             </div>
           ))}
         </div>
@@ -57,7 +81,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     getAll: username => dispatch(getAllSubscriptions(username)),
-    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId))
+    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId)),
+    deleteEvent: (eventId, userId) =>
+      dispatch(deleteEventAction(eventId, userId)),
+    removeSub: (userId, eventId, username) =>
+      dispatch(removeSubAction(userId, eventId, username))
   };
 };
 
