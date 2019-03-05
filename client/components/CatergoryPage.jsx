@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 class Categories extends Component {
   constructor() {
@@ -7,22 +7,35 @@ class Categories extends Component {
 
   render() {
     return (
-      <div className="tile is-ancestor">
-        {this.props.categories.map((category, i) => {
-          return (
-            <div key={i} className="tile">
-              <div className="">
-                <figure className="image">
-                  <a href="">
-                    <img className="" src={category.image} />
-                  </a>
-                  {category.category}
-                </figure>
-              </div>
+      <Fragment>
+        <section class="hero categories-header">
+          <div class="hero-body">
+            <div class="container">
+              <h1 className="is-1">Categories</h1>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        </section>
+        <div className="columns category-main">
+          <div className="column">
+            {this.props.categories.map((category, i) => {
+              return (
+                <div className="container" key={i}>
+                  <div className="categories-page-img">
+                    <figure className="image">
+                      <div href="">
+                        <img className="cat-img" src={category.image} />
+                        <h3 className="category-text has-text-centered ">
+                          <span>{category.category}</span>
+                        </h3>
+                      </div>
+                    </figure>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Fragment>
     );
   }
 }
