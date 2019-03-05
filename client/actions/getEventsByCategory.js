@@ -1,9 +1,9 @@
-import { getEventsByCategoryApi } from "../api/events";
+import { getEventsByCategory as getEventsByCategoryApi } from "../api/events";
 
-export function getEventsByCategory(id) {
+export function getEventsByCategory(category) {
   return dispatch => {
-    return getEventsByCategoryApi(id).then(category => {
-      dispatch(saveSelectedEventsByCategory(category));
+    return getEventsByCategoryApi(category).then(events => {
+      dispatch(saveSelectedEventsByCategory(events));
     });
   };
 }

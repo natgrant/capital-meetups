@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 
-import { getEventsByCategory } from "../actions/events";
+import { getEventsByCategory } from "../actions/getEventsByCategory";
 
 class CategoryList extends Component {
   constructor() {
@@ -74,8 +74,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCategory: id => {
-      dispatch(getCategory(category));
+    getEventsByCategory: category => {
+      dispatch(getEventsByCategory(category));
     }
   };
 };
