@@ -37,24 +37,20 @@ describe("Testing get events by category route by categoryname", () => {
   });
 });
 
-// describe('POST /users', function () {
-//   let data = {
-//       //no id
-//       "name": "dummy",
-//       "contact": "dummy",
-//       "address": "dummy"
-//   }
-//   it('respond with 400 not created', function (done) {
-//       request(app)
-//           .post('/users')
-//           .send(data)
-//           .set('Accept', 'application/json')
-//           .expect('Content-Type', /json/)
-//           .expect(400)
-//           .expect('"user not created"')
-//           .end((err) => {
-//               if (err) return done(err);
-//               done();
-//           });
-//   });
-// });
+describe("Testing post route for adding subscription", () => {
+  test("Response needs to be a text/html", done => {
+    return request(app)
+      .get("/api/v1/subscriptions/join/1/1")
+      .expect("Content-Type", "text/html; charset=utf-8")
+      .end(done);
+  });
+});
+
+describe("Testing get route for subscriptions by username", () => {
+  test("Response needs to be a json", done => {
+    return request(app)
+      .get("/api/v1/subscriptions/test")
+      .expect("Content-Type", /json/)
+      .end(done);
+  });
+});

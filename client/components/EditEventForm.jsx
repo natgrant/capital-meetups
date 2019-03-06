@@ -98,16 +98,18 @@ class EditEventForm extends React.Component {
           >
             <option />
             {[
-              "coffee",
-              "arts and crafts",
-              "mountain biking",
-              "health",
-              "outdoors",
-              "food",
-              "language",
-              "web development",
-              "music",
-              "leisure"
+              "Coffee",
+              "Arts and Crafts",
+              "Cycling",
+              "Health",
+              "Outdoors",
+              "Food",
+              "Plants",
+              "Sport",
+              "Language",
+              "Web development",
+              "Music",
+              "Leisure"
             ].map(item => (
               <option key={item} value={item}>
                 {item}
