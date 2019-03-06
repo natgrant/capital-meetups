@@ -33,7 +33,6 @@ export class EventsByCategory extends Component {
             </div>
           </div>
         </section>
-
         <div className="events-page">
           <div className="columns events-column">
             {this.props.events.map(event => (
