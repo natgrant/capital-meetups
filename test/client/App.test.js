@@ -3,6 +3,8 @@ import { shallow } from "enzyme";
 
 import { App } from "../../client/components/App";
 
+jest.mock("date-fns");
+
 test("Title renders on App", () => {
   const expected = "";
 

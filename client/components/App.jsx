@@ -21,7 +21,7 @@ import Categories from "./CatergoryPage";
 import Dashboard from "./DashBoard";
 import PrivateRoute from "./PrivateRoute";
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor() {
     super();
   }
