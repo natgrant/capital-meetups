@@ -120,7 +120,7 @@ exports.seed = function(knex, Promise) {
           date: 1551314863037,
           is_open: "true",
           type: "Morning",
-          image: "/images/plant.jpg"
+          image: "/images/permaculture.jpg"
         },
         {
           id: 10,
