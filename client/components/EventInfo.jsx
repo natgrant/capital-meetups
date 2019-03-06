@@ -53,13 +53,18 @@ export class EventInfo extends Component {
                   </h1>
                   <div>
                     <div>
-                      <a
-                        className="button is-danger joinbutton"
-                        onClick={this.toggleTick}
-                      >
-                        Join Event
-                        <i className="fas fa-heart" />
-                      </a>
+                      {this.state.isButtonVisible && (
+                        <a
+                          className="button is-danger joinbutton"
+                          onClick={() => {
+                            this.state.isButtonVisible = false;
+                            this.toggleTick;
+                          }}
+                        >
+                          Join Event
+                          <i className="fas fa-heart" />
+                        </a>
+                      )}
                       {buttonClicked && isButtonVisible ? (
                         <a className="button is-primary joinedbutton">
                           <i className="fas fa-plus" />
