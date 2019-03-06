@@ -7,7 +7,6 @@ import { deleteEventAction } from "../actions/deleteEventAction";
 import { removeSubAction } from "../actions/removeSubAction";
 
 import CreateEvent from "./CreateEvent";
-import Loading from "./Loading";
 import EditEvent from "./EditEvent";
 
 class Dashboard extends Component {
