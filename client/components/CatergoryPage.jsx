@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { getEventsByCategory } from "../actions/getEventsByCategory";
 
-class Categories extends Component {
+export class Categories extends Component {
   constructor() {
     super();
   }
