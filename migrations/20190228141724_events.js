@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.string("location");
     table.string("description", 1000);
     table.string("category");
-    table.integer("date");
+    table.bigint("date");
     table.boolean("is_open");
     table.string("type");
     table.string("image", 1000);
