@@ -30,9 +30,9 @@ function getOneEvent(id, testDb) {
 function getAllCategories(testDb) {
   const db = testDb || connection;
   return db("events")
-    .select(db.raw("MIN(category) AS category"), db.raw("MIN(image) AS image"))
-    .groupBy(db.raw("LOWER(category)"))
-    .orderBy("id");
+  // .select(db.raw("MIN(category) AS category"), db.raw("MIN(image) AS image"))
+  // .groupBy(db.raw("LOWER(category)"))
+  // .orderBy("id");
 }
 
 function createEvent(newEvent, testDb) {
