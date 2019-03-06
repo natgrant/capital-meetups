@@ -4,21 +4,27 @@ const multer = require("multer");
 
 const {
   getAllEvents,
-  getEventByCategory,
+  getEventsByCategory,
   getOneEvent,
   getEventsByCreator,
   createEvent,
   deleteEvent,
   editEvent,
-  getAllCategories
+  getAllCategories,
+  getUserId
 } = require("../db/events");
+
+const {
+  createSubscription,
+  removeSubscription
+} = require("../db/subscriptions");
 
 router.use(express.json());
 
 const config = {
   storage: multer.diskStorage({
     destination: function(req, file, next) {
-      next(null, "./public/images");
+      next(null, "./public");
     },
     filename: function(req, file, next) {
       const ext = file.mimetype.split("/")[1];
@@ -37,19 +43,85 @@ const config = {
     }
   }
 };
-
+//EventForm CreateEvent api route
 router.post("/event/photo", multer(config).single("photo"), function(
   req,
   res,
   next
 ) {
-  console.log(req.file);
-  console.log(req.body);
-  if (req.file) {
-    req.body.photo = req.file.filename;
-  }
-  res.send("image saved");
+  let username = req.body.user;
+
+  getUserId(username)
+    .then(userId => {
+      let actualUserId = userId.id;
+      let dateTime = JSON.stringify(req.body.date);
+      let input = new Date(dateTime);
+      let eventDateTime = input.getTime();
+      const newEvent = {
+        name: req.body.name,
+        location: req.body.location,
+        description: req.body.description,
+        category: req.body.category,
+        date: eventDateTime,
+        is_open: "true",
+        image: req.file.filename,
+        user_id: userId.id
+      };
+      createEvent(newEvent).then(([id]) => {
+        let eventId = id;
+        createSubscription(actualUserId, eventId).then(actualUserId => {
+          getEventsByCreator(actualUserId).then(response => {
+            res.json(response);
+          });
+        });
+      });
+    })
+
+    .catch(err => {
+      res.status(500).json({ error: "Oh no an error" });
+    });
 });
+
+//Post EditEvent api route
+router.post(
+  "/event/photo/edit/:eventId",
+  multer(config).single("photo"),
+  function(req, res, next) {
+    console.log(req.params.eventId);
+    console.log(req.body);
+    console.log(req.file);
+    let username = "test";
+    let eventId = req.params.eventId;
+    getUserId(username).then(userId => {
+      let actualUserId = userId.id;
+      let dateTime = JSON.stringify(req.body.date);
+      let input = new Date(dateTime);
+      let eventDateTime = input.getTime();
+      const updateEvent = {
+        name: req.body.name,
+        category: req.body.category,
+
+        location: req.body.location,
+        description: req.body.description,
+        date: eventDateTime,
+        is_open: "true",
+        image: req.file.filename,
+        user_id: userId.id
+      };
+      editEvent(updateEvent, actualUserId, eventId)
+        .then(actualUserId => {
+          console.log(actualUserId);
+          getEventsByCreator(actualUserId).then(response => {
+            res.json(response);
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({ error: "Oh no an error" });
+        });
+    });
+  }
+);
 
 //GET /api/v1/meetups
 router.get("/", (req, res) => {
@@ -64,7 +136,7 @@ router.get("/", (req, res) => {
 
 router.get("/category/:category", (req, res) => {
   const category = req.params.category;
-  getEventByCategory(category)
+  getEventsByCategory(category)
     .then(events => {
       res.json(events);
     })
@@ -105,57 +177,28 @@ router.get("/event/:id", (req, res) => {
     });
 });
 
-router.post("/create/:user_id", (req, res) => {
-  const userId = req.params.user_id;
-  const newEvent = {
-    user_id: req.params.user_id,
-    name: req.body.name,
-    location: req.body.location,
-    description: req.body.description,
-    category: req.body.category,
-    date: req.body.date,
-    is_open: req.body.is_open,
-    type: req.body.type,
-    image: req.body.image
-  };
-  createEvent(newEvent, userId)
-    .then(([id]) => {
-      res.json({ id });
+router.delete("/delete/:eventId/:userId", (req, res) => {
+  let eventId = req.params.eventId;
+  let userId = req.params.userId;
+  deleteEvent(eventId, userId)
+    .then(events => {
+      res.json(events);
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
     });
 });
 
-router.delete("/delete/:id", (req, res) => {
-  deleteEvent(req.params.id)
+router.delete("/removeUser/:userId/:eventId/:username", (req, res) => {
+  let userId = req.params.userId;
+  let eventId = req.params.eventId;
+  let username = req.params.username;
+  removeSubscription(userId, eventId, username)
     .then(event => {
       res.json(event);
     })
     .catch(err => {
       res.status(500).json({ error: "Oh no an error" });
-    });
-});
-
-router.delete("/removeUser/:id", (req, res) => {
-  removeEventByUserId(req.params.id)
-    .then(event => {
-      res.json(event);
-    })
-    .catch(err => {
-      res.status(500).json({ error: "Oh no an error" });
-    });
-});
-
-router.post("/edit/:id", (req, res) => {
-  let id = req.params.id;
-  let event = req.body;
-  editEvent(event, id)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.status(500).json({ error: "Oh no another error" });
     });
 });
 

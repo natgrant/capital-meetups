@@ -1,8 +1,8 @@
 import React from "react";
-import EditEventForm from "./EditEventForm";
+import EventForm from "./EventForm";
 import { connect } from "react-redux";
 
-class EditEvent extends React.Component {
+class CreateEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,12 +22,12 @@ class EditEvent extends React.Component {
     return (
       <div>
         {this.state.visible && (
-          <EditEventForm
+          <EventForm
             {...this.props}
             buttonClick={this.changeButtonState.bind(this)}
           />
         )}
-        <button onClick={this.handleClick}>edit</button>
+        <button onClick={this.handleClick}>Create Event</button>
       </div>
     );
   }
@@ -40,4 +40,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(EditEvent);
+export default connect(mapStateToProps)(CreateEvent);
