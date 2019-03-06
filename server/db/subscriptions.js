@@ -24,7 +24,7 @@ function createSubscription(userId, eventId, testDb) {
   return db("subscriptions").insert({
     user_id: userId,
     event_id: eventId
-  }, "id");
+  });
 }
 
 function removeSubscription(userId, eventId, username, testDb) {
