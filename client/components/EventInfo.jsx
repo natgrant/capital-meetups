@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
 import { getUsersByEvent } from "../actions/getUsersByEvent";
-import { joinEventAction } from "../actions/JoinEventAction";
+import { joinEventAction } from "../actions/joinEventAction";
 
 export class EventInfo extends Component {
   constructor(props) {
