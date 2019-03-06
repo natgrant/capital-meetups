@@ -14,11 +14,23 @@ class EditEvent extends React.Component {
     this.setState({ visible: true });
   }
 
+  changeButtonState(event) {
+    this.setState({ visible: false });
+  }
+
   render() {
     return (
       <div>
-        {this.state.visible && <EditEventForm {...this.props} />}
-        <button onClick={this.handleClick}>edit</button>
+        {this.state.visible && (
+          <EditEventForm
+            {...this.props}
+            buttonClick={this.changeButtonState.bind(this)}
+          />
+        )}
+        <a className="button is-rounded is-info" onClick={this.handleClick}>
+          Edit &nbsp;
+          <i class="far fa-edit" />
+        </a>
       </div>
     );
   }
@@ -30,16 +42,5 @@ function mapStateToProps(state) {
     events: state.home.events
   };
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getEvent: id => {
-//       return dispatch(getEvent(id));
-//     },
-//     getUsersByEvent: id => {
-//       return dispatch(getUsersByEvent(id));
-//     }
-//   };
-// };
 
 export default connect(mapStateToProps)(EditEvent);

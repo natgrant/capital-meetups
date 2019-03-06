@@ -3,6 +3,8 @@ const axios = require("axios");
 import { connect } from "react-redux";
 
 import DateTimePicker from "react-datetime-picker";
+import { getAllSubscriptions } from "../actions/getAllSubscriptions";
+import { getEventsByCreatorAction } from "../actions/getEventsByCreatorAction";
 
 class ReactUploadImage extends React.Component {
   constructor(props) {
@@ -50,6 +52,9 @@ class ReactUploadImage extends React.Component {
       )
       .then(response => {
         alert("New event is created");
+        this.props.getAll(this.props.user.user_name);
+        this.props.getEventsByCreator(this.props.user.user_id);
+        this.props.buttonClick();
       })
       .catch(error => {});
   }
@@ -67,50 +72,65 @@ class ReactUploadImage extends React.Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>Event Name:</label>
-        <input type="text" name="name" onChange={this.onChangeNew} /> <br />
-        <label>Event Location:</label>
-        <input name="location" onChange={this.onChangeNew} /> <br />
-        <label>Event Category:</label>
-        <select name="category" onChange={this.onChangeNew}>
-          <option />
-          {[
-            "coffee",
-            "arts and crafts",
-            "mountain biking",
-            "health",
-            "outdoors",
-            "food",
-            "language",
-            "web development",
-            "music",
-            "leisure"
-          ].map(item => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>{" "}
-        <br />
-        <label>Event Description:</label>
-        <input
-          name="description"
-          rows="6"
-          type="textarea"
-          onChange={this.onChangeNew}
-        />{" "}
-        <br />
-        <label>Date & Time:</label>
-        <DateTimePicker
-          onChange={this.onChangeDate}
-          name="date"
-          value={this.state.date}
-        />{" "}
-        <br />
-        <label>File Upload:</label>
-        <input type="file" name="photo" onChange={this.onChange} />
-        <br />
-        <button type="submit">Submit</button>
+        <div className="field">
+          <label className="label">Event Name</label>
+          <input type="text" name="name" onChange={this.onChangeNew} />{" "}
+        </div>
+        <div className="field">
+          <label className="label">Event Location:</label>
+          <input name="location" onChange={this.onChangeNew} />{" "}
+        </div>
+        <div className="field">
+          <label className="label">Event Category</label>
+          <select name="category" onChange={this.onChangeNew}>
+            <option />
+            {[
+              "Coffee",
+              "Arts and Crafts",
+              "Cycling",
+              "Health",
+              "Outdoors",
+              "Food",
+              "Plants",
+              "Sport",
+              "Language",
+              "Web development",
+              "Music",
+              "Leisure"
+            ].map(item => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
+          <label className="label">Event Description</label>
+          <input
+            name="description"
+            rows="6"
+            type="textarea"
+            onChange={this.onChangeNew}
+          />
+        </div>
+        <div className="field">
+          <label className="label">Date & Time:</label>
+          <DateTimePicker
+            onChange={this.onChangeDate}
+            name="date"
+            value={this.state.date}
+          />
+        </div>
+        <div className="field">
+          <label className="input">File Upload</label>
+          <input type="file" name="photo" onChange={this.onChange} />
+        </div>
+        <button
+          className="button is-primary is-outlined is-rounded is-large sub-event"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     );
   }
@@ -119,8 +139,17 @@ class ReactUploadImage extends React.Component {
 const mapStateToProps = state => ({
   user: state.auth.user
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    getAll: username => dispatch(getAllSubscriptions(username)),
+    getEventsByCreator: userId => dispatch(getEventsByCreatorAction(userId))
+  };
+};
 
-export default connect(mapStateToProps)(ReactUploadImage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReactUploadImage);
 
 // import React, { Component } from "react";
 // import { reduxForm, Field } from "redux-form";
