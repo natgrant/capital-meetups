@@ -28,7 +28,7 @@ class Dashboard extends Component {
     const { user_name } = this.props.user;
     return (
       <div>
-        <section className="hero categories-header">
+        <section id="margin-dash" className="hero categories-header">
           <div className="hero-body">
             <div className="container">
               <h1 className="is-1">

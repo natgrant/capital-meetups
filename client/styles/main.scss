@@ -182,12 +182,12 @@ body {
 
 .created-events {
   padding-bottom: 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
 }
 
 .subs-title {
   text-align: center;
-  padding-top: 1rem;
+  padding-top: 3rem;
   letter-spacing: 1rem;
   font-family: $subtitle-font;
 }
@@ -198,4 +198,12 @@ body {
 
 .btn-edit {
   margin: 1rem;
+}
+
+.margin-dash {
+  margin-bottom: 2rem;
+}
+
+.sub-event {
+  margin-bottom: 4rem;
 }
