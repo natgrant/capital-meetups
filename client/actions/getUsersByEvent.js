@@ -8,7 +8,7 @@ export function getUsersByEvent(id) {
   };
 }
 
-function saveSelectedEventUsers(users) {
+export function saveSelectedEventUsers(users) {
   return {
     type: "SAVE_SELECTED_EVENT_USERS",
     users
