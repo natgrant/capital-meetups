@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import LatestEvents from "./LatestEvents";
 import CategoryList from "./CategoryList";
 import { Link } from "react-router-dom";
-import Login from "./Login";
+// import Login from "./Login";
 
 class Home extends React.Component {
   constructor(props) {
