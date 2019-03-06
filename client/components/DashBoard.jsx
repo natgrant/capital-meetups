@@ -46,7 +46,7 @@ class Dashboard extends Component {
           </div>
           <div className="columns created-events">
             {this.props.events.map(event => (
-              <div className="card column subs-event">
+              <div className="card column subs-event is-one-quarter">
                 <header className="card-header">
                   <p className="card-header-title">{event.name}</p>
                 </header>
