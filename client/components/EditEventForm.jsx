@@ -139,21 +139,19 @@ class EditEventForm extends React.Component {
           <label className="label">File Upload</label>
           <input type="file" name="photo" onChange={this.onChange} />
         </div>
-        <div className="field">
-          <a
-            type="submit"
-            className="button is-rounded is-primary is-outlined btn-edit"
-          >
-            Submit
-          </a>
-          <a
-            type="submit"
-            className="button is-warning is-rounded is-outlined btn-edit"
-            onClick={this.props.buttonClick}
-          >
-            Cancel
-          </a>
-        </div>
+        <button
+          type="submit"
+          className="button is-rounded is-primary is-outlined btn-edit"
+        >
+          Submit
+        </button>
+        <button
+          type="submit"
+          className="button is-warning is-rounded is-outlined btn-edit"
+          onClick={this.props.buttonClick}
+        >
+          Cancel
+        </button>
       </form>
     );
   }

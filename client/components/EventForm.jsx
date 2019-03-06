@@ -125,12 +125,12 @@ class ReactUploadImage extends React.Component {
           <label className="input">File Upload</label>
           <input type="file" name="photo" onChange={this.onChange} />
         </div>
-        <a
+        <button
           className="button is-primary is-outlined is-rounded is-large"
           type="submit"
         >
           Submit
-        </a>
+        </button>
       </form>
     );
   }
