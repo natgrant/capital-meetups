@@ -5,11 +5,11 @@ exports.up = function(knex, Promise) {
     table.string("name");
     table.string("location");
     table.string("description", 1000);
-    table.string("category");
-    table.bigint("date");
+    table.string("category", 1000);
+    table.bigint("date", 1000);
     table.boolean("is_open");
     table.string("type");
-    table.string("image");
+    table.string("image", 1000);
   });
 };
 
