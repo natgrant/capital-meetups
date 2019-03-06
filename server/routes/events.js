@@ -90,7 +90,7 @@ router.post(
     console.log(req.params.eventId);
     console.log(req.body);
     console.log(req.file);
-    let username = "test";
+    let username = req.body.user;
     let eventId = req.params.eventId;
     getUserId(username).then(userId => {
       let actualUserId = userId.id;
