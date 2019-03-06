@@ -37,7 +37,7 @@ function getAllCategories(testDb) {
 
 function createEvent(newEvent, testDb) {
   const db = testDb || connection;
-  return db("events").insert(newEvent);
+  return db("events").returning("id").insert(newEvent);
 }
 
 function editEvent(event, actualUserId, eventId, testDb) {
