@@ -58,7 +58,10 @@ export class EventInfo extends Component {
                   <div>
                     <div>
                       {checkIfJoined ? (
-                        <p>Joined</p>
+                        <p className="is-pulled-right title is-5 joined">
+                          Going&nbsp;
+                          <i class="far fa-check-circle" />
+                        </p>
                       ) : (
                         <a
                           className="button is-danger joinbutton"
@@ -68,11 +71,6 @@ export class EventInfo extends Component {
                           <i className="fas fa-heart" />
                         </a>
                       )}
-                      {buttonClicked && isButtonVisible ? (
-                        <a className="button is-primary joinedbutton">
-                          <i className="fas fa-plus" />
-                        </a>
-                      ) : null}
                     </div>
                   </div>
                 </div>
