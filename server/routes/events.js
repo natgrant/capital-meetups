@@ -159,9 +159,11 @@ router.get("/creator/:id", (req, res) => {
 router.get("/categories", (req, res) => {
   getAllCategories()
     .then(results => {
+      console.log("res", results);
       res.json(results);
     })
     .catch(err => {
+      console.log(err);
       res.status(500).json({ error: "Oh no an error" });
     });
 });
