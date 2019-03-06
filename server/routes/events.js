@@ -59,9 +59,10 @@ router.post("/event/photo", multer(config).single("photo"), function(
       let eventDateTime = input.getTime();
       const newEvent = {
         name: req.body.name,
+        category: req.body.category,
         location: req.body.location,
         description: req.body.description,
-        category: req.body.category,
+
         date: eventDateTime,
         is_open: "true",
         image: req.file.filename,
