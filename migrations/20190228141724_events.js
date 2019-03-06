@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.integer("user_id");
     table.string("name");
     table.string("location");
-    table.string("description");
+    table.text("description");
     table.string("category");
     table.bigint("date");
     table.boolean("is_open");
