@@ -54,3 +54,21 @@ describe("Testing get route for subscriptions by username", () => {
       .end(done);
   });
 });
+
+describe("Testing get route for getting user by username", () => {
+  test("Response needs to be a json", done => {
+    return request(app)
+      .get("/api/v1/users/test")
+      .expect("Content-Type", /json/)
+      .end(done);
+  });
+});
+
+describe("Testing get route for getting user by event_id", () => {
+  test("Response needs to be a json", done => {
+    return request(app)
+      .get("/api/v1/users/event/1")
+      .expect("Content-Type", /json/)
+      .end(done);
+  });
+});
