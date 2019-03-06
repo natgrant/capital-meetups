@@ -49,6 +49,22 @@ class Dashboard extends Component {
               <div className="card column subs-event is-one-quarter">
                 <header className="card-header">
                   <p className="card-header-title">{event.name}</p>
+                  <button
+                    className="button is-rounded is-danger"
+                    onClick={e => {
+                      window.confirm(
+                        "Are you sure you wish to delete this event?"
+                      ) &&
+                        this.props.deleteEvent(
+                          event.id,
+                          this.props.user.user_id
+                        );
+                      this.props.getAll(this.props.user.user_name);
+                    }}
+                  >
+                    {/* Delete event &nbsp; */}
+                    <i class="fas fa-trash-alt" />
+                  </button>
                 </header>
                 <div className="card-content">
                   <div className="content">
@@ -67,22 +83,6 @@ class Dashboard extends Component {
                 <footer className="card-footer">
                   <div className="card-footer-item">
                     <EditEvent {...event} />
-                    <button
-                      className="button is-rounded is-danger"
-                      onClick={e => {
-                        window.confirm(
-                          "Are you sure you wish to delete this event?"
-                        ) &&
-                          this.props.deleteEvent(
-                            event.id,
-                            this.props.user.user_id
-                          );
-                        this.props.getAll(this.props.user.user_name);
-                      }}
-                    >
-                      Delete event &nbsp;
-                      <i class="fas fa-trash-alt" />
-                    </button>
                   </div>
                 </footer>
               </div>
