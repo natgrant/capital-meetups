@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import { getEvent } from "../actions/events";
 import { getUsersByEvent } from "../actions/getUsersByEvent";
-import { th } from "date-fns/esm/locale";
+import { joinEventAction } from "../actions/JoinEventAction";
 
 export class EventInfo extends Component {
   constructor(props) {
@@ -25,6 +25,10 @@ export class EventInfo extends Component {
 
   toggleTick = () => {
     this.setState({ buttonClicked: true });
+    this.props.joinEvent(
+      this.props.auth.user.user_id,
+      this.props.selectedEvent.id
+    );
   };
 
   handleDate = date => {
@@ -174,6 +178,9 @@ const mapDispatchToProps = dispatch => {
 
     getUsersByEvent: id => {
       return dispatch(getUsersByEvent(id));
+    },
+    joinEvent: (userId, eventId) => {
+      return dispatch(joinEventAction(userId, eventId));
     }
   };
 };
