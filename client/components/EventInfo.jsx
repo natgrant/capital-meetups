@@ -41,6 +41,10 @@ export class EventInfo extends Component {
     if (!auth.isAuthenticated && buttonClicked) {
       return <Redirect to="/login" />;
     }
+    let authUser = this.props.auth.user.user_name;
+    let eventUser = this.props.selectedEventUsers.map(x => x.name);
+    let checkIfJoined = eventUser.includes(authUser);
+
     return (
       <div>
         <div>
@@ -53,13 +57,17 @@ export class EventInfo extends Component {
                   </h1>
                   <div>
                     <div>
-                      <a
-                        className="button is-danger joinbutton"
-                        onClick={this.toggleTick}
-                      >
-                        Join Event
-                        <i className="fas fa-heart" />
-                      </a>
+                      {checkIfJoined ? (
+                        <p>Joined</p>
+                      ) : (
+                        <a
+                          className="button is-danger joinbutton"
+                          onClick={this.toggleTick}
+                        >
+                          Join Event
+                          <i className="fas fa-heart" />
+                        </a>
+                      )}
                       {buttonClicked && isButtonVisible ? (
                         <a className="button is-primary joinedbutton">
                           <i className="fas fa-plus" />
