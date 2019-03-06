@@ -72,50 +72,63 @@ class ReactUploadImage extends React.Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>Event Name:</label>
-        <input type="text" name="name" onChange={this.onChangeNew} /> <br />
-        <label>Event Location:</label>
-        <input name="location" onChange={this.onChangeNew} /> <br />
-        <label>Event Category:</label>
-        <select name="category" onChange={this.onChangeNew}>
-          <option />
-          {[
-            "coffee",
-            "arts and crafts",
-            "mountain biking",
-            "health",
-            "outdoors",
-            "food",
-            "language",
-            "web development",
-            "music",
-            "leisure"
-          ].map(item => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>{" "}
-        <br />
-        <label>Event Description:</label>
-        <input
-          name="description"
-          rows="6"
-          type="textarea"
-          onChange={this.onChangeNew}
-        />{" "}
-        <br />
-        <label>Date & Time:</label>
-        <DateTimePicker
-          onChange={this.onChangeDate}
-          name="date"
-          value={this.state.date}
-        />{" "}
-        <br />
-        <label>File Upload:</label>
-        <input type="file" name="photo" onChange={this.onChange} />
-        <br />
-        <button type="submit">Submit</button>
+        <div className="field">
+          <label className="label">Event Name</label>
+          <input type="text" name="name" onChange={this.onChangeNew} />{" "}
+        </div>
+        <div className="field">
+          <label className="label">Event Location:</label>
+          <input name="location" onChange={this.onChangeNew} />{" "}
+        </div>
+        <div className="field">
+          <label className="label">Event Category</label>
+          <select name="category" onChange={this.onChangeNew}>
+            <option />
+            {[
+              "coffee",
+              "arts and crafts",
+              "mountain biking",
+              "health",
+              "outdoors",
+              "food",
+              "language",
+              "web development",
+              "music",
+              "leisure"
+            ].map(item => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
+          <label className="label">Event Description</label>
+          <input
+            name="description"
+            rows="6"
+            type="textarea"
+            onChange={this.onChangeNew}
+          />
+        </div>
+        <div className="field">
+          <label className="label">Date & Time:</label>
+          <DateTimePicker
+            onChange={this.onChangeDate}
+            name="date"
+            value={this.state.date}
+          />
+        </div>
+        <div className="field">
+          <label className="input">File Upload</label>
+          <input type="file" name="photo" onChange={this.onChange} />
+        </div>
+        <a
+          className="button is-primary is-outlined is-rounded is-large"
+          type="submit"
+        >
+          Submit
+        </a>
       </form>
     );
   }

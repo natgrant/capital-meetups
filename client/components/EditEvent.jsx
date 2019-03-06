@@ -27,7 +27,10 @@ class EditEvent extends React.Component {
             buttonClick={this.changeButtonState.bind(this)}
           />
         )}
-        <button onClick={this.handleClick}>edit</button>
+        <a className="button is-rounded is-info" onClick={this.handleClick}>
+          Edit &nbsp;
+          <i class="far fa-edit" />
+        </a>
       </div>
     );
   }

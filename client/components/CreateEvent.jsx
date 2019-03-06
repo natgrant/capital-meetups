@@ -21,13 +21,18 @@ class CreateEvent extends React.Component {
   render() {
     return (
       <div>
+        <a
+          className="button is-large is-primary is-rounded"
+          onClick={this.handleClick}
+        >
+          Create Event &nbsp; <i class="fas fa-plus" />
+        </a>
         {this.state.visible && (
           <EventForm
             {...this.props}
             buttonClick={this.changeButtonState.bind(this)}
           />
         )}
-        <button onClick={this.handleClick}>Create Event</button>
       </div>
     );
   }
