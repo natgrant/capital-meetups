@@ -70,69 +70,90 @@ class EditEventForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>Event Name:</label>
-        <input
-          type="text"
-          name="name"
-          defaultValue={this.props.name}
-          onChange={this.onChangeNew}
-        />
-        <br />
-        <label>Event Location:</label>
-        <input
-          name="location"
-          defaultValue={this.props.location}
-          onChange={this.onChangeNew}
-        />
-        <br />
-        <label>Event Category:</label>
-        <select
-          name="category"
-          defaultValue={this.props.category}
-          onChange={this.onChangeNew}
-        >
-          <option />
-          {[
-            "coffee",
-            "arts and crafts",
-            "mountain biking",
-            "health",
-            "outdoors",
-            "food",
-            "language",
-            "web development",
-            "music",
-            "leisure"
-          ].map(item => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>{" "}
-        <br />
-        <label>Event Description:</label>
-        <input
-          name="description"
-          rows="6"
-          type="textarea"
-          defaultValue={this.props.description}
-          onChange={this.onChangeNew}
-        />
-        <br />
-        <label>Date & Time:</label>
-        <DateTimePicker
-          onChange={this.onChangeDate}
-          name="date"
-          value={this.state.date}
-        />
-        <br />
-        <label>File Upload:</label>
-        <input type="file" name="photo" onChange={this.onChange} />
-        <br />
-        <button type="submit">Submit</button>
-        <button type="submit" onClick={this.props.buttonClick}>
-          Cancel
-        </button>
+        <div className="field">
+          <label className="label">Name</label>
+          <div class="control">
+            <input
+              type="text"
+              name="name"
+              defaultValue={this.props.name}
+              onChange={this.onChangeNew}
+            />
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">Location</label>
+          <input
+            name="location"
+            defaultValue={this.props.location}
+            onChange={this.onChangeNew}
+          />
+        </div>
+        <div className="field">
+          <label className="label">Category</label>
+          <select
+            name="category"
+            defaultValue={this.props.category}
+            onChange={this.onChangeNew}
+          >
+            <option />
+            {[
+              "Coffee",
+              "Arts and Crafts",
+              "Cycling",
+              "Health",
+              "Outdoors",
+              "Food",
+              "Plants",
+              "Sport",
+              "Language",
+              "Web development",
+              "Music",
+              "Leisure"
+            ].map(item => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
+          <label className="label">Description</label>
+          <input
+            name="description"
+            rows="6"
+            type="textarea"
+            defaultValue={this.props.description}
+            onChange={this.onChangeNew}
+          />
+        </div>
+        <div className="field">
+          <label className="label">Date & Time:</label>
+          <DateTimePicker
+            onChange={this.onChangeDate}
+            name="date"
+            value={this.state.date}
+          />
+        </div>
+        <div className="field">
+          <label className="label">File Upload</label>
+          <input type="file" name="photo" onChange={this.onChange} />
+        </div>
+        <div className="field">
+          <a
+            type="submit"
+            className="button is-rounded is-primary is-outlined btn-edit"
+          >
+            Submit
+          </a>
+          <a
+            type="submit"
+            className="button is-warning is-rounded is-outlined btn-edit"
+            onClick={this.props.buttonClick}
+          >
+            Cancel
+          </a>
+        </div>
       </form>
     );
   }
