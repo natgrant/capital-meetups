@@ -90,9 +90,10 @@ router.post(
     console.log(req.params.eventId);
     console.log(req.body);
     console.log(req.file);
-    let username = "test";
+    let username = req.body.user;
     let eventId = req.params.eventId;
     getUserId(username).then(userId => {
+      console.log("aaaa", userId);
       let actualUserId = userId.id;
       let dateTime = JSON.stringify(req.body.date);
       let input = new Date(dateTime);
