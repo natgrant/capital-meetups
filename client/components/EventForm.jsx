@@ -126,7 +126,7 @@ class ReactUploadImage extends React.Component {
           <input type="file" name="photo" onChange={this.onChange} />
         </div>
         <button
-          className="button is-primary is-outlined is-rounded is-large"
+          className="button is-primary is-outlined is-rounded is-large sub-event"
           type="submit"
         >
           Submit
