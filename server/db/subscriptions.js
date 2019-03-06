@@ -21,10 +21,10 @@ function getSubscriptionsByUsername(username, testDb) {
 
 function createSubscription(userId, eventId, testDb) {
   const db = testDb || connection;
-  return db("subscriptions").returning("id").insert({
+  return db("subscriptions").insert({
     user_id: userId,
     event_id: eventId
-  });
+  }, "id");
 }
 
 function removeSubscription(userId, eventId, username, testDb) {

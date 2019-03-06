@@ -12,12 +12,12 @@ function createUser(
   const db = testDb || connection;
 
   return generatePasswordHash(password).then(hash => {
-    return db("users").returning("id").insert({
+    return db("users").insert({
       user_name,
       email_address,
       contact_details,
       hash
-    });
+    }, "id");
   });
 }
 
