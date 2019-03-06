@@ -171,3 +171,39 @@ body {
   margin: 3rem;
   text-align: center;
 }
+
+.subs-event {
+  margin: 4%;
+}
+
+.joined-events {
+  background-color: #edb23d;
+}
+
+.created-events {
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
+}
+
+.subs-title {
+  text-align: center;
+  padding-top: 3rem;
+  letter-spacing: 1rem;
+  font-family: $subtitle-font;
+}
+
+.create-btn {
+  margin-right: 2rem;
+}
+
+.btn-edit {
+  margin: 1rem;
+}
+
+.margin-dash {
+  margin-bottom: 2rem;
+}
+
+.sub-event {
+  margin-bottom: 4rem;
+}
