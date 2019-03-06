@@ -3,9 +3,7 @@ import { shallow } from "enzyme";
 
 import { App } from "../../client/components/App";
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
-
-ctest("Title renders on App", () => {
+test("Title renders on App", () => {
   const expected = "";
 
   const wrapper = shallow(<App auth={{ isAuthenticated: false }} />);
