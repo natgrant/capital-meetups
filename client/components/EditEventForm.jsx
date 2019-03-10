@@ -10,12 +10,12 @@ class EditEventForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: null,
-      name: null,
+      file: this.props.file,
+      name: this.props.name,
       date: new Date(),
-      category: null,
-      description: null,
-      location: null,
+      category: this.props.category,
+      description: this.props.description,
+      location: this.props.location,
       user: this.props.user.user_name
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -106,7 +106,7 @@ class EditEventForm extends React.Component {
               "Food",
               "Plants",
               "Sport",
-              "Language",
+              "Languages",
               "Web development",
               "Music",
               "Leisure"

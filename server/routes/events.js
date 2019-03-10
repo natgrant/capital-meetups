@@ -107,7 +107,7 @@ router.post(
         description: req.body.description,
         date: eventDateTime,
         is_open: "true",
-        image: req.file.filename,
+        image: req.file ? req.file.filename : "",
         user_id: userId.id
       };
       editEvent(updateEvent, actualUserId, eventId)
