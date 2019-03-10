@@ -1,6 +1,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("events", table => {
-    table.increments("id").primary();
+    table
+      .increments("id")
+      .primary()
+      .unique();
     table.integer("user_id");
     table.string("name");
     table.string("location");

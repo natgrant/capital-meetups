@@ -65,7 +65,7 @@ router.post("/event/photo", multer(config).single("photo"), function(
 
         date: eventDateTime,
         is_open: "true",
-        image: req.file.filename,
+        image: req.file ? req.file.filename : "",
         user_id: userId.id
       };
       createEvent(newEvent).then(([id]) => {
