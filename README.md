@@ -1,5 +1,6 @@
 # ReadMe:
 Meetup The focus of this app is to create a place wherein people are able to communicate,  join meetups, and attend events that correspond with their specific interests. 
+
 ## Tech:
 * React
 * Redux
